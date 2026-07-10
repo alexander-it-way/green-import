@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Import — Информационный сайт</title>
+    <style>
+        :root {
+            --primary-green: #2d5a27; 
+            --accent-gold: #c5a059;   
+            --dark-green: #1b3a17;
+            --light-bg: #fdfbf7;      
+            --white: #ffffff;
+            --gray-text: #555555;
+            --dark-text: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('images/logo.png.jpg');
+            background-repeat: no-repeat;
+            background-position: center 300px;
+            background-attachment: fixed;
+            background-size: 600px;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 50px; 
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary-green);
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: var(--primary-green);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-gold);
+            color: #ffffff;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 3px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--dark-text);
+        }
+
+        .lang-btn.active {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(253, 251, 247, 0.85), rgba(253, 251, 247, 0.85)), url('images/logo.png.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            padding: 100px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .hero h1 {
+            color: var(--primary-green);
+            font-size: 38px;
+            max-width: 800px;
+            margin: 0 auto 25px;
+        }
+
+        .slogan {
+            font-weight: bold;
+            color: var(--accent-gold);
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 30px 0;
+        }
+
+        .section {
+            padding: 80px 0;
+            min-height: 500px;
+        }
+
+        .section-title {
+            color: var(--primary-green);
+            font-size: 28px;
+            margin-bottom: 35px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 10px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--primary-green);
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .plant-media {
+            margin-bottom: 15px;
+        }
+
+        .plant-slider-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .plant-slider-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            color: var(--gray-text);
+            font-size: 14px;
+        }
+
+        .plant-slider-controls button {
+            border: 1px solid #d9e7d4;
+            background: #f7fbf3;
+            color: var(--primary-green);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .plant-slider-controls button:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .custom-list {
+            list-style: none;
+        }
+
+        .custom-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .check-list li::before {
+            content: "✓";
+            color: var(--primary-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .dot-list li::before {
+            content: "•";
+            color: var(--accent-gold);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 20px;
+            top: -2px;
+        }
+
+        footer {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 60px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .footer-col a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-gold);
+        }
+
+        .feedback-widget {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .feedback-toggle {
+            width: 64px;
+            height: 64px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--primary-green), #4b7f35);
+            color: var(--white);
+            font-size: 28px;
+            box-shadow: 0 12px 28px rgba(45, 90, 39, 0.28);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .feedback-toggle:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 16px 32px rgba(45, 90, 39, 0.34);
+        }
+
+        .feedback-panel {
+            width: min(360px, calc(100vw - 32px));
+            padding: 20px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
+            border: 1px solid rgba(45, 90, 39, 0.12);
+            transform: translateY(12px) scale(0.98);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .feedback-panel.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .feedback-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .feedback-panel-header h3 {
+            color: var(--primary-green);
+            font-size: 20px;
+        }
+
+        .feedback-close {
+            border: none;
+            background: #f2f8eb;
+            color: var(--primary-green);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .feedback-form label {
+            font-weight: 600;
+            color: var(--dark-green);
+            font-size: 14px;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            border: 1px solid #dce9d8;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font: inherit;
+            color: var(--dark-text);
+            background: #fcfdf9;
+            resize: vertical;
+        }
+
+        .feedback-form input:focus,
+        .feedback-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.12);
+        }
+
+        .feedback-form textarea {
+            min-height: 100px;
+        }
+
+        .feedback-submit {
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--primary-green), #4b7f35);
+            color: var(--white);
+            padding: 12px 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 10px 24px rgba(45, 90, 39, 0.22);
+        }
+
+        .feedback-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(45, 90, 39, 0.28);
+        }
+
+        .feedback-status {
+            min-height: 22px;
+            margin-top: 4px;
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .feedback-status.success {
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+
+        .feedback-status.error {
+            color: #b5473a;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 28px; }
+            .feedback-widget { right: 16px; bottom: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="logo-area">
+                <img src="images/logo.png.jpg" alt="Green Import" class="logo-img">
+                <div class="logo-text">GREEN IMPORT</div>
+            </div>
+            <nav>
+                <a href="#about" id="nav-about">О нас</a>
+                <a href="#plants" id="nav-plants">Растения</a>
+                <a href="#building-materials" id="nav-materials">Стройматериалы</a>
+                <a href="#logistics" id="nav-logistics">Транспорт</a>
+                <a href="#docs" id="nav-docs">Документы</a>
+                <a href="#contacts" id="nav-contacts">Контакты</a>
+            </nav>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="ru" onclick="changeLang('ru')">RU</button>
+                <button class="lang-btn" data-lang="am" onclick="changeLang('am')">AM</button>
+                <button class="lang-btn" data-lang="en" onclick="changeLang('en')">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="about">
+        <div class="container">
+            <h1 id="hero-title">Поставки и перевозки в Армению и из Армении в другие страны</h1>
+            <div class="slogan" id="hero-slogan">Надежно • Быстро • С гарантией качества</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" id="about-title-block" style="color: #ffffff;">О компании</h2>
+            <div class="card" style="max-width: 1000px; margin: 0 auto; border-left-color: var(--accent-gold); background: var(--primary-green); border-radius: 8px; box-shadow: none; border: none;">
+                <p id="about-text-p1" style="font-size: 18px; color: #ffffff; margin-bottom: 15px;">
+                    Green Import — торговая марка компании NAFT.CO, специализирующейся на международной торговле, логистике и комплексных поставках товаров. Уже более 10 лет мы успешно работаем в сфере внешнеэкономической деятельности, обеспечивая надежную международную логистику и поставки продукции под ключ. За годы работы компания заслужила доверие сотен клиентов и партнеров, став для них стабильным и ответственным участником международного рынка.
+                </p>
+                <p id="about-text-p2" style="font-size: 16px; color: #ffffff;">
+                    Наша главная цель — создавать безопасные, эффективные и прозрачные цепочки поставок между Арменией и зарубежными рынками. Мы предлагаем клиентам качественные строительные материалы, декоративные растения, товары для благоустройства территорий и современные решения в области ландшафтного дизайна. Благодаря многолетнему опыту, широкой сети международных партнеров и индивидуальному подходу к каждому проекту, Green Import успешно реализует поставки любой сложности, обеспечивая высокий уровень сервиса, контроль качества и соблюдение сроков. Мы стремимся к долгосрочному сотрудничеству, основанному на доверии, профессионализме и взаимной выгоде, помогая нашим клиентам развивать бизнес и воплощать в жизнь самые амбициозные проекты. Green Import — надежный мост между мировыми поставщиками и рынком Армении. «Международная торговля. Надежная логистика. Качественные решения.»
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="plants" style="background-color: #f7fbf3;">
+        <div class="container">
+            <h2 class="section-title" id="plants-title">Растения</h2>
+            <div id="plants-grid" class="grid"></div>
+        </div>
+    </section>
+    <!-- КАТАЛОГ СТРОЙМАТЕРИАЛОВ И БЛАГОУСТРОЙСТВА -->
+    <section class="section" id="building-materials" style="background-color: #f7fbf3;">
+        <div class="container">
+            <h2 class="section-title" id="building-materials-title">Стройматериалы и благоустройство</h2>
+            <div id="building-materials-grid" class="grid"></div>
+        </div>
+    </section>
+
+    <!-- ЛАНДШАФТ -->
+    <section class="section" style="background-color: #f5f8f4;">
+        <div class="container">
+            <h2 class="section-title" id="land-title">Ландшафт и декоративные растения</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: var(--gray-text);" id="land-subtitle">Поставка растений и материалов для благоустройства:</p>
+            <div class="grid">
+                <div class="card">
+                    <h3 id="land-c1-title">Озеленение</h3>
+                    <ul class="custom-list dot-list">
+                        <li id="land-li1">Декоративные деревья</li>
+                        <li id="land-li2">Кустарники</li>
+                        <li id="land-li3">Хвойные растения</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 id="land-c2-title">Эксклюзив и дизайн</h3>
+                    <ul class="custom-list dot-list">
+                        <li id="land-li4">Эксклюзивные растения из Европы</li>
+                        <li id="land-li5">Рулонный газон</li>
+                        <li id="land-li6">Материалы для ландшафтного дизайна</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; font-weight: bold; color: var(--primary-green);" id="land-footer">Гарантируем качество и соответствие всем требованиям.</p>
+        </div>
+    </section>
+
+    <!-- ЛОГИСТИКА -->
+    <section class="section" id="logistics">
+        <div class="container">
+            <h2 class="section-title" id="log-title">Международные перевозки</h2>
+            <div style="text-align: center; margin-bottom: 50px;">
+                <p class="slogan" style="margin: 5px 0;">Иран &rarr; Армения 🇮🇷 🇦🇲</p>
+                <p style="color: var(--gray-text); font-weight: bold;" id="log-subtitle">Иран &rarr; любые страны по вашему запросу 🌍</p>
+            </div>
+            <div class="grid" style="max-width: 600px; margin: 0 auto;">
+                <div class="card">
+                    <h3 id="log-c1-title">Наши логистические услуги</h3>
+                    <ul class="custom-list check-list">
+                        <li id="log-li1">Автомобильные перевозки</li>
+                        <li id="log-li2">Консолидация грузов</li>
+                        <li id="log-li3">Логистика под ключ</li>
+                        <li id="log-li4">Сопровождение на всех этапах доставки</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ДОКУМЕНТЫ -->
+    <section class="section" id="docs" style="background-color: #fff;">
+        <div class="container">
+            <div class="grid">
+                <div class="card">
+                    <h3 id="doc-title">Оформление документов</h3>
+                    <p style="margin-bottom: 15px; color: var(--gray-text);" id="doc-subtitle">Полное сопровождение внешнеэкономической деятельности:</p>
+                    <ul class="custom-list check-list">
+                        <li id="doc-li1">Таможенное оформление</li>
+                        <li id="doc-li2">Декларации на товары</li>
+                        <li id="doc-li3">Сертификаты соответствия</li>
+                        <li id="doc-li4">Разрешительная документация</li>
+                        <li id="doc-li5">Консультации по импорту и экспорту</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-left-color: var(--accent-gold);">
+                    <h3 id="gar-title">Гарантия качества</h3>
+                    <p style="margin-bottom: 15px; color: var(--gray-text);" id="gar-subtitle">Мы сотрудничаем только с проверенными поставщиками и гарантируем:</p>
+                    <ul class="custom-list dot-list">
+                        <li id="gar-li1">Качественную продукцию</li>
+                        <li id="gar-li2">Соблюдение сроков поставки</li>
+                        <li id="gar-li3">Полное документальное сопровождение</li>
+                        <li id="gar-li4">Индивидуальный подход к каждому клиенту</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФУТЕР / КОНТАКТЫ -->
+    <footer id="contacts">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4 id="f-contacts-title">Контакты</h4>
+                <p id="f-phone">Телефон: +374 91 211722</p>
+                <p id="f-whatsapp">WhatsApp: <a href="https://wa.me" target="_blank" style="display:inline; color:#fff; text-decoration:underline;">+374 91 211722</a></p>
+                <p id="f-viber">Viber: <a href="viber://chat?number=%2B37491211722" style="display:inline; color:#fff; text-decoration:underline;">+374 91 211722</a></p>
+                <p id="f-email">Email: <a href="mailto:naft.co@mail.ru" style="display:inline; color:#fff; text-decoration:underline;">naft.co@mail.ru</a></p>
+                <p id="f-address">Адрес: Армения, Ереван, ул. Вардананц 5/1</p>
+            </div>
+            <div class="footer-col">
+                <h4 id="f-soc-title">Социальные сети</h4>
+                <a href="https://www.instagram.com/green_import_armenia?igsh=MTJ2YXJjaHd6Zzc4NA==" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.facebook.com/share/1EQwdn1rCY/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="https://www.tiktok.com/@green_import_armenia?_r=1&_t=ZS-97uwEbw1dnL" target="_blank" rel="noopener noreferrer">TikTok</a>
+            </div>
+            <div class="footer-col">
+                <h4 id="f-about-title">О компании</h4>
+                <p id="f-about-desc">GREEN IMPORT — ваш надежный партнер в сфере импорта, международной логистики и комплексного снабжения бизнеса.</p>
+                <p style="margin-top: 15px; color: var(--accent-gold); font-size: 12px;">© 2026 Green Import. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="feedback-widget">
+        <button class="feedback-toggle" id="feedback-toggle" type="button" aria-label="Open contact form">✉</button>
+        <div class="feedback-panel" id="feedback-panel" aria-hidden="true">
+            <div class="feedback-panel-header">
+                <h3 id="feedback-title">Связаться с нами</h3>
+                <button class="feedback-close" id="feedback-close" type="button" aria-label="Close">×</button>
+            </div>
+            <form class="feedback-form" id="feedback-form">
+                <label for="feedback-name" id="feedback-name-label">Имя</label>
+                <input id="feedback-name" name="name" type="text" required data-placeholder-key="feedback-name-placeholder" placeholder="Ваше имя">
+
+                <label for="feedback-contacts" id="feedback-contacts-label">Контакты</label>
+                <input id="feedback-contacts" name="contacts" type="text" required data-placeholder-key="feedback-contacts-placeholder" placeholder="Телефон или e-mail">
+
+                <label for="feedback-message" id="feedback-message-label">Ваш вопрос</label>
+                <textarea id="feedback-message" name="message" required data-placeholder-key="feedback-message-placeholder" placeholder="Напишите ваш вопрос"></textarea>
+
+                <button class="feedback-submit" id="feedback-submit" type="submit">Отправить</button>
+                <p class="feedback-status" id="feedback-status" role="status"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- СКРИПТ ПЕРЕКЛЮЧЕНИЯ ЯЗЫКОВ -->
+    <script>
+        const translations = {
+            ru: {
+                "nav-about": "О нас",
+                "nav-plants": "Растения",
+                "nav-materials": "Стройматериалы",
+                "nav-logistics": "Транспорт",
+                "nav-docs": "Документы",
+                "nav-contacts": "Контакты",
+                "hero-title": "Поставки и перевозки в Армению и из Армении в другие страны",
+                "hero-slogan": "Надежно • Быстро • С гарантией качества",
+                "about-title-block": "О компании",
+                "about-text-p1": "Green Import — торговая марка компании NAFT.CO, специализирующейся на международной торговле, логистике и комплексных поставках товаров. Уже более 10 лет мы успешно работаем в сфере внешнеэкономической деятельности, обеспечивая надежную международную логистику и поставки продукции под ключ. За годы работы компания заслужила доверие сотен клиентов и партнеров, став для них стабильным и ответственным участником международного рынка.",
+                "about-text-p2": "Наша главная цель — создавать безопасные, эффективные и прозрачные цепочки поставок между Арменией и зарубежными рынками. Мы предлагаем клиентам качественные строительные материалы, декоративные растения, товары для благоустройства территорий и современные решения в области ландшафтного дизайна. Благодаря многолетнему опыту, широкой сети международных партнеров и индивидуальному подходу к каждому проекту, Green Import успешно реализует поставки любой сложности, обеспечивая высокий уровень сервиса, контроль качества и соблюдение сроков. Мы стремимся к долгосрочному сотрудничеству, основанному на доверии, профессионализме и взаимной выгоде, помогая нашим клиентам развивать бизнес и воплощать в жизнь самые амбициозные проекты. Green Import — надежный мост между мировыми поставщиками и рынком Армении. «Международная торговля. Надежная логистика. Качественные решения.»",
+                "mat-title": "Строительные материалы из Ирана",
+                "mat-subtitle": "Предлагаем поставку строительных материалов напрямую от производителей Ирана:",
+                "mat-c1-title": "Облицовка и камень",
+                "mat-li1": "Керамогранит и плитка",
+                "mat-li2": "Натуральный камень",
+                "mat-c2-title": "Обустройство и ремонт",
+                "mat-li3": "Сантехника",
+                "mat-li4": "Отделочные материалы",
+                "mat-c3-title": "Конструкции и заказ",
+                "mat-li5": "Металлоконструкции",
+                "mat-li6": "Двери и окна",
+                "mat-li7": "Другие строительные товары под заказ",
+                "land-title": "Ландшафт и декоративные растения",
+                "land-subtitle": "Поставка растений и материалов для благоустройства:",
+                "land-c1-title": "Озеленение",
+                "land-li1": "Декоративные деревья",
+                "land-li2": "Кустарники",
+                "land-li3": "Хвойные растения",
+                "land-c2-title": "Эксклюзив и дизайн",
+                "land-li4": "Эксклюзивные растения из Европы",
+                "land-li5": "Рулонный газон",
+                "land-li6": "Материалы для ландшафтного дизайна",
+                "land-footer": "Гарантируем качество и соответствие всем требованиям.",
+                "log-title": "Международные перевозки",
+                "log-subtitle": "Иран → любые страны по вашему запросу 🌍",
+                "log-c1-title": "Наши логистические услуги",
+                "log-li1": "Автомобильные перевозки",
+                "log-li2": "Консолидация грузов",
+                "log-li3": "Логистика под ключ",
+                "log-li4": "Сопровождение на всех этапах доставки",
+                "doc-title": "Оформление документов",
+                "doc-subtitle": "Полное сопровождение внешнеэкономической деятельности:",
+                "gar-title": "Гарантия качества",
+                "gar-subtitle": "Мы сотрудничаем только с проверенными поставщиками и гарантируем:",
+                "gar-li1": "Качественную продукцию",
+                "gar-li2": "Соблюдение сроков поставки",
+                "gar-li3": "Полное документальное сопровождение",
+                "gar-li4": "Индивидуальный подход к каждому клиенту",
+                "f-contacts-title": "Контакты",
+                "f-phone": "Телефон: +374 91 211722",
+                "f-whatsapp": "WhatsApp: +374 91 211722",
+                "f-viber": "Viber: +374 91 211722",
+                "f-address": "Адрес: Армения, Ереван, ул. Вардананц 5/1",
+                "f-soc-title": "Социальные сети",
+                "f-about-title": "О компании",
+                "f-about-desc": "GREEN IMPORT — ваш надежный партнер в сфере импорта, международной логистики и комплексного снабжения бизнеса.",
+                "feedback-title": "Связаться с нами",
+                "feedback-name-label": "Имя",
+                "feedback-contacts-label": "Контакты",
+                "feedback-message-label": "Ваш вопрос",
+                "feedback-name-placeholder": "Ваше имя",
+                "feedback-contacts-placeholder": "Телефон или e-mail",
+                "feedback-message-placeholder": "Напишите ваш вопрос",
+                "feedback-submit": "Отправить",
+                "feedback-status": "",
+                "feedback-thanks": "Спасибо за вопрос!",
+                "feedback-error": "Не удалось отправить сообщение. Попробуйте позже."
+            },
+            am: {
+                "nav-about": "Մեր մասին",
+                "nav-plants": "Բույսեր",
+                "nav-materials": "Նյութեր",
+                "nav-logistics": "Տրանսպորտ",
+                "nav-docs": "Փաստաթղթեր",
+                "nav-contacts": "Կոնտակտներ",
+                "hero-title": "Մատակարարումներ և փոխադրումներ դեպի Հայաստան և Հայաստանից այլ երկրներ",
+                "hero-slogan": "Հարելիք • Արագ • Որակի երաշխիքով",
+                "about-title-block": "Ընկերության մասին",
+                "about-text-p1": "Մենք՝ «Green Import» ընկերությունը, արդեն ավելի քան 10 տարի հաջողությամբ աշխատում ենք արտաքին տնտեսական գործունեության ոլորտում՝ ապահովելով օպերատիվ միջազգային լոգիստիկա և ապրանքների համալիր մատակարարումներ «բանալիով»։ Անթերի աշխատանքի տարիների ընթացքում մենք վաստակել ենք հարյուրավոր մշտական հաճախորդների վստահությունը՝ դառնալով նրանց համար հուսալի և կայուն գործընկեր.",
+                "about-text-p2": "Մեր գլխավոր նպատակն է կառուցել անվտանգ և թափանցիկ մատակարարման երթուղիներ դեպի Հայաստան և Հայաստանից այլ երկրներ՝ հաճախորդներին առաջարկելով բացառապես բարձրորակ շինարարական նյութեր, դեկորատիվ բույսեր և լանդշաֆտային դիզայնի առաջատար լուծումներ.",
+                "mat-title": "Շինանյութեր Իրանից",
+                "mat-subtitle": "Առաջարկում ենք շինանյութերի մատակարարում անմիջապես Իրանի արտադրողներից:",
+                "mat-c1-title": "Ծածկոց և քար",
+                "mat-li1": "Կերամոգրանիտ և սալիկ",
+                "mat-li2": "Բնական քար",
+                "mat-c2-title": "Պայմանավորում և վերանորոգում",
+                "mat-li3": "Սանտեխնիկա",
+                "mat-li4": "Վերանորոգման նյութեր",
+                "mat-c3-title": "Կառուցվածքներ և պատվերներ",
+                "mat-li5": "Մետաղական կառուցվածքներ",
+                "mat-li6": "Դռներ և պատուհաններ",
+                "mat-li7": "Մյուս շինանյութեր պատվերով",
+                "land-title": "Լանդշաֆտ և զարդարանքային բույսեր",
+                "land-subtitle": "Բույսերի և բարեկարգման նյութերի մատակարարում:",
+                "land-c1-title": "Կանաչապատում",
+                "land-li1": "Զարդարիչ ծառեր",
+                "land-li2": "Թփեր",
+                "land-li3": "Կոնիֆերներ",
+                "land-c2-title": "Բացառիկ և դիզայն",
+                "land-li4": "Եվրոպայից բացառիկ բույսեր",
+                "land-li5": "Մոմենալ տերևապատ",
+                "land-li6": "Լանդշափտային դիզայնի նյութեր",
+                "land-footer": "Մենք երաշխավորում ենք որակը և բոլոր պահանջներին համապատասխանությունը.",
+                "log-title": "Միջազգային փոխադրումներ",
+                "log-subtitle": "Իրան → ցանկացած երկրների ձեր խնդրանքով 🌍",
+                "log-c1-title": "Մեր լոգիստիկական ծառայությունները",
+                "log-li1": "Ավտոմոբիլային փոխադրում",
+                "log-li2": "Բեռների կոնսոլիդացում",
+                "log-li3": "Turnkey լոգիստիկա",
+                "log-li4": "Աջակցություն առաքման բոլոր փուլերում",
+                "doc-title": "Փաստաթղթերի ձևակերպում",
+                "doc-subtitle": "Արտաքին տնտեսական գործունեության ամբողջական աջակցում:",
+                "gar-title": "Որակի երաշխիք",
+                "gar-subtitle": "Մենք աշխատում ենք միայն վստահելի մատակարարների հետ և երաշխավորում ենք՝",
+                "gar-li1": "Որակյալ արտադրանք",
+                "gar-li2": "Առաքման ժամկետների պահպանություն",
+                "gar-li3": "Փաստաթղթային ամբողջական աջակցություն",
+                "gar-li4": "Անհատական մոտեցում յուրաքանչյուր հաճախորդին",
+                "f-contacts-title": "Կոնտակտներ",
+                "f-phone": "Հեռախոս՝ +374 91 211722",
+                "f-whatsapp": "WhatsApp՝ +374 91 211722",
+                "f-viber": "Viber՝ +374 91 211722",
+                "f-address": "Հասցե՝ Հայաստան, մի. Երևան, Վարդանանց 5/1",
+                "f-soc-title": "Սոցիալական ցանցեր",
+                "f-about-title": "Ընկերության մասին",
+                "f-about-desc": "GREEN IMPORT-ը ձեր վստահելի գործընկերն է ներմուծման, միջազգային լոգիստիկայի և բիզնեսի համապարփակ ապահովման ոլորտում.",
+                "feedback-title": "Կապվել մեզ հետ",
+                "feedback-name-label": "Անուն",
+                "feedback-contacts-label": "Կոնտակտներ",
+                "feedback-message-label": "Ձեր հարցը",
+                "feedback-name-placeholder": "Ձեր անունը",
+                "feedback-contacts-placeholder": "Հեռախոս կամ e-mail",
+                "feedback-message-placeholder": "Գրեք ձեր հարցը",
+                "feedback-submit": "Ուղարկել",
+                "feedback-status": "",
+                "feedback-thanks": "Շնորհակալություն հարցի համար!",
+                "feedback-error": "Չհաջողվեց ուղարկել հաղորդագրությունը։ Փորձեք ավելի ուշ."
+            },
+            en: {
+                "nav-about": "About",
+                "nav-plants": "Plants",
+                "nav-materials": "Materials",
+                "nav-logistics": "Transport",
+                "nav-docs": "Documents",
+                "nav-contacts": "Contacts",
+                "hero-title": "Supplies and transportation to Armenia and from Armenia to other countries",
+                "hero-slogan": "Reliable • Fast • With a quality guarantee",
+                "about-title-block": "About the company",
+                "about-text-p1": "We, the 'Green Import' company, have been successfully operating in the field of foreign economic activity for over 10 years, providing prompt international logistics and comprehensive turnkey supply of goods. Over the years of impeccable work, we have earned the trust of hundreds of regular clients, becoming a reliable and stable partner for them.",
+                "about-text-p2": "Our main goal is to build safe and transparent supply routes to Armenia and from Armenia to other countries, offering our clients exclusively high-quality construction materials, decorative plants, and advanced landscape design solutions.",
+                "mat-title": "Building materials from Iran",
+                "mat-subtitle": "We offer delivery of building materials directly from Iranian manufacturers:",
+                "mat-c1-title": "Cladding and stone",
+                "mat-li1": "Porcelain stoneware and tiles",
+                "mat-li2": "Natural stone",
+                "mat-c2-title": "Arrangement and renovation",
+                "mat-li3": "Sanitary ware",
+                "mat-li4": "Finishing materials",
+                "mat-c3-title": "Structures and special orders",
+                "mat-li5": "Metal structures",
+                "mat-li6": "Doors and windows",
+                "mat-li7": "Other building goods by order",
+                "land-title": "Landscaping and decorative plants",
+                "land-subtitle": "Supply of plants and materials for improvement:",
+                "land-c1-title": "Greening",
+                "land-li1": "Decorative trees",
+                "land-li2": "Shrubs",
+                "land-li3": "Conifers",
+                "land-c2-title": "Exclusive and design",
+                "land-li4": "Exclusive plants from Europe",
+                "land-li5": "Rolled lawn",
+                "land-li6": "Materials for landscape design",
+                "land-footer": "We guarantee quality and compliance with all requirements.",
+                "log-title": "International transportation",
+                "log-subtitle": "Iran → any countries at your request 🌍",
+                "log-c1-title": "Our logistics services",
+                "log-li1": "Road transportation",
+                "log-li2": "Cargo consolidation",
+                "log-li3": "Turnkey logistics",
+                "log-li4": "Support at all stages of delivery",
+                "doc-title": "Documentation processing",
+                "doc-subtitle": "Full support for foreign economic activity:",
+                "gar-title": "Quality guarantee",
+                "gar-subtitle": "We work only with trusted suppliers and guarantee:",
+                "gar-li1": "Quality products",
+                "gar-li2": "On-time delivery",
+                "gar-li3": "Full document support",
+                "gar-li4": "An individual approach to each client",
+                "f-contacts-title": "Contacts",
+                "f-phone": "Phone: +374 91 211722",
+                "f-whatsapp": "WhatsApp: +374 91 211722",
+                "f-viber": "Viber: +374 91 211722",
+                "f-address": "Address: Armenia, Yerevan, Vardanants St 5/1",
+                "f-soc-title": "Social networks",
+                "f-about-title": "About the company",
+                "f-about-desc": "GREEN IMPORT is your reliable partner in import, international logistics, and comprehensive business supply.",
+                "feedback-title": "Contact us",
+                "feedback-name-label": "Name",
+                "feedback-contacts-label": "Contacts",
+                "feedback-message-label": "Your question",
+                "feedback-name-placeholder": "Your name",
+                "feedback-contacts-placeholder": "Phone or e-mail",
+                "feedback-message-placeholder": "Write your question",
+                "feedback-submit": "Send",
+                "feedback-status": "",
+                "feedback-thanks": "Thank you for your question!",
+                "feedback-error": "The message could not be sent. Please try again later."
+            }
+        };
+
+        const plantsData = [
+            { id: 1, images: ["images/plant (1).png"], name: { ru: "Спирея золотистая", en: "Golden Spirea", hy: "Ոսկեգույն Սպիրեա" }, desc: { ru: "Декоративный кустарник с яркой листвой и пышным цветением.", en: "Decorative shrub with bright foliage and abundant flowering.", hy: "Դեկորատիվ թուփ վառ տերևներով և հարուստ ծաղկմամբ:" } },
+            { id: 2, images: ["images/plant (2).png"], name: { ru: "Лавр благородный", en: "Laurel", hy: "Պալար Լաուրուս" }, desc: { ru: "Элитный вечнозелёный кустарник для живых изгородей.", en: "Premium evergreen shrub for elegant hedges.", hy: "Պրեմիում մշտադալար թուփ էկզոտիկ ցանկապատերի համար:" } },
+            { id: 3, images: ["images/plant (3).png"], name: { ru: "Декоративный саженец", en: "Decorative seedling", hy: "Դեկորատիվ տնկի" }, desc: { ru: "Молодое растение для быстрого озеленения территории.", en: "Young plant for fast landscaping of the site.", hy: "Երիտասարդ բույս տարածքի արագ կանաչապատման համար:" } },
+            { id: 4, images: ["images/plant (4).png"], name: { ru: "Туя западная", en: "Western Thuja", hy: "Արևմտյան Տույա" }, desc: { ru: "Хвойное растение для плотных и аккуратных изгородей.", en: "Conifer for dense and neat hedges.", hy: "Կոնիֆեր խիտ և կանոնավոր ցանկապատերի համար:" } },
+            { id: 5, images: ["images/plant (5).png"], name: { ru: "Бересклет европейский", en: "European Euonymus", hy: "Եվրոպական Էվոնիմուս" }, desc: { ru: "Кустарник с эффектной окраской листьев осенью.", en: "Shrub with striking leaf colour in autumn.", hy: "Թուփ աշնանը տերևների ազդեցիկ գունավորմամբ:" } },
+            { id: 6, images: ["images/plant (6).png"], name: { ru: "Самшит карликовый", en: "Dwarf Boxwood", hy: "Փոքրածավալ Շամփայն" }, desc: { ru: "Компактный кустик для топиарных форм и бордюров.", en: "Compact shrub for topiary shapes and borders.", hy: "Կոմպակտ թուփ տոպիարի ձևերի և շարքերների համար:" } },
+            { id: 7, images: ["images/plant (7).png"], name: { ru: "Пирис японский", en: "Japanese Pieris", hy: "Ճապոնական Պիերիս" }, desc: { ru: "Красивый кустарник с весенними соцветиями и блестящей листвой.", en: "Beautiful shrub with spring blooms and glossy leaves.", hy: "Գեղեցիկ թուփ գարնանային ծաղիկներով և փայլուն տերևներով:" } },
+            { id: 8, images: ["images/plant (8).png"], name: { ru: "Гортензия кустовая", en: "Hydrangea Shrub", hy: "Թփային Հիդրանգեա" }, desc: { ru: "Кустарник с большими цветками для садовых композиций.", en: "Shrub with large flowers for garden compositions.", hy: "Թուփ մեծ ծաղիկներով այգու կոմպոզիցիաների համար:" } },
+            { id: 9, images: ["images/plant (9).png"], name: { ru: "Магнолия", en: "Magnolia", hy: "Մագնոլիա" }, desc: { ru: "Изящное дерево или крупный куст с ароматными цветами.", en: "Elegant tree or large shrub with fragrant flowers.", hy: "Արիստական ծառ կամ մեծ թուփ հոտավետ ծաղիկներով:" } },
+            { id: 10, images: ["images/plant (10).png"], name: { ru: "Эрика", en: "Heather", hy: "Էրիկա" }, desc: { ru: "Низкий кустарник для каменистых садов и альпинариев.", en: "Low shrub for rock gardens and alpine beds.", hy: "Ցածր թուփ քարայրի այգիների և ալպիական մահճակալների համար:" } },
+            { id: 11, images: ["images/plant (11).png"], name: { ru: "Гранатовый куст", en: "Pomegranate Shrub", hy: "Նռնենի թուփ" }, desc: { ru: "Светолюбивое растение с декоративной листвой и плодами.", en: "Sun-loving plant with decorative foliage and fruit.", hy: "Արևասեր բույս դեկորատիվ տերևներով և պտուղներով:" } },
+            { id: 12, images: ["images/plant (12).png"], name: { ru: "Бересклет", en: "Cotoneaster", hy: "Կոտոնեաստեր" }, desc: { ru: "Неприхотливый кустарник для живых изгородей и композиций.", en: "Undemanding shrub for hedges and garden compositions.", hy: "Անհրաժեշտության դեպքում թուփ ցանկապատերի և այգու կոմպոզիցիաների համար:" } },
+            { id: 13, images: ["images/plant (13).png"], name: { ru: "Калина", en: "Viburnum", hy: "Վիբեռնում" }, desc: { ru: "Кустарник с эффектными ягодами и осенней окраской.", en: "Shrub with showy berries and autumn colour.", hy: "Թուփ ազդեցիկ հատապտուղներով և աշնանային գունավորմամբ:" } },
+            { id: 14, images: ["images/plant (14).png"], name: { ru: "Можжевельник", en: "Juniper", hy: "Ջունիպեր" }, desc: { ru: "Хвойный кустарник для вертикального и рельефного озеленения.", en: "Conifer shrub for vertical and layered landscaping.", hy: "Կոնիֆեր թուփ ուղղահայաց և շերտավոր կանաչապատման համար:" } },
+            { id: 15, images: ["images/plant (15).png"], name: { ru: "Ель обыкновенная", en: "Norway Spruce", hy: "Սովորական նոճի" }, desc: { ru: "Высокое хвойное дерево для садовых и парковочных композиций.", en: "Tall conifer for garden and park compositions.", hy: "Բարձր կոնիֆեր այգու և պարկի կոմպոզիցիաների համար:" } },
+            { id: 16, images: ["images/plant (16).png"], name: { ru: "Пальма трахикарпус", en: "Trachycarpus Palm", hy: "Տրախիկարպուս արմավենի" }, desc: { ru: "Эффектная пальма для террас, дворов и зимних садов.", en: "Striking palm for terraces, courtyards and conservatories.", hy: "Ազդեցիկ արմավենի terrazzo-ի, բակերի և ձմեռային այգիների համար:" } },
+            { id: 17, images: ["images/plant (17).png"], name: { ru: "Бамбук", en: "Bamboo", hy: "Բամբուկ" }, desc: { ru: "Быстрорастущее растение для создания живых экранов.", en: "Fast-growing plant for creating living screens.", hy: "Արագ աճող բույս կենդանի էկրաններ ստեղծելու համար:" } },
+            { id: 18, images: ["images/plant (18).png"], name: { ru: "Клен японский", en: "Japanese Maple", hy: "Ճապոնական աթամ" }, desc: { ru: "Невероятно красивый клен для контрастных композиций.", en: "Astonishing maple for dramatic garden compositions.", hy: "Զարմանալի աթամ ազդեցիկ այգու կոմպոզիցիաների համար:" } },
+            { id: 19, images: ["images/plant (19).png"], name: { ru: "Топиарий", en: "Topiary", hy: "Տոպիարի" }, desc: { ru: "Форма из кустарника для строгих архитектурных линий.", en: "Shaped shrub for precise architectural lines.", hy: "Թուփ ձևավորված ճշգրիտ ճարտարապետական գծերի համար:" } },
+            { id: 20, images: ["images/plant (20).png"], name: { ru: "Плющ английский", en: "English Ivy", hy: "Անգլիական Թղթավոր" }, desc: { ru: "Вьющееся растение для вертикального озеленения стен.", en: "Climbing plant for vertical wall gardening.", hy: "Արագ աճող ճյուղավորող բույս պատերի ուղղահայաց կանաչապատման համար:" } },
+            { id: 21, images: ["images/plant (21).png"], name: { ru: "Цикас", en: "Cycas", hy: "Սիկաս" }, desc: { ru: "Роскошный комнатный экзот для стильных интерьеров.", en: "Luxurious indoor exotic for refined interiors.", hy: "Արիստոկրատիկ ներքին էկզոտիկ հարմարավետ ինտերիերի համար:" } },
+            { id: 22, images: ["images/plant (22).png"], name: { ru: "Бегония", en: "Begonia", hy: "Բեգոնիա" }, desc: { ru: "Пышное цветущее растение для окон и подоконников.", en: "Showy flowering plant for windowsills and indoor displays.", hy: "Ազդեցիկ ծաղկող բույս պատուհաններում և միջանցքներում:" } },
+            { id: 23, images: ["images/plant (23).png"], name: { ru: "Герань", en: "Geranium", hy: "Ջերանիում" }, desc: { ru: "Неприхотливая культура с продолжительным цветением.", en: "Undemanding plant with long-lasting blooms.", hy: "Անհրաժեշտության դեպքում բույս երկարատև ծաղկմամբ:" } },
+            { id: 24, images: ["images/plant (24).png"], name: { ru: "Шеффлера", en: "Schefflera", hy: "Շեֆֆլերա" }, desc: { ru: "Изысканное растение с крупными декоративными листьями.", en: "Elegant plant with large decorative leaves.", hy: "Էլեգանտ բույս մեծ դեկորատիվ տերևներով:" } },
+            { id: 25, images: ["images/plant (25).png"], name: { ru: "Кактус опунция", en: "Opuntia Cactus", hy: "Օպունտիա կակտուս" }, desc: { ru: "Сочный кактус с характерной формой стеблей.", en: "Succulent cactus with distinctive stem shape.", hy: "Հյութալի կակտուս բնորոշ ցողունային ձևով:" } },
+            { id: 26, images: ["images/plant (26).png"], name: { ru: "Кактус цереус", en: "Cereus Cactus", hy: "Սերիուս կակտուս" }, desc: { ru: "Столбчатый пустынный кактус для коллекций.", en: "Columnar desert cactus for collectors.", hy: "Սյունաձև անապատային կակտուս հավաքածուների համար:" } },
+            { id: 27, images: ["images/plant (27).png"], name: { ru: "Драцена", en: "Dragon Tree", hy: "Դրակենա" }, desc: { ru: "Высокий комнатный цветок с плотным стволом.", en: "Tall indoor plant with a sturdy trunk.", hy: "Բարձր ներքին բույս ամուր ցողով:" } },
+            { id: 28, images: ["images/plant (28).png"], name: { ru: "Юкка", en: "Yucca", hy: "Յուկկա" }, desc: { ru: "Стойкий декоративный суккулент для светлых помещений.", en: "Hardy decorative succulent for bright interiors.", hy: "Կայուն դեկորատիվ սուկուլենտ լուսավոր միջավայրերի համար:" } },
+            { id: 29, images: ["images/plant (29).png"], name: { ru: "Сансевиерия", en: "Snake Plant", hy: "Սանսևիերիա" }, desc: { ru: "Очень неприхотливый комнатный цветок для офиса.", en: "Extremely easy-care indoor plant for offices.", hy: "Շատ պարզ պահպանվող ներքին բույս գրասենյակների համար:" } },
+            { id: 30, images: ["images/plant (30).png"], name: { ru: "Филодендрон", en: "Philodendron", hy: "Ֆիլոդենդրոն" }, desc: { ru: "Лиана с крупными листьями для уютных интерьеров.", en: "Climber with large leaves for cozy interiors.", hy: "Լիանա մեծ տերևներով հարմարավետ ինտերիերի համար:" } },
+            { id: 31, images: ["images/plant (31).png"], name: { ru: "Бромелия", en: "Bromeliad", hy: "Բրոմելիա" }, desc: { ru: "Яркое тропическое растение с необычной розеткой.", en: "Bright tropical plant with a striking rosette.", hy: "Վառ արևադարձային բույս յուրահատուկ վարդակով:" } },
+            { id: 32, images: ["images/plant (32).png"], name: { ru: "Замиокулькас", en: "ZZ Plant", hy: "Զամիոկուլկաս" }, desc: { ru: "Плотный и долговечный цветок для темных помещений.", en: "Dense and long-lived plant for darker rooms.", hy: "Հոծ և երկարատև բույս մութ սենյակների համար:" } },
+            { id: 33, images: ["images/plant (33).png"], name: { ru: "Пеперомия", en: "Peperomia", hy: "Պեպերոմիա" }, desc: { ru: "Нежное растение с декоративными листьями и компактной формой.", en: "Delicate plant with decorative leaves and compact form.", hy: "Նուրբ բույս դեկորատիվ տերևներով և կոմպակտ ձևով:" } },
+            { id: 34, images: ["images/plant (34).png"], name: { ru: "Плектрантус", en: "Plectranthus", hy: "Պլեկտրանթուս" }, desc: { ru: "Ампельное растение с яркой листвой для кашпо.", en: "Trailing plant with bright foliage for hanging pots.", hy: "Ամպելային բույս վառ տերևներով կախովի արտադրանքների համար:" } },
+            { id: 35, images: ["images/plant (35).png"], name: { ru: "Хойя", en: "Hoya", hy: "Հոյա" }, desc: { ru: "Вьющийся цветок с ароматными цветами и плотной листвой.", en: "Climbing flower with fragrant blooms and dense foliage.", hy: "Ճյուղավորող բույս հոտավետ ծաղիկներով և խիտ տերևներով:" } },
+            { id: 36, images: ["images/plant (36).png"], name: { ru: "Гибискус", en: "Hibiscus", hy: "Հիբիսկուս" }, desc: { ru: "Крупный куст с яркими цветами для жарких садов.", en: "Large shrub with vivid flowers for warm gardens.", hy: "Մեծ թուփ վառ ծաղիկներով տաք այգիների համար:" } },
+            { id: 37, images: ["images/plant (37).png"], name: { ru: "Гортензия", en: "Hydrangea", hy: "Հիդրանգեա" }, desc: { ru: "Садовый куст с крупными цветочными шапками.", en: "Garden shrub with large floral heads.", hy: "Այգու թուփ մեծ ծաղկային փնջերով:" } },
+            { id: 38, images: ["images/plant (38).png"], name: { ru: "Калла", en: "Calla Lily", hy: "Կալլա" }, desc: { ru: "Элегантный цветок для клумб и срезки.", en: "Elegant flower for flowerbeds and cut arrangements.", hy: "Էլեգանտ ծաղիկ ծաղկաշարերի և կտրած կոմպոզիցիաների համար:" } },
+            { id: 39, images: ["images/plant (39).png"], name: { ru: "Молодило", en: "Sempervivum", hy: "Սեմպերվիվում" }, desc: { ru: "Суккулент для рокариев и сухих садов.", en: "Succulent for rock gardens and dry landscapes.", hy: "Սուկուլենտ քարային այգիների և չոր լանդշաֆտների համար:" } },
+            { id: 40, images: ["images/plant (40).png"], name: { ru: "Акация", en: "Acacia", hy: "Ակացիա" }, desc: { ru: "Листопадное дерево с тонкой ажурной кроной.", en: "Deciduous tree with a delicate airy crown.", hy: "Տերևաթափ ծառ նուրբ ուտոպյան վարդակով:" } },
+            { id: 41, images: ["images/plant (41).png"], name: { ru: "Павловния", en: "Paulownia", hy: "Պավլովնիա" }, desc: { ru: "Быстрорастущее дерево для тенистых аллей.", en: "Fast-growing tree for shaded avenues.", hy: "Արագ աճող ծառ ստվերային ծառուղիների համար:" } },
+            { id: 42, images: ["images/plant (42).png"], name: { ru: "Сосна крымская", en: "Crimean Pine", hy: "Ղրիմի Նոճի" }, desc: { ru: "Массивное хвойное дерево для крупных садов.", en: "Sturdy conifer for generous garden spaces.", hy: "Չափավոր կոնիֆեր մեծ այգիների համար:" } },
+            { id: 43, images: ["images/plant (43).png"], name: { ru: "Кипарисовик Лавсона", en: "Lawson Cypress", hy: "Լոուսոնի ցիսսուս" }, desc: { ru: "Хвойный кустарник с мягкой, густой хвоей.", en: "Conifer shrub with soft dense needles.", hy: "Կոնիֆեր թուփ փափուկ և խիտ needles-ով:" } },
+            { id: 44, images: ["images/plant (44).png"], name: { ru: "Ель Глаука", en: "Blue Spruce", hy: "Կապույտ Նոճի" }, desc: { ru: "Парадное хвойное дерево с сизой хвоей.", en: "Showy conifer with blue-green needles.", hy: "Ցուցադրական կոնիֆեր կապույտ-կանաչ needles-ով:" } },
+            { id: 45, images: ["images/plant (45).png"], name: { ru: "Книфофия", en: "Kniphofia", hy: "Կնիպոֆիա" }, desc: { ru: "Травянистое растение с яркими соцветиями.", en: "Herbaceous plant with bright flower spikes.", hy: "Բույս վառ ծաղկային spike-ներով:" } },
+            { id: 46, images: ["images/plant (46).png"], name: { ru: "Шиповник", en: "Rosehip", hy: "Վարդակակաչ" }, desc: { ru: "Неприхотливый куст с декоративными плодами.", en: "Undemanding shrub with decorative berries.", hy: "Անհրաժեշտության դեպքում թուփ դեկորատիվ պտուղներով:" } },
+            { id: 47, images: ["images/plant (47).png"], name: { ru: "Далия", en: "Dahlia", hy: "Դալիա" }, desc: { ru: "Пышный цветок для летних клумб и ваз.", en: "Showy flower for summer beds and bouquets.", hy: "Ազդեցիկ ծաղիկ ամառային ծաղկաշարերի և ծաղկաթերթերի համար:" } },
+            { id: 48, images: ["images/plant (48).png"], name: { ru: "Пион", en: "Peony", hy: "Պիոն" }, desc: { ru: "Классический садовый цветок с крупными бутонами.", en: "Classic garden flower with large buds.", hy: "Դասական այգու ծաղիկ մեծ կոկոններով:" } },
+            { id: 49, images: ["images/plant (49).png"], name: { ru: "Сальвия", en: "Salvia", hy: "Սալվիա" }, desc: { ru: "Долгоцветущее растение для бордюров и рабаток.", en: "Long-blooming plant for borders and beds.", hy: "Երկար ծաղկող բույս շերտերի և մահճակալների համար:" } },
+            { id: 50, images: ["images/plant (50).png"], name: { ru: "Эхинацея", en: "Echinacea", hy: "Էքինացիա" }, desc: { ru: "Яркий цветок для солнечных миксбордеров.", en: "Bright flower for sunny mixed borders.", hy: "Վառ ծաղիկ արևային խառնված ծաղկաշարերի համար:" } },
+            { id: 51, images: ["images/plant (51).png"], name: { ru: "Рудбекия", en: "Rudbeckia", hy: "Ռուդբեկիա" }, desc: { ru: "Низкая солнцелюбивая культура с золотистыми цветами.", en: "Low sun-loving plant with golden flowers.", hy: "Ցածր արևասեր բույս ոսկեգույն ծաղիկներով:" } },
+            { id: 52, images: ["images/plant (52).png"], name: { ru: "Дельфиниум", en: "Delphinium", hy: "Դելֆինիում" }, desc: { ru: "Высокий цветок для заднего плана цветников.", en: "Tall flower for the back of borders.", hy: "Բարձր ծաղիկ ծաղկաշարերի խորքի համար:" } },
+            { id: 53, images: ["images/plant (53).png"], name: { ru: "Вербена", en: "Verbena", hy: "Վերբենա" }, desc: { ru: "Ампельный цветок для вазонов и балконов.", en: "Trailing flower for planters and balconies.", hy: "Ամպելային ծաղիկ ափսեների և բալկոնների համար:" } },
+            { id: 54, images: ["images/plant (54).png"], name: { ru: "Альстромерия", en: "Alstroemeria", hy: "Ալստրոեմերիա" }, desc: { ru: "Роскошный многолетник для срезки и клумб.", en: "Luxurious perennial for cut flowers and borders.", hy: "Արիստոկրատիկ բազմամյա ծաղիկ կտրած ծաղիկների և ծաղկաշարերի համար:" } },
+            { id: 55, images: ["images/plant (55).png"], name: { ru: "Люпин", en: "Lupine", hy: "Լուպին" }, desc: { ru: "Травянистое растение с вертикальными колосьями.", en: "Herbaceous plant with upright flower spikes.", hy: "Բույս ուղղահայաց ծաղկափնջերով:" } },
+            { id: 56, images: ["images/plant (56).png"], name: { ru: "Чина душистая", en: "Sweet Pea", hy: "Հոտավետ ոլոռ" }, desc: { ru: "Ароматная лиана для решеток и арок.", en: "Fragrant climber for trellises and arches.", hy: "Հոտավետ լիանա ցանցերի և կամարների համար:" } },
+            { id: 57, images: ["images/plant (57).png"], name: { ru: "Космея", en: "Cosmos", hy: "Կոսմեա" }, desc: { ru: "Легкий летник для воздушных композиций.", en: "Airy annual for light garden compositions.", hy: "Թեթև տարեկան բույս օդային կոմպոզիցիաների համար:" } },
+            { id: 58, images: ["images/plant (58).png"], name: { ru: "Цинния", en: "Zinnia", hy: "Զիննիա" }, desc: { ru: "Забавный цветок для ярких сезонных клумб.", en: "Cheerful flower for vivid seasonal beds.", hy: "Ուրախ ծաղիկ վառ սեզոնային ծաղկաշարերի համար:" } },
+            { id: 59, images: ["images/plant (59).png"], name: { ru: "Бархатцы", en: "Marigold", hy: "Մարիգոլդ" }, desc: { ru: "Устойчивый цветок для бордюров и контейнеров.", en: "Resilient flower for borders and containers.", hy: "Կայուն ծաղիկ շերտերի և տարաների համար:" } },
+            { id: 60, images: ["images/plant (60).png"], name: { ru: "Антирринум", en: "Snapdragon", hy: "Անտիրինում" }, desc: { ru: "Изящный однолетник для цветников и балконов.", en: "Graceful annual for beds and balconies.", hy: "Էլեգանտ տարեկան ծաղիկ ծաղկաշարերի և բալկոնների համար:" } },
+            { id: 61, images: ["images/plant (61).png"], name: { ru: "Береза повислая", en: "Birch", hy: "Սողացող կեչի" }, desc: { ru: "Легкое дерево для светлых парков и аллей.", en: "Light tree for bright parks and avenues.", hy: "Թեթև ծառ լուսավոր զբոսայգիների և ծառուղիների համար:" } },
+            { id: 62, images: ["images/plant (62).png"], name: { ru: "Липа", en: "Linden", hy: "Լյուպին" }, desc: { ru: "Теневое дерево с ароматным цветением.", en: "Shade tree with fragrant blooms.", hy: "Ստվերային ծառ հոտավետ ծաղկումով:" } },
+            { id: 63, images: ["images/plant (63).png"], name: { ru: "Клен Кримсон Кинг", en: "Crimson King Maple", hy: "Կարմիր արքա ատամ" }, desc: { ru: "Красивый крупный клен с пурпурной листвой.", en: "Striking large maple with purple foliage.", hy: "Զարմանալի մեծ ատամ կարմիր տերևներով:" } },
+            { id: 64, images: ["images/plant (64).png"], name: { ru: "Ива плакучая", en: "Weeping Willow", hy: "Արտաքուստ կաղնի" }, desc: { ru: "Плакучее дерево для водных и парковочных зон.", en: "Drooping tree for waterside and park settings.", hy: "Նրբագեղ ծառ ջրային և այգային տարածքների համար:" } },
+            { id: 65, images: ["images/plant (65).png"], name: { ru: "Катальпа", en: "Catalpa", hy: "Կատալպա" }, desc: { ru: "Большое дерево с крупными листьями и цветами.", en: "Large tree with broad leaves and flowers.", hy: "Մեծ ծառ լայն տերևներով և ծաղիկներով:" } },
+            { id: 66, images: ["images/plant (66).png"], name: { ru: "Церцис", en: "Redbud", hy: "Սերժիս" }, desc: { ru: "Нежное деревце с розовыми цветами весной.", en: "Delicate tree with pink blossoms in spring.", hy: "Նուրբ ծառ վարդագույն ծաղիկներով գարնանը:" } },
+            { id: 67, images: ["images/plant (67).png"], name: { ru: "Самшит живой", en: "Boxwood Hedge", hy: "Շամփայնի ցանկապատ" }, desc: { ru: "Плотная живая изгородь для строгих линий сада.", en: "Dense hedge for strict garden lines.", hy: "Խիտ կենդանի ցանկապատ այգու ճշգրիտ գծերի համար:" } },
+            { id: 68, images: ["images/plant (68).png"], name: { ru: "Лаванда", en: "Lavender", hy: "Լավանդա" }, desc: { ru: "Ароматный кустарник для солнца и ароматерапии.", en: "Fragrant shrub for sunny gardens and aromatherapy.", hy: "Հոտավետ թուփ արևային այգիների և արոմաթերապիայի համար:" } },
+            { id: 69, images: ["images/plant (69).png"], name: { ru: "Юкка нитчатая", en: "Yucca Filamentosa", hy: "Յուկկա нитчатա" }, desc: { ru: "Суккулент с выразительной розеткой листьев.", en: "Succulent with an expressive leaf rosette.", hy: "Սուկուլենտ տերևների արտահայտիչ վարդակով:" } },
+            { id: 70, images: ["images/plant (70).png"], name: { ru: "Агава", en: "Agave", hy: "Ագամա" }, desc: { ru: "Экзотический суккулент для сухих композиций.", en: "Exotic succulent for dry landscapes.", hy: "Էկզոտիկ սուկուլենտ չոր լանդշաֆտների համար:" } },
+            { id: 71, images: ["images/plant (71).png"], name: { ru: "Фикус лировидный", en: "Ficus Lyrata", hy: "Լիրատա ֆիկուս" }, desc: { ru: "Популярное растение с крупными глянцевыми листьями.", en: "Popular plant with large glossy leaves.", hy: "Հանրահայտ բույս մեծ փայլուն տերևներով:" } },
+            { id: 72, images: ["images/plant (72).png"], name: { ru: "Эхмея", en: "Aechmea", hy: "Էհմեա" }, desc: { ru: "Тропическая бромелия для стильных подоконников.", en: "Tropical bromeliad for stylish windowsills.", hy: "Արևադարձային բրոմելիա շքեղ պատուհանների համար:" } },
+            { id: 73, images: ["images/plant (73).png"], name: { ru: "Фатсия", en: "Fatsia", hy: "Ֆատսիա" }, desc: { ru: "Крупнолистный куст для просторных комнат.", en: "Large-leaved shrub for spacious interiors.", hy: "Մեծատերև թուփ մեծ սենյակների համար:" } },
+            { id: 74, images: ["images/plant (74).png"], name: { ru: "Аспарагус", en: "Asparagus", hy: "Ասպարագուս" }, desc: { ru: "Нежная трава для подвесных кашпо и полок.", en: "Delicate grass for hanging planters and shelves.", hy: "Նուրբ խոտ կախովի ափսեների և դարակների համար:" } },
+            { id: 75, images: ["images/plant (75).png"], name: { ru: "Папоротник нефролепис", en: "Nephrolepis Fern", hy: "Նեֆրոլեպիս սերմնացան" }, desc: { ru: "Листовой папоротник для влажных и светлых интерьеров.", en: "Feathery fern for bright humid interiors.", hy: "Տերևավոր սերմնացան խոնավ և լուսավոր ինտերիերի համար:" } },
+            { id: 76, images: ["images/plant (76).png"], name: { ru: "Эчеверия", en: "Echeveria", hy: "Էչևերիա" }, desc: { ru: "Суккулент с красивой листовой розеткой.", en: "Succulent with an attractive leaf rosette.", hy: "Սուկուլենտ գեղեցիկ տերևային վարդակով:" } },
+            { id: 77, images: ["images/plant (77).png"], name: { ru: "Эхинокактус Грузони", en: "Echinocactus Grusonii", hy: "Էխինոկակտուս Գրուզոնի" }, desc: { ru: "Крупный кактус для коллекций и просторных подоконников.", en: "Large cactus for collectors and bright windowsills.", hy: "Մեծ կակտուս հավաքածուների և լուսավոր պատուհանների համար:" } },
+            { id: 78, images: ["images/plant (78).png"], name: { ru: "Мамиллярия", en: "Mammillaria", hy: "Մամիլարիա" }, desc: { ru: "Небольшой кактус с характерными бугорками.", en: "Small cactus with distinctive tubercles.", hy: "Փոքր կակտուս բնորոշ բլթակներով:" } },
+            { id: 79, images: ["images/plant (79).png"], name: { ru: "Традесканция", en: "Tradescantia", hy: "Տրադեսկանցիա" }, desc: { ru: "Пестролистное ампельное растение для кашпо.", en: "Variegated trailing plant for hanging pots.", hy: "Փոքրատերև ամպելային բույս կախովի ափսեների համար:" } },
+            { id: 80, images: ["images/plant (80).png"], name: { ru: "Нолина", en: "Nolina", hy: "Նոլինա" }, desc: { ru: "Суккулент с тонкими длинными листьями.", en: "Succulent with long thin leaves.", hy: "Սուկուլենտ երկար բարակ տերևներով:" } },
+            { id: 81, images: ["images/plant (81).png"], name: { ru: "Каланхоэ", en: "Kalanchoe", hy: "Կալանթոե" }, desc: { ru: "Лечебное и декоративное растение с яркими цветами.", en: "Medicinal and decorative plant with bright flowers.", hy: "Բուժիչ և դեկորատիվ բույս վառ ծաղիկներով:" } },
+            { id: 82, images: ["images/plant (82).png"], name: { ru: "Эониум", en: "Aeonium", hy: "Էոնիում" }, desc: { ru: "Суккулент с эффектной розеткой и узкими листьями.", en: "Succulent with a striking rosette and narrow leaves.", hy: "Սուկուլենտ ազդեցիկ վարդակով և նեղ տերևներով:" } },
+            { id: 83, images: ["images/plant (83).png"], name: { ru: "Бугенвиллея", en: "Bougainvillea", hy: "Բուգենվիլեա" }, desc: { ru: "Покрывало из ярких цветков для солнечных террас.", en: "Cascade of bright flowers for sunny terraces.", hy: "Վառ ծաղիկների կ cascade արևային terraza-ների համար:" } },
+            { id: 84, images: ["images/plant (84).png"], name: { ru: "Пахиподиум", en: "Pachypodium", hy: "Պախիպոդիում" }, desc: { ru: "Экзотический суккулент с толстым стволом.", en: "Exotic succulent with a thick trunk.", hy: "Էկզոտիկ սուկուլենտ հաստ ցողով:" } },
+            { id: 85, images: ["images/plant (85).png"], name: { ru: "Гимнокалициум", en: "Gymnocalycium", hy: "Գիմնոկալիցիում" }, desc: { ru: "Миниатюрный кактус для коллекций и подоконников.", en: "Miniature cactus for collectors and windowsills.", hy: "Փոքր կակտուս հավաքածուների և պատուհանների համար:" } },
+            { id: 86, images: ["images/plant (86).png"], name: { ru: "Алоэ", en: "Aloe", hy: "Ալոէ" }, desc: { ru: "Лекарственное и декоративное растение с мясистыми листьями.", en: "Medicinal and decorative plant with fleshy leaves.", hy: "Բուժիչ և դեկորատիվ բույս հյութալի տերևներով:" } },
+            { id: 87, images: ["images/plant (87).png"], name: { ru: "Хавортия", en: "Haworthia", hy: "Հավորթիա" }, desc: { ru: "Компактный суккулент для небольших комнат.", en: "Compact succulent for small rooms.", hy: "Կոմպակտ սուկուլենտ փոքր սենյակների համար:" } },
+            { id: 88, images: ["images/plant (88).png"], name: { ru: "Гастерия", en: "Gasteria", hy: "Գաստերիա" }, desc: { ru: "Нежный суккулент с полосатыми листьями.", en: "Gentle succulent with striped leaves.", hy: "Նուրբ սուկուլենտ շերտավորված տերևներով:" } },
+            { id: 89, images: ["images/plant (89).png"], name: { ru: "Рипсалис", en: "Rhipsalis", hy: "Ռիպսալիս" }, desc: { ru: "Свисающий кактус для кашпо и подвесов.", en: "Hanging cactus for planters and suspensions.", hy: "Կախվող կակտուս ափսեների և կախիչների համար:" } },
+            { id: 90, images: ["images/plant (90).png"], name: { ru: "Сансевиерия «Сильвер»", en: "Silver Sansevieria", hy: "Արծաթե Սանսևիերիա" }, desc: { ru: "Пестролистный вариант для современного интерьера.", en: "Variegated form for modern interiors.", hy: "Փոփոխական տեսակ ժամանակակից ինտերիերի համար:" } },
+            { id: 91, images: ["images/plant (91).png"], name: { ru: "Драцена Маргината", en: "Dracaena Marginata", hy: "Մարգինատա Դրակենա" }, desc: { ru: "Изящная комнатная пальма с узкими листьями.", en: "Graceful indoor palm with narrow leaves.", hy: "Էլեգանտ ներքին արմավենի նեղ տերևներով:" } },
+            { id: 92, images: ["images/plant (92).png"], name: { ru: "Калатея", en: "Calathea", hy: "Կալաթեա" }, desc: { ru: "Пестрая тропическая культура для влажного климата.", en: "Variegated tropical plant for humid spaces.", hy: "Փոփոխված արևադարձային բույս խոնավ միջավայրերի համար:" } },
+            { id: 93, images: ["images/plant (93).png"], name: { ru: "Орхидея", en: "Orchid", hy: "Օրխիդեա" }, desc: { ru: "Пышная орхидея для особых интерьерных акцентов.", en: "Showy orchid for elegant interior accents.", hy: "Ազդեցիկ օրխիդեա շքեղ ինտերիերի համար:" } },
+            { id: 94, images: ["images/plant (94).png"], name: { ru: "Цикламен", en: "Cyclamen", hy: "Ցիկլամեն" }, desc: { ru: "Роскошный цветок для зимнего цветения.", en: "Luxurious flower for winter blooming.", hy: "Արիստոկրատիկ ծաղիկ ձմեռային ծաղկման համար:" } },
+            { id: 95, images: ["images/plant (95).png"], name: { ru: "Антуриум", en: "Anthurium", hy: "Անթուրիում" }, desc: { ru: "Тропический цветок с яркими прицветниками.", en: "Tropical flower with vivid bracts.", hy: "Արևադարձային ծաղիկ վառ ծաղկաթերթերով:" } },
+            { id: 96, images: ["images/plant (96).png"], name: { ru: "Стрелиция", en: "Bird of Paradise", hy: "Ստրելիցիա" }, desc: { ru: "Экзотический цветок для музейных и дизайнерских интерьеров.", en: "Exotic flower for museum-like and designer interiors.", hy: "Էկզոտիկ ծաղիկ թանգարանային և դիզայներական ինտերիերի համար:" } },
+            { id: 97, images: ["images/plant (97).png"], name: { ru: "Хойя карноза", en: "Hoya Carnosa", hy: "Հոյա Կառնոզա" }, desc: { ru: "Ароматная лиана с мясистыми листьями.", en: "Fragrant climber with thick leaves.", hy: "Հոտավետ լիանա հյութալի տերևներով:" } },
+            { id: 98, images: ["images/plant (98).png"], name: { ru: "Бегония рекс", en: "Begonia Rex", hy: "Բեգոնիա Ռեքս" }, desc: { ru: "Пестролистная бегония для выставочных композиций.", en: "Variegated begonia for display compositions.", hy: "Փոփոխված բեգոնիա ցուցահանդեսային կոմպոզիցիաների համար:" } },
+            { id: 99, images: ["images/plant (99).png"], name: { ru: "Пальма в кадке", en: "Palm in Pot", hy: "Արմավենի տակդիրի մեջ" }, desc: { ru: "Компактная пальма для офисов и холлов.", en: "Compact palm for offices and lobbies.", hy: "Կոմպակտ արմավենի գրասենյակների և դահլիճների համար:" } },
+            { id: 100, images: ["images/plant (100).png"], name: { ru: "Моховой садовый элемент", en: "Moss Garden Plant", hy: "Մոսային այգու բույս" }, desc: { ru: "Растение для влажных, тенистых уголков сада.", en: "Plant for humid and shaded garden corners.", hy: "Բույս խոնավ և ստվերոտ այգու անկյունների համար:" } },
+            { id: 101, images: ["images/plant (101).png"], name: { ru: "Орхидея кактус", en: "Orchid Cactus", hy: "Օրխիդեական կակտուս" }, desc: { ru: "Редкий кактус с эффектным цветением.", en: "Rare cactus with striking blooms.", hy: "Հազվագյուտ կակտուս ազդեցիկ ծաղկմամբ:" } },
+            { id: 102, images: ["images/plant (102).png"], name: { ru: "Коллекция кактусов", en: "Cacti Collection", hy: "Կակտուսների հավաքածու" }, desc: { ru: "Подборка различных суккулентов для выставки.", en: "Collection of different succulents for display.", hy: "Տարբեր սուկուլենտների հավաքածու ցուցադրության համար:" } },
+            { id: 103, images: ["images/plant (103).png"], name: { ru: "Суккулентная композиция", en: "Succulent Arrangement", hy: "Սուկուլենտային կոմպոզիցիա" }, desc: { ru: "Тематическая композиция для столов и витрин.", en: "Themed arrangement for tables and display cases.", hy: "Թեմատիկ կոմպոզիցիա սեղանների և վitrine-ների համար:" } },
+            { id: 104, images: ["images/plant (104).png"], name: { ru: "Воздушный растение", en: "Air Plant", hy: "Օդային բույս" }, desc: { ru: "Небольшое растение без почвы для декоративных панелей.", en: "Small plant without soil for decorative panels.", hy: "Փոքր բույս առանց հողի դեկորատիվ վահանակների համար:" } },
+            { id: 105, images: ["images/plant (105).png"], name: { ru: "Редкий папоротник", en: "Rare Fern", hy: "Հազվագյուտ սերմնացան" }, desc: { ru: "Эксклюзивный папоротник для оранжерей и зимних садов.", en: "Exclusive fern for greenhouses and conservatories.", hy: "Էքսկլյուզիվ սերմնացան ջերմոցների և ձմեռային այգիների համար:" } },
+            { id: 106, images: ["images/plant (106).png"], name: { ru: "Мини-цитрус", en: "Mini Citrus", hy: "Մինի ցիտրուս" }, desc: { ru: "Небольшое плодовое растение для кухни и офиса.", en: "Small fruiting plant for kitchens and offices.", hy: "Փոքր պտղատու բույս սենյակների և գրասենյակների համար:" } },
+            { id: 107, images: ["images/plant (107).png"], name: { ru: "Кофейное дерево", en: "Coffee Plant", hy: "Քոֆեյի ծառ" }, desc: { ru: "Тропическое растение с декоративными листьями и плодами.", en: "Tropical plant with decorative leaves and fruit.", hy: "Արևադարձային բույս դեկորատիվ տերևներով և պտուղներով:" } },
+            { id: 108, images: ["images/plant (108).png"], name: { ru: "Пальма арека", en: "Areca Palm", hy: "Արեկա արմավենի" }, desc: { ru: "Нежная многолетняя пальма для просторных помещений.", en: "Graceful perennial palm for spacious interiors.", hy: "Էլեգանտ բազմամյա արմավենի մեծ տարածքների համար:" } },
+            { id: 109, images: ["images/plant (109).png"], name: { ru: "Камелия", en: "Camellia", hy: "Քամելիա" }, desc: { ru: "Элегантный куст для цветения в прохладный сезон.", en: "Elegant shrub for cool-season flowering.", hy: "Էլեգանտ թուփ cool-season ծաղկման համար:" } },
+            { id: 110, images: ["images/plant (110).png"], name: { ru: "Рододендрон", en: "Rhododendron", hy: "Ռոդոդենդրոն" }, desc: { ru: "Кустарник с яркими цветами для кислой почвы.", en: "Shrub with bright flowers for acidic soil.", hy: "Թուփ վառ ծաղիկներով թթվային հողի համար:" } },
+            { id: 111, images: ["images/plant (111).png"], name: { ru: "Камелия японская", en: "Japanese Camellia", hy: "Ճապոնական Քամելիա" }, desc: { ru: "Изящное вечнозелёное растение для декоративных садов.", en: "Graceful evergreen for decorative gardens.", hy: "Էլեգանտ մշտադալար բույս դեկորատիվ այգիների համար:" } },
+            { id: 112, images: ["images/plant (112).png"], name: { ru: "Пуансеттия", en: "Poinsettia", hy: "Պուանսետիա" }, desc: { ru: "Традиционный рождественский цветок для дома.", en: "Traditional Christmas flower for the home.", hy: "Ավանդական Ծննդյան ծաղիկ տան համար:" } },
+            { id: 113, images: ["images/plant (113).png"], name: { ru: "Клеродендрум", en: "Clerodendrum", hy: "Կլերոդենդրում" }, desc: { ru: "Ароматный куст для теплого климата.", en: "Fragrant shrub for warm climates.", hy: "Հոտավետ թուփ տաք կլիմայի համար:" } },
+            { id: 114, images: ["images/plant (114).png"], name: { ru: "Крокосмия", en: "Crocosmia", hy: "Կրոկոսմիա" }, desc: { ru: "Яркий многолетник для летних цветников.", en: "Bright perennial for summer beds.", hy: "Վառ բազմամյա ծաղիկ ամառային ծաղկաշարերի համար:" } },
+            { id: 115, images: ["images/plant (115).png"], name: { ru: "Тунбергия", en: "Thunbergia", hy: "Թունբերգիա" }, desc: { ru: "Ажурная лиана для пергол и беседок.", en: "Airy climber for pergolas and arbors.", hy: "Թեթև լիանա pergola-ների և տաղավարների համար:" } },
+            { id: 116, images: ["images/plant (116).png"], name: { ru: "Пассифлора", en: "Passiflora", hy: "Պասսիֆլորա" }, desc: { ru: "Экзотическая лиана с необычными цветами.", en: "Exotic climber with unusual flowers.", hy: "Էկզոտիկ լիանա յուրահատուկ ծաղիկներով:" } },
+            { id: 117, images: ["images/plant (117).png"], name: { ru: "Агапантус", en: "Agapanthus", hy: "Ագապանտուս" }, desc: { ru: "Луковичное растение для солнечных цветников.", en: "Bulbous plant for sunny flowerbeds.", hy: "Բույս խողովակավոր բողբոջներով արևային ծաղկաշարերի համար:" } },
+            { id: 118, images: ["images/plant (118).png"], name: { ru: "Дихондра", en: "Dichondra", hy: "Դիխոնդրա" }, desc: { ru: "Мягкий почвопокровник для контейнеров.", en: "Soft groundcover for containers.", hy: "Փափուկ հողի ծածկույթ տարաների համար:" } },
+            { id: 119, images: ["images/plant (119).png"], name: { ru: "Седум", en: "Sedum", hy: "Սեդում" }, desc: { ru: "Суккулент для крыш, рокариев и террас.", en: "Succulent for roofs, rockeries and terraces.", hy: "Սուկուլենտ տանիքների, քարային այգիների և terrazzo-ի համար:" } },
+            { id: 120, images: ["images/plant (120).png"], name: { ru: "Офидиопсис", en: "Ophiopogon", hy: "Օֆիոպոգոն" }, desc: { ru: "Травянистое растение для бордюров и газонов.", en: "Grass-like plant for borders and lawns.", hy: "Խոտանման բույս շերտերի և դաշտերի համար:" } },
+            { id: 121, images: ["images/plant (121).png"], name: { ru: "Папирус", en: "Papyrus", hy: "Պապիրուս" }, desc: { ru: "Тропическое растение для влажных композиций.", en: "Tropical plant for damp arrangements.", hy: "Արևադարձային բույս խոնավ կոմպոզիցիաների համար:" } },
+            { id: 122, images: ["images/plant (122).png"], name: { ru: "Морозник", en: "Hellebore", hy: "Հելեբոր" }, desc: { ru: "Раннецветущее растение для тенистых садов.", en: "Early-blooming plant for shady gardens.", hy: "Վաղ ծաղկող բույս ստվերային այգիների համար:" } },
+            { id: 123, images: ["images/plant (123).png"], name: { ru: "Ландыш", en: "Lily of the Valley", hy: "Լանդիշ" }, desc: { ru: "Нежный многолетник для затенённых клумб.", en: "Gentle perennial for shaded beds.", hy: "Նուրբ բազմամյա ծաղիկ ստվերային ծաղկաշարերի համար:" } },
+            { id: 124, images: ["images/plant (124).png"], name: { ru: "Сцилла", en: "Scilla", hy: "Սցիլլա" }, desc: { ru: "Раннецветущий луковичный цветок для весеннего сада.", en: "Early-blooming bulb for spring gardens.", hy: "Վաղ ծաղկող կոճղավոր բույս գարնանային այգիների համար:" } },
+            { id: 125, images: ["images/plant (125).png"], name: { ru: "Крокус", en: "Crocus", hy: "Կրոկուս" }, desc: { ru: "Ранний весенний цветок для луковичных композиций.", en: "Early spring flower for bulb displays.", hy: "Վաղ գարնանային ծաղիկ կոճղավոր կոմպոզիցիաների համար:" } },
+            { id: 126, images: ["images/plant (127).png", "images/plant (128).png"], name: { ru: "Эониум древовидный", en: "Tree Aeonium", hy: "Ծառանման Էոնիում" }, desc: { ru: "Суккулент с эффектной розеткой и деревянистым стеблем.", en: "Succulent with a striking rosette and woody stem.", hy: "Սուկուլենտ ազդեցիկ վարդակով և փայտային ցողով:" } },
+            { id: 127, images: ["images/plant (129).png", "images/plant (130).png"], name: { ru: "Портулакария афра", en: "Portulacaria Afra", hy: "Պորտուլակարիա Աֆրա" }, desc: { ru: "Неприхотливый суккулент для декоративных композиций и бонсай.", en: "Easy-care succulent for decorative arrangements and bonsai.", hy: "Պարզ պահպանվող սուկուլենտ դեկորատիվ կոմպոզիցիաների և բոնսայի համար:" } },
+            { id: 128, images: ["images/plant (131).png", "images/plant (132).png"], name: { ru: "Эониум канарский", en: "Canary Aeonium", hy: "Կանարյան Էոնիում" }, desc: { ru: "Розеточный суккулент для светлых комнат и зимних садов.", en: "Rosette succulent for bright rooms and conservatories.", hy: "Վարդակավոր սուկուլենտ լուսավոր սենյակների և ձմեռային այգիների համար:" } },
+            { id: 129, images: ["images/plant (133).png", "images/plant (134).png"], name: { ru: "Ива козья Пендула", en: "Goat Willow Pendula", hy: "Եզնի կաղնի Փենդուլա" }, desc: { ru: "Плакучее дерево для декоративных парков и приусадебных участков.", en: "Weeping tree for ornamental parks and gardens.", hy: "Նրբագեղ ծառ դեկորատիվ այգիների և մասնավոր տարածքների համար:" } },
+            { id: 130, images: ["images/plant (135).png", "images/plant (136).png"], name: { ru: "Бирючина топиарий", en: "Privet Topiary", hy: "Պրիվետ տոպիարի" }, desc: { ru: "Плотная живая изгородь для геометрических форм сада.", en: "Dense hedge for geometric garden forms.", hy: "Խիտ կենդանի ցանկապատ այգու երկրաչափական ձևերի համար:" } },
+            { id: 131, images: ["images/plant (137).png", "images/plant (138).png"], name: { ru: "Кипарисовик Нана Грацилис", en: "Nana Gracilis Cypress", hy: "Նանա Գրացիլիս ցիսսուս" }, desc: { ru: "Компактный хвойный кустарник для контейнеров и бордюров.", en: "Compact conifer shrub for containers and borders.", hy: "Կոմպակտ կոնիֆեր թուփ տարաների և շերտերի համար:" } },
+            { id: 132, images: ["images/plant (139).png", "images/plant (140).png"], name: { ru: "Каладиум / Алоказия", en: "Caladium / Alocasia", hy: "Կալադիում / Ալոկազիա" }, desc: { ru: "Яркое тропическое растение с крупными листьями для интерьеров.", en: "Bright tropical plant with large leaves for interiors.", hy: "Վառ արևադարձային բույս մեծ տերևներով ինտերիերի համար:" } },
+            { id: 133, images: ["images/plant (141).png", "images/plant (142).png"], name: { ru: "Бархатцы рассада", en: "Marigold Seedlings", hy: "Մարիգոլդի սածիլներ" }, desc: { ru: "Рассадный вариант для ярких сезонных клумб.", en: "Seedling form for vivid seasonal flowerbeds.", hy: "Սածիլային տարբերակ վառ սեզոնային ծաղկաշարերի համար:" } },
+            { id: 134, images: ["images/plant (145).png", "images/plant (146).png"], name: { ru: "Цикламен персидский", en: "Persian Cyclamen", hy: "Պարսկական Ցիկլամեն" }, desc: { ru: "Элегантный цветок с красивыми листьями и зимним цветением.", en: "Elegant flower with attractive foliage and winter blooms.", hy: "Էլեգանտ ծաղիկ գեղեցիկ տերևներով և ձմեռային ծաղկմամբ:" } },
+            { id: 135, images: ["images/plant (147).png", "images/plant (148).png"], name: { ru: "Якобиния Поля", en: "Jacobinia Pohl", hy: "Յակոբինիա Պոլ" }, desc: { ru: "Декоративный кустарник с крупными листьями для комнат и оранжерей.", en: "Decorative shrub with large leaves for rooms and greenhouses.", hy: "Դեկորատիվ թուփ մեծ տերևներով սենյակների և ջերմոցների համար:" } },
+            { id: 136, images: ["images/plant (149).png", "images/plant (150).png"], name: { ru: "Хойя мясистая", en: "Hoya Carnosa", hy: "Հոյա մսոտ" }, desc: { ru: "Ароматная лиана с плотными листьями для кашпо и опор.", en: "Fragrant climber with thick leaves for hanging pots and supports.", hy: "Հոտավետ լիանա խիտ տերևներով կախովի ափսեների և suporte-ների համար:" } },
+            { id: 137, images: ["images/plant (151).png", "images/plant (152).png"], name: { ru: "Мирт обыкновенный", en: "Common Myrtle", hy: "Սովորական Միրտ" }, desc: { ru: "Ароматный вечнозеленый куст для садов и террас.", en: "Fragrant evergreen shrub for gardens and terraces.", hy: "Հոտավետ մշտադալար թուփ այգիների և terrazzo-ների համար:" } },
+            { id: 138, images: ["images/plant (153).png", "images/plant (154).png"], name: { ru: "Нолина молодая", en: "Young Nolina", hy: "Նոլինա երիտասարդ" }, desc: { ru: "Стройный суккулент для современных интерьеров и витрин.", en: "Slender succulent for modern interiors and display cases.", hy: "Նիհար սուկուլենտ ժամանակակից ինտերիերի և վitrine-ների համար:" } },
+            { id: 139, images: ["images/plant (155).png", "images/plant (156).png"], name: { ru: "Лимонное дерево штамб", en: "Standard Lemon Tree", hy: "Լիմոնի ծառ սթամբ" }, desc: { ru: "Декоративное плодовое дерево для террас и садовых композиций.", en: "Decorative fruit tree for terraces and garden compositions.", hy: "Դեկորատիվ պտղատու ծառ terrazzo-ների և այգու կոմպոզիցիաների համար:" } },
+            { id: 140, images: ["images/plant (157).png", "images/plant (158).png"], name: { ru: "Лавр благородный шар", en: "Laurel Ball", hy: "Պալար Լաուրուսի գնդակ" }, desc: { ru: "Формованная шарообразная форма лавра для ландшафтного дизайна.", en: "Shaped spherical laurel for landscape design.", hy: "Ձևավորված գնդաձև լաուրուս լանդշաֆտային դիզայնի համար:" } },
+            { id: 141, images: ["images/plant (159).png", "images/plant (160).png"], name: { ru: "Эчеверия розеточная", en: "Rosette Echeveria", hy: "Վարդակավոր Էչևերիա" }, desc: { ru: "Миниатюрный суккулент с красивой розеткой листьев.", en: "Miniature succulent with a beautiful leaf rosette.", hy: "Մինիատյուր սուկուլենտ գեղեցիկ տերևային վարդակով:" } },
+            { id: 142, images: ["images/plant (163).png", "images/plant (164).png"], name: { ru: "Адениум тучный", en: "Adenium Obesum", hy: "Ադենիում տոչный" }, desc: { ru: "Экзотический суккулент с толстым стволом и яркими цветами.", en: "Exotic succulent with a thick trunk and bright flowers.", hy: "Էկզոտիկ սուկուլենտ հաստ ցողով և վառ ծաղիկներով:" } },
+            { id: 143, images: ["images/plant (165).png", "images/plant (166).png"], name: { ru: "Эхинокактус Грузони", en: "Echinocactus Grusonii", hy: "Էխինոկակտուս Գրուզոնի" }, desc: { ru: "Крупный кактус для коллекций и просторных подоконников.", en: "Large cactus for collectors and bright windowsills.", hy: "Մեծ կակտուս հավաքածուների և լուսավոր պատուհանների համար:" } },
+            { id: 144, images: ["images/plant (167).png", "images/plant (168).png"], name: { ru: "Коллекция кактусов", en: "Cacti Collection", hy: "Կակտուսների հավաքածու" }, desc: { ru: "Подборка различных суккулентов для выставки.", en: "Collection of different succulents for display.", hy: "Տարբեր սուկուլենտների հավաքածու ցուցադրության համար:" } },
+            { id: 145, images: ["images/plant (169).png", "images/plant (170).png"], name: { ru: "Эхинокактус крупный", en: "Large Echinocactus", hy: "Մեծ Էխինոկակտուս" }, desc: { ru: "Массивный кактус с характерной шаровидной формой.", en: "Large cactus with a characteristic spherical shape.", hy: "Մեծ կակտուս բնորոշ գնդաձև ձևով:" } },
+            { id: 146, images: ["images/plant (171).png", "images/plant (172).png"], name: { ru: "Кротон пестрый", en: "Variegated Croton", hy: "Փոփոխական Կրոտոն" }, desc: { ru: "Пестролистное декоративное растение для помещений.", en: "Variegated decorative plant for interiors.", hy: "Փոփոխված դեկորատիվ բույս ինտերիերի համար:" } },
+            { id: 147, images: ["images/plant (173).png", "images/plant (174).png"], name: { ru: "Клеродендрум Уоллича", en: "Clerodendrum Wallichii", hy: "Կլերոդենդրում Ուոլլիչ" }, desc: { ru: "Ароматный кустарник для теплых оранжерей и террас.", en: "Fragrant shrub for warm greenhouses and terraces.", hy: "Հոտավետ թուփ տաք ջերմոցների և terrazzo-ների համար:" } },
+            { id: 148, images: ["images/plant (175).png", "images/plant (176).png"], name: { ru: "Мамиллярия кристатная", en: "Cristate Mammillaria", hy: "Կրիստատային Մամիլարիա" }, desc: { ru: "Небольшой кактус с красивой кристальной формой.", en: "Small cactus with a striking crystal-like shape.", hy: "Փոքր կակտուս գեղեցիկ բյուրեղային ձևով:" } },
+            { id: 149, images: ["images/plant (177).png", "images/plant (178).png"], name: { ru: "Опунция в теплице", en: "Opuntia in Greenhouse", hy: "Օպունտիա ջերմոցում" }, desc: { ru: "Кактус для тепличного выращивания и выставок.", en: "Cactus for greenhouse cultivation and exhibitions.", hy: "Կակտուս ջերմոցային աճեցման և ցուցահանդեսների համար:" } },
+            { id: 150, images: ["images/plant (181).png", "images/plant (182).png"], name: { ru: "Хавортия полосатая", en: "Striped Haworthia", hy: "Շերտավոր Հավորթիա" }, desc: { ru: "Компактный суккулент с характерными полосами листьев.", en: "Compact succulent with striped leaves.", hy: "Կոմպակտ սուկուլենտ տերևների բնորոշ շերտերով:" } },
+            { id: 151, images: ["images/plant (183).png", "images/plant (184).png"], name: { ru: "Драцена Компакта", en: "Dracaena Compacta", hy: "Դրակենա Կոմպակտա" }, desc: { ru: "Плотная форма драцены для стильных интерьеров.", en: "Compact dracaena form for stylish interiors.", hy: "Պինդ դրակենայի ձև ժամանակակից ինտերիերի համար:" } },
+            { id: 152, images: ["images/plant (185).png", "images/plant (186).png"], name: { ru: "Сансевьерия Лауренти", en: "Sansevieria Laurentii", hy: "Սանսևիերիա Լաուրենտի" }, desc: { ru: "Пестролистная сансевиерия для офисов и гостиных.", en: "Variegated sansevieria for offices and living rooms.", hy: "Փոփոխված սանսևիերիա գրասենյակների և living room-ների համար:" } },
+            { id: 153, images: ["images/plant (187).png", "images/plant (188).png"], name: { ru: "Сансевьерия зеленая", en: "Green Sansevieria", hy: "Կանաչ Սանսևիերիա" }, desc: { ru: "Неприхотливый вид для домашнего озеленения.", en: "Easy-care variety for indoor greenery.", hy: "Պարզ պահպանվող տեսակ տնային կանաչապատման համար:" } },
+            { id: 154, images: ["images/plant (189).png", "images/plant (190).png"], name: { ru: "Клещевина обыкновенная", en: "Common Castor Bean", hy: "Սովորական Կաստոր" }, desc: { ru: "Высокое декоративное растение для садовых и парковочных композиций.", en: "Tall ornamental plant for garden and park compositions.", hy: "Բարձր դեկորատիվ բույս այգու և պարկի կոմպոզիցիաների համար:" } },
+            { id: 155, images: ["images/plant (191).png", "images/plant (192).png"], name: { ru: "Фикус священный саженец", en: "Sacred Fig Seedling", hy: "Սուրբ ֆիկուս սածիլ" }, desc: { ru: "Молодой саженец для озеленения интерьеров и офисов.", en: "Young seedling for interior and office greenery.", hy: "Երիտասարդ սածիլ ինտերիերի և գրասենյակների կանաչապատման համար:" } },
+            { id: 156, images: ["images/plant (193).png", "images/plant (194).png"], name: { ru: "Фикус Даниэль штамб", en: "Ficus Daniel Standard", hy: "Ֆիկուս Դանիել սթամբ" }, desc: { ru: "Элегантное деревце для холлов и просторных помещений.", en: "Elegant small tree for lobbies and spacious interiors.", hy: "Էլեգանտ ծառ հոլլերի և մեծ տարածքների համար:" } },
+            { id: 157, images: ["images/plant (195).png", "images/plant (196).png", "images/plant (197).png", "images/plant (198).png"], name: { ru: "Кротон Петра куст", en: "Croton Petra Bush", hy: "Կրոտոն Պետրա թուփ" }, desc: { ru: "Пестролистный куст с яркой листвой для декоративных композиций.", en: "Variegated bush with vivid foliage for decorative compositions.", hy: "Փոփոխված թուփ վառ տերևներով դեկորատիվ կոմպոզիցիաների համար:" } },
+            { id: 158, images: ["images/plant (199).png", "images/plant (200).png"], name: { ru: "Драцена Маргината", en: "Dracaena Marginata", hy: "Դրակենա Մարգինատա" }, desc: { ru: "Изящная комнатная пальма с узкими листьями.", en: "Graceful indoor palm with narrow leaves.", hy: "Էլեգանտ ներքին արմավենի նեղ տերևներով:" } },
+            { id: 159, images: ["images/plant (201).png", "images/plant (202).png"], name: { ru: "Плектрантус колеусовидный", en: "Coleus-like Plectranthus", hy: "Կոլեուսանման Պլեկտրանթուս" }, desc: { ru: "Ампельное растение с яркой листвой для кашпо и полок.", en: "Trailing plant with bright foliage for hanging pots and shelves.", hy: "Ամբելային բույս վառ տերևներով կախովի ափսեների և դարակների համար:" } },
+            { id: 160, images: ["images/plant (203).png", "images/plant (204).png"], name: { ru: "Бегония королевская Рекс", en: "Royal Begonia Rex", hy: "Արքայական Բեգոնիա Ռեքս" }, desc: { ru: "Пестролистная бегония для выставочных композиций.", en: "Variegated begonia for display compositions.", hy: "Փոփոխված բեգոնիա ցուցահանդեսային կոմպոզիցիաների համար:" } },
+            { id: 161, images: ["images/plant (205).png", "images/plant (206).png"], name: { ru: "Пеперомия сморщенная", en: "Wrinkled Peperomia", hy: "Ծալված Պեպերոմիա" }, desc: { ru: "Нежное компактное растение для подоконников и офисов.", en: "Delicate compact plant for windowsills and offices.", hy: "Նուրբ կոմպակտ բույս պատուհանների և գրասենյակների համար:" } },
+            { id: 162, images: ["images/plant (207).png", "images/plant (208).png"], name: { ru: "Криптант звезда", en: "Cryptanthus Star", hy: "Կրիպտանտ Աստղ" }, desc: { ru: "Миниатюрное растение с красивой листовой розеткой.", en: "Miniature plant with an attractive leaf rosette.", hy: "Մինիատյուր բույս գեղեցիկ տերևային վարդակով:" } },
+            { id: 163, images: ["images/plant (209).png", "images/plant (210).png"], name: { ru: "Лимон на высоком штамбе", en: "Lemon on High Standard", hy: "Լիմոն բարձր սթամբի վրա" }, desc: { ru: "Плодовое дерево с эффектной формой штамба.", en: "Fruit tree with an impressive standard form.", hy: "Պտղատու ծառ ազդեցիկ սթամբային ձևով:" } },
+            { id: 164, images: ["images/plant (211).png", "images/plant (212).png"], name: { ru: "Паслен ложноперечный цветы", en: "False Jerusalem Cherry Flowers", hy: "Կեղծ Երուսաղեմի սալոր ծաղիկներ" }, desc: { ru: "Декоративное растение с эффектными цветами и плодами.", en: "Decorative plant with striking flowers and fruit.", hy: "Դեկորատիվ բույս ազդեցիկ ծաղիկներով և պտուղներով:" } },
+            { id: 165, images: ["images/plant (213).png", "images/plant (214).png"], name: { ru: "Паслен ложноперечный плоды", en: "False Jerusalem Cherry Fruits", hy: "Կեղծ Երուսաղեմի սալոր պտուղներ" }, desc: { ru: "Декоративная форма с яркими плодами для зимних композиций.", en: "Decorative form with bright fruit for winter displays.", hy: "Դեկորատիվ ձև վառ պտուղներով ձմեռային կոմպոզիցիաների համար:" } },
+            { id: 166, images: ["images/plant (215).png", "images/plant (216).png"], name: { ru: "Ирезине Хербста", en: "Iresine Herbstii", hy: "Իրեզինե Հերբստի" }, desc: { ru: "Пестролистное растение для цветников и контейнеров.", en: "Variegated plant for flowerbeds and containers.", hy: "Փոփոխված բույս ծաղկաշարերի և տարաների համար:" } },
+            { id: 167, images: ["images/plant (217).png", "images/plant (218).png"], name: { ru: "Бегония Гейхера", en: "Begonia Heuchera", hy: "Բեգոնիա Հեյխերա" }, desc: { ru: "Тропическая бегония для ярких интерьерных композиций.", en: "Tropical begonia for vivid interior compositions.", hy: "Արևադարձային բեգոնիա վառ ինտերիերի կոմպոզիցիաների համար:" } },
+            { id: 168, images: ["images/plant (219).png", "images/plant (220).png"], name: { ru: "Орхидея Фаленопсис белая", en: "White Phalaenopsis Orchid", hy: "Սպիտակ Ֆալենոպսիս օրխիդեա" }, desc: { ru: "Нежная орхидея для интерьеров и подарочных композиций.", en: "Delicate orchid for interiors and gift arrangements.", hy: "Նուրբ օրխիդեա ինտերիերի և նվերի կոմպոզիցիաների համար:" } },
+            { id: 169, images: ["images/plant (221).png", "images/plant (222).png"], name: { ru: "Орхидея Фаленопсис розовая", en: "Pink Phalaenopsis Orchid", hy: "Վարդագույն Ֆալենոպսիս օրխիդեա" }, desc: { ru: "Эффектная орхидея с розовыми цветками.", en: "Striking orchid with pink flowers.", hy: "Ազդեցիկ օրխիդեա վարդագույն ծաղիկներով:" } },
+            { id: 170, images: ["images/plant (223).png", "images/plant (224).png"], name: { ru: "Пеларгония зональная герань", en: "Zonal Pelargonium", hy: "Զոնալ Պելարգոնիա" }, desc: { ru: "Яркое цветущее растение для балконов и террас.", en: "Bright flowering plant for balconies and terraces.", hy: "Վառ ծաղկող բույս բալկոնների և terrazzo-ների համար:" } },
+            { id: 171, images: ["images/plant (225).png", "images/plant (226).png"], name: { ru: "Ананас декоративный", en: "Decorative Pineapple", hy: "Դեկորատիվ Անանաս" }, desc: { ru: "Тропическое растение для стильных интерьеров и подарков.", en: "Tropical plant for stylish interiors and gifts.", hy: "Արևադարձային բույս շքեղ ինտերիերի և նվերի համար:" } },
+            { id: 172, images: ["images/plant (227).png", "images/plant (228).png"], name: { ru: "Бегония вечноцветущая", en: "Everblooming Begonia", hy: "Մշտածաղկող Բեգոնիա" }, desc: { ru: "Пышное растение для длительного цветения в помещении.", en: "Showy plant for long-lasting indoor flowering.", hy: "Ազդեցիկ բույս երկարատև ներքին ծաղկման համար:" } },
+            { id: 173, images: ["images/plant (229).png", "images/plant (230).png"], name: { ru: "Спатифиллум Женское счастье", en: "Spathiphyllum Peace Lily", hy: "Սպատիֆիլում «Կանացի երջանկություն»" }, desc: { ru: "Изысканное комнатное растение с белыми цветами.", en: "Elegant indoor plant with white flowers.", hy: "Էլեգանտ ներքին բույս սպիտակ ծաղիկներով:" } },
+            { id: 174, images: ["images/plant (231).png", "images/plant (232).png"], name: { ru: "Гибискус китайская роза", en: "Chinese Hibiscus", hy: "Չինական Հիբիսկուս" }, desc: { ru: "Крупный цветущий куст для солнца и террас.", en: "Large flowering shrub for sunny terraces and gardens.", hy: "Մեծ ծաղկող թուփ արևի և terrazzo-ների համար:" } },
+            { id: 175, images: ["images/plant (233).png", "images/plant (234).png"], name: { ru: "Антуриум Мужское счастье", en: "Anthurium Flamingo Flower", hy: "Անթուրիում «Արու երջանկություն»" }, desc: { ru: "Тропическое растение с яркими прицветниками.", en: "Tropical plant with vivid bracts.", hy: "Արևադարձային բույս վառ ծաղկաթերթերով:" } },
+            { id: 176, images: ["images/plant (235).png", "images/plant (236).png"], name: { ru: "Бегония клубневая микс", en: "Tuberous Begonia Mix", hy: "Բուլբավոր Բեգոնիա Միքս" }, desc: { ru: "Красивый микс клубневых begonias для клумб.", en: "Beautiful mix of tuberous begonias for flowerbeds.", hy: "Գեղեցիկ բուլբավոր բեգոնիաների խառնուրդ ծաղկաշարերի համար:" } },
+            { id: 177, images: ["images/plant (237).png", "images/plant (238).png"], name: { ru: "Спатифиллум молодой", en: "Young Spathiphyllum", hy: "Երիտասարդ Սպատիֆիլում" }, desc: { ru: "Молодой экземпляр для быстрого озеленения интерьера.", en: "Young specimen for quick interior greenery.", hy: "Երիտասարդ օրինակ ինտերիերի արագ կանաչապատման համար:" } },
+            { id: 178, images: ["images/plant (239).png", "images/plant (240).png"], name: { ru: "Бархатцы прямостоячие микс", en: "Upright Marigold Mix", hy: "Ուղղաձիգ Մարիգոլդի Միքս" }, desc: { ru: "Смесь ярких бархатцев для сезонных клумб.", en: "Mix of bright marigolds for seasonal beds.", hy: "Վառ մարիգոլդների խառնուրդ սեզոնային ծաղկաշարերի համար:" } },
+            { id: 179, images: ["images/plant (241).png", "images/plant (242).png"], name: { ru: "Бархатцы отклоненные желтые", en: "Yellow French Marigolds", hy: "Դեղին Մարիգոլդ" }, desc: { ru: "Неприхотливые бархатцы для бордюров и контейнеров.", en: "Easy-care marigolds for borders and containers.", hy: "Պարզ պահպանվող մարիգոլդներ շերտերի և տարաների համար:" } },
+            { id: 180, images: ["images/plant (243).png", "images/plant (244).png"], name: { ru: "Крестовник Роули бусы", en: "Senecio Rowleyanus", hy: "Սենեկիո Ռոուլի" }, desc: { ru: "Ампельное растение для кашпо и подвесных композиций.", en: "Trailing plant for hanging pots and displays.", hy: "Ամբելային բույս կախովի ափսեների և ցուցադրությունների համար:" } },
+            { id: 181, images: ["images/plant (245).png", "images/plant (246).png"], name: { ru: "Аптения суккулент", en: "Aptenia Succulent", hy: "Ապտենիա սուկուլենտ" }, desc: { ru: "Миниатюрный суккулент для коллекций и подоконников.", en: "Miniature succulent for collections and windowsills.", hy: "Մինիատյուր սուկուլենտ հավաքածուների և պատուհանների համար:" } },
+            { id: 182, images: ["images/plant (247).png", "images/plant (248).png"], name: { ru: "Седум Очиток ковер", en: "Sedum Groundcover", hy: "Սեդում ծածկույթ" }, desc: { ru: "Почвопокровный суккулент для рокариев и сухих садов.", en: "Groundcover succulent for rockeries and dry gardens.", hy: "Հողի ծածկույթ սուկուլենտ քարային այգիների և չոր այգիների համար:" } },
+            { id: 183, images: ["images/plant (249).png", "images/plant (250).png"], name: { ru: "Молочай трехгранный Эуфорбия", en: "Three-angled Euphorbia", hy: "Եռանկյուն Էվֆորբիա" }, desc: { ru: "Экзотический суккулент с необычной формой стебля.", en: "Exotic succulent with an unusual stem shape.", hy: "Էկզոտիկ սուկուլենտ ցողունի յուրահատուկ ձևով:" } },
+            { id: 184, images: ["images/plant (251).png", "images/plant (252).png"], name: { ru: "Цикламен мраморные листья", en: "Cyclamen with Marbled Leaves", hy: "Մարմար տերևներով Ցիկլամեն" }, desc: { ru: "Пестролистная форма цикламени для зимних композиций.", en: "Variegated cyclamen form for winter displays.", hy: "Փոփոխված ցիկլամեն ձմեռային կոմպոզիցիաների համար:" } },
+            { id: 185, images: ["images/plant (253).png", "images/plant (254).png"], name: { ru: "Фикус Бенджамина дерево", en: "Ficus Benjamin Tree", hy: "Ֆիկուս Բենջամին ծառ" }, desc: { ru: "Декоративное дерево для офисов и квартир.", en: "Decorative tree for offices and apartments.", hy: "Դեկորատիվ ծառ գրասենյակների և բնակարանների համար:" } },
+            { id: 186, images: ["images/plant (255).png", "images/plant (256).png"], name: { ru: "Шеффлера вариегатная Жанин", en: "Schefflera Variegata Janine", hy: "Շեֆֆլերա Վարիեգատա Ժանին" }, desc: { ru: "Пестролистная шеффлера для светлых интерьеров.", en: "Variegated schefflera for bright interiors.", hy: "Փոփոխված շեֆֆլերա լուսավոր ինտերիերի համար:" } },
+            { id: 187, images: ["images/plant (257).png", "images/plant (258).png"], name: { ru: "Монстера деликатесная куст", en: "Delicious Monstera Bush", hy: "Մոնստերա դելիկատես թուփ" }, desc: { ru: "Крупнолистный куст для просторных помещений.", en: "Large-leaved bush for spacious interiors.", hy: "Մեծատերև թուփ մեծ տարածքների համար:" } },
+            { id: 188, images: ["images/plant (259).png", "images/plant (260).png"], name: { ru: "Алоэ Столетник крупный", en: "Large Aloe Vera", hy: "Մեծ Ալոե Վերա" }, desc: { ru: "Лекарственное и декоративное растение с крупными листьями.", en: "Medicinal and decorative plant with large leaves.", hy: "Բուժիչ և դեկորատիվ բույս մեծ տերևներով:" } },
+            { id: 189, images: ["images/plant (261).png", "images/plant (262).png"], name: { ru: "Финиковая пальма Канарская", en: "Canary Date Palm", hy: "Կանարյան ֆինիկական արմավենի" }, desc: { ru: "Эффектная пальма для террас и дворов.", en: "Striking palm for terraces and courtyards.", hy: "Ազդեցիկ արմավենի terrazzo-ների և բակերի համար:" } },
+            { id: 190, images: ["images/plant (263).png", "images/plant (264).png"], name: { ru: "Аспарагус Мейера пушистый", en: "Meyer Asparagus Feathery", hy: "Մայերի ասպարագուս փափուկ" }, desc: { ru: "Нежная трава для кашпо и полок.", en: "Delicate grass for planters and shelves.", hy: "Նուրբ խոտ ափսեների և դարակների համար:" } },
+            { id: 191, images: ["images/plant (265).png", "images/plant (266).png"], name: { ru: "Самшит вечнозеленый черенки", en: "Evergreen Boxwood Cuttings", hy: "Մշտադալար Շամփայն կտրոններ" }, desc: { ru: "Черенки для посадки живых изгородей и топиариев.", en: "Cuttings for hedges and topiary.", hy: "Կտրոններ կենդանի ցանկապատերի և տոպիարի համար:" } },
+            { id: 192, images: ["images/plant (267).png", "images/plant (268).png"], name: { ru: "Роза чайно-гибридная красная", en: "Red Hybrid Tea Rose", hy: "Կարմիր հիբրիդային վարդ" }, desc: { ru: "Парадная роза для садов и цветочных композиций.", en: "Showy rose for gardens and floral arrangements.", hy: "Ցուցադրական վարդ այգիների և ծաղիկների կոմպոզիցիաների համար:" } },
+            { id: 193, images: ["images/plant (269).png", "images/plant (270).png"], name: { ru: "Петуния гибридная белая", en: "White Hybrid Petunia", hy: "Սպիտակ հիբրիդային Պետունիա" }, desc: { ru: "Неприхотливая петуния для балконов и кашпо.", en: "Easy-care petunia for balconies and hanging baskets.", hy: "Պարզ պահպանվող petunia բալկոնների և կախովի ափսեների համար:" } },
+            { id: 194, images: ["images/plant (271).png", "images/plant (272).png"], name: { ru: "Эониум пурпурный розетка", en: "Purple Aeonium Rosette", hy: "Մանուշակագույն Էոնիում վարդակ" }, desc: { ru: "Суккулент с розеткой пурпурных листьев.", en: "Succulent with a rosette of purple leaves.", hy: "Սուկուլենտ մանուշակագույն տերևների վարդակով:" } },
+            { id: 195, images: ["images/plant (273).png", "images/plant (274).png"], name: { ru: "Подсолнух декоративный оранжерея", en: "Decorative Sunflower Greenhouse", hy: "Դեկորատիվ արևածաղիկ ջերմոց" }, desc: { ru: "Высокое растение для тепличных и выставочных композиций.", en: "Tall plant for greenhouse and exhibition displays.", hy: "Բարձր բույս ջերմոցային և ցուցահանդեսային կոմպոզիցիաների համար:" } },
+            { id: 196, images: ["images/plant (275).png", "images/plant (276).png"], name: { ru: "Рассада лиственных культур", en: "Deciduous Seedlings", hy: "Տերևաթափ սածիլներ" }, desc: { ru: "Саженцы лиственных растений для озеленения и посадок.", en: "Seedlings of deciduous plants for landscaping and planting.", hy: "Տերևաթափ բույսերի սածիլներ կանաչապատման և տնկման համար:" } },
+            { id: 197, images: ["images/plant (277).png", "images/plant (278).png"], name: { ru: "Пальма Трахикарпус Форчуна", en: "Trachycarpus Fortune Palm", hy: "Տրախիկարպուս Ֆորչունա արմավենի" }, desc: { ru: "Мощная пальма для парков и больших пространств.", en: "Sturdy palm for parks and large spaces.", hy: "Հզոր արմավենի այգիների և մեծ տարածքների համար:" } },
+            { id: 198, images: ["images/plant (279).png", "images/plant (280).png"], name: { ru: "Бархатцы в кассетах опт", en: "Marigolds in Cassettes Wholesale", hy: "Մարիգոլդներ կասետներում խոշորածախ" }, desc: { ru: "Оптовый посадочный материал для сезонных заказов.", en: "Wholesale planting material for seasonal orders.", hy: "Խոշորածախ տնկման նյութ սեզոնային պատվերների համար:" } },
+            { id: 199, images: ["images/plant (281).png", "images/plant (282).png"], name: { ru: "Кипарисовик Лавсона саженцы", en: "Lawson Cypress Seedlings", hy: "Լաուսոնի ցիսսուս սածիլներ" }, desc: { ru: "Саженцы для живых изгородей и композиций.", en: "Seedlings for hedges and landscape compositions.", hy: "Սածիլներ կենդանի ցանկապատերի և կոմպոզիցիաների համար:" } },
+            { id: 200, images: ["images/plant (283).png", "images/plant (284).png"], name: { ru: "Бегония королевская Грифон", en: "Royal Begonia Griffin", hy: "Արքայական Բեգոնիա Գրიფոն" }, desc: { ru: "Пестролистная бегония для декоративных композиций.", en: "Variegated begonia for decorative compositions.", hy: "Փոփոխված բեգոնիա դեկորատիվ կոմպոզիցիաների համար:" } },
+            { id: 201, images: ["images/plant (285).png", "images/plant (286).png"], name: { ru: "Бегония Бауэра тигровая", en: "Tiger Begonia Bauer", hy: "Վագրային Բեգոնիա Բաուեր" }, desc: { ru: "Яркая бегония с необычной расцветкой листьев.", en: "Bright begonia with an unusual leaf pattern.", hy: "Վառ բեգոնիա տերևների յուրահատուկ նախշով:" } },
+            { id: 202, images: ["images/plant (287).png", "images/plant (288).png"], name: { ru: "Пилея Кадье Серебряная", en: "Pilea Cadierei Silver", hy: "Պիլեա Կադիեր արարծաթ" }, desc: { ru: "Пестролистный комнатный цветок для столов и полок.", en: "Variegated indoor plant for tables and shelves.", hy: "Փոփոխված ներքին բույս սեղանների և դարակների համար:" } },
+            { id: 203, images: ["images/plant (289).png", "images/plant (290).png"], name: { ru: "Ирезине Хербста куст", en: "Iresine Herbstii Bush", hy: "Իրեզինե Հերբստի թուփ" }, desc: { ru: "Пышный куст для контейнеров и цветников.", en: "Bushy plant for containers and flowerbeds.", hy: "Խիտ թուփ տարաների և ծաղկաշարերի համար:" } },
+            { id: 204, images: ["images/plant (291).png", "images/plant (292).png"], name: { ru: "Фикус Микрокарпа Бонсай", en: "Ficus Microcarpa Bonsai", hy: "Ֆիկուս Միկրոկարպա Բոնսայ" }, desc: { ru: "Миниатюрная форма фикуса для интерьера и подарков.", en: "Miniature ficus form for interior decoration and gifts.", hy: "Մինիատյուր ֆիկուս ինտերիերի և նվերի համար:" } },
+            { id: 205, images: ["images/plant (293).png", "images/plant (294).png"], name: { ru: "Пеперомия Каперата Россо", en: "Peperomia Caperata Rosso", hy: "Պեպերոմիա Կապերատա Ռոսո" }, desc: { ru: "Нежная декоративная пеперомия для подоконников и полок.", en: "Delicate decorative peperomia for windowsills and shelves.", hy: "Նուրբ դեկորատիվ պեպերոմիա պատուհանների և դարակների համար:" } },
+            { id: 206, images: ["images/plant (295).png", "images/plant (296).png"], name: { ru: "Цитрусовое дерево на опоре", en: "Citrus Tree on Support", hy: "Ցիտրուսային ծառ օժանդակության վրա" }, desc: { ru: "Плодовое дерево для эффектных интерьерных композиций.", en: "Fruit tree for striking interior compositions.", hy: "Պտղատու ծառ ազդեցիկ ինտերիերի կոմպոզիցիաների համար:" } },
+            { id: 207, images: ["images/plant (297).png", "images/plant (298).png"], name: { ru: "Фикус Бенджамина живая изгородь", en: "Ficus Benjamin Living Hedge", hy: "Ֆիկուս Բենջամին կենդանի ցանկապատ" }, desc: { ru: "Живая изгородь из фикуса для улицы и террас.", en: "Living hedge of ficus for outdoors and terraces.", hy: "Ֆիկուսի կենդանի ցանկապատ արտաքին տարածքների և terrazzo-ների համար:" } },
+            { id: 208, images: ["images/plant (299).png", "images/plant (300).png"], name: { ru: "Нолина Бокарнея Бутылочное дерево", en: "Bottle Tree Nolina", hy: "Բոքառնեա շիշ ծառ" }, desc: { ru: "Экзотическое дерево с характерной бутылочной формой ствола.", en: "Exotic tree with a characteristic bottle-like trunk.", hy: "Էկզոտիկ ծառ բնորոշ շիշանման ցողով:" } },
+            { id: 209, images: ["images/plant (301).png", "images/plant (302).png"], name: { ru: "Фуксия кустарник в теплице", en: "Fuchsia Shrub in Greenhouse", hy: "Ֆուկսիա թուփ ջերմոցում" }, desc: { ru: "Нежное растение для тепличного выращивания и продажи.", en: "Delicate plant for greenhouse cultivation and sale.", hy: "Նուրբ բույս ջերմոցային աճեցման և վաճառքի համար:" } },
+            { id: 210, images: ["images/plant (303).png", "images/plant (304).png"], name: { ru: "Фикус каучуконосный Робуста", en: "Rubber Fig Robusta", hy: "Ռոբուստա կաուչուկի ֆիկուս" }, desc: { ru: "Крупное комнатное растение для офисов и лобби.", en: "Large indoor plant for offices and lobbies.", hy: "Մեծ ներքին բույս գրասենյակների և դահլիճների համար:" } },
+            { id: 211, images: ["images/plant (305).png", "images/plant (306).png"], name: { ru: "Кротон пестрый Кодиеум", en: "Variegated Croton Codiaeum", hy: "Փոփոխական Կոդիեում" }, desc: { ru: "Пестролистный декоративный куст для интерьеров.", en: "Variegated decorative shrub for interiors.", hy: "Փոփոխված դեկորատիվ թուփ ինտերիերի համար:" } },
+            { id: 212, images: ["images/plant (307).png", "images/plant (308).png"], name: { ru: "Фикус сформированный солитер", en: "Shaped Ficus Solitary", hy: "Ձևավորված ֆիկուս սոլիտեր" }, desc: { ru: "Эффектный солитер для холлов и выставок.", en: "Striking focal plant for lobbies and exhibitions.", hy: "Ազդեցիկ սոլիտեր հոլլերի և ցուցահանդեսների համար:" } },
+            { id: 213, images: ["images/plant (309).png", "images/plant (310).png"], name: { ru: "Шеффлера древовидная крупная", en: "Large Tree-like Schefflera", hy: "Մեծ ծառանման Շեֆֆլերա" }, desc: { ru: "Крупное растение для просторных зон и офисов.", en: "Large plant for spacious zones and offices.", hy: "Մեծ բույս մեծ տարածքների և գրասենյակների համար:" } },
+            { id: 214, images: ["images/plant (311).png", "images/plant (312).png"], name: { ru: "Кордилина верхушечная Ред", en: "Cordyline Red", hy: "Կորդիլինա Ռեդ" }, desc: { ru: "Декоративное растение с яркой верхушечной листвой.", en: "Decorative plant with bright top foliage.", hy: "Դեկորատիվ բույս վառ վերին տերևներով:" } },
+            { id: 215, images: ["images/plant (313).png", "images/plant (314).png", "images/plant (315).png"], name: { ru: "Фикус Бенджамина Даниэль кадка", en: "Ficus Benjamin Daniel in Pot", hy: "Ֆիկուս Բենջամին Դանիել տարա" }, desc: { ru: "Эффектный фикус в кадке для интерьера и офиса.", en: "Striking ficus in a pot for interiors and offices.", hy: "Ազդեցիկ ֆիկուս տարայի մեջ ինտերիերի և գրասենյակների համար:" } },
+            { id: 216, images: ["images/plant (316).png", "images/plant (317).png", "images/plant (318).png"], name: { ru: "Юкка слоновая трехствольная", en: "Three-stem Elephant Yucca", hy: "Երեքցողունյա Փիղ Յուկկա" }, desc: { ru: "Декоративная юкка для крупных интерьеров и лобби.", en: "Decorative yucca for large interiors and lobbies.", hy: "Դեկորատիվ յուկկա մեծ ինտերիերի և դահլիճների համար:" } },
+            { id: 217, images: ["images/plant (319).png", "images/plant (320).png", "images/plant (321).png"], name: { ru: "Сансевьерия Лауренти группа", en: "Sansevieria Laurentii Group", hy: "Սանսևիերիա Լաուրենտի խումբ" }, desc: { ru: "Группа сансевиерий для массового озеленения офисов.", en: "Group of sansevierias for office greenery.", hy: "Սանսևիերիաների խումբ գրասենյակների կանաչապատման համար:" } },
+            { id: 218, images: ["images/plant (322).png"], name: { ru: "Фикус на витом штамбе", en: "Ficus on braided stem", hy: "Ֆիկուս հյուսված բնով" }, desc: { ru: "Декоративное штамбовое деревце со стильным переплетенным стволом и аккуратной округлой кроной.", en: "Decorative stem tree with a stylish braided trunk and neat rounded crown.", hy: "Դեկորատիվ ծառ ոճային հյուսված բնով և խնամված կլորավուն սաղարթով:" } },
+            { id: 219, images: ["images/plant (323).png"], name: { ru: "Сансевьерия Ханни Компактная", en: "Sansevieria Hahnii Compacta", hy: "Սանսևիերիա Հաննի Կոմպակտ" }, desc: { ru: "Низкорослая плотная розетка из широких темно-зеленых листьев со стильным серебристым крапом.", en: "Low-growing dense rosette of wide dark green leaves with stylish silvery speckles.", hy: "Ցածրաճ խիտ վարդակ լայն մուգ կանաչ տերևներով և ոճային արծաթագույն պտերով:" } },
+            { id: 220, images: ["images/plant (324).png"], name: { ru: "Банан декоративный Кавендиш", en: "Dwarf Cavendish Banana", hy: "Դեկորատիվ Բանան Կավենդիշ" }, desc: { ru: "Мощное тропическое растение с огромными широкими листьями насыщенного зеленого цвета для интерьера.", en: "Powerful tropical plant with huge, broad, rich green leaves for interior decoration.", hy: "Հզոր տրոպիկական բույս՝ հագեցած կանաչ գույնի հսկայական լայն տերևներով ինտերիերի համար:" } },
+            { id: 221, images: ["images/plant (325).png"], name: { ru: "Драцена Маргината Ред", en: "Dracaena Marginata Red", hy: "Դրացենա Մարգինատա Ռեդ" }, desc: { ru: "Плотный декоративный куст с тонкими, изящно раскинутыми листьями с выраженным темно-бордовым оттенком.", en: "Dense decorative shrub with thin, gracefully spread leaves with a distinct dark burgundy hue.", hy: "Խիտ դեկորատիվ թուփ բարակ, նրբագեղ տարածված տերևներով, որոնք ունեն ընդգծված մուգ բորդո երանգ:" } },
+            { id: 222, images: ["images/plant (326).png"], name: { ru: "Шеффлера топиарий (плетеный ствол)", en: "Schefflera topiary (braided trunk)", hy: "Շեֆլերա տոպիարի (հյուսված բնով)" }, desc: { ru: "Эксклюзивная садовая форма: стволы переплетены аккуратной сеточкой, крона сформирована ровным шаром.", en: "Exclusive garden form: trunks are interwoven in a neat mesh, the crown is formed into an even ball.", hy: "Էքսկլյուզիվ պարտիզային ձև. բները հյուսված են կոկիկ ցանցով, սաղարթը ձևավորված է հավասար գնդի տեսքով:" } },
+            { id: 223, images: ["images/plant (327).png"], name: { ru: "Калоцефалус Брауна (Серебряный куст)", en: "Calocephalus brownii (Silver Bush)", hy: "Կալոցեֆալուս Բրաունի (Արծաթագույն թուփ)" }, desc: { ru: "Необычное ажурное растение, напоминающее переплетение серебристо-серых кораллов или футуристичных веточек.", en: "Unusual lace-like plant resembling an interweaving of silvery-grey corals or futuristic twigs.", hy: "Անսովոր ժանյակավոր բույս, որը հիշեցնում է արծաթամոխրագույն կորալների կամ ֆուտուրիստական ճյուղերի հյուսվածք:" } },
+            { id: 224, images: ["images/plant (328).png"], name: { ru: "Бальзамин Уоллера", en: "Impatiens walleriana", hy: "Բալզամին Ուոլլերի" }, desc: { ru: "Плотный, обильноцветущий ковер из сочной зелени и многочисленных нежных ярко-розовых цветов.", en: "Dense, profusely blooming carpet of lush greenery and numerous delicate bright pink flowers.", hy: "Խիտ, առատորեն ծաղկող գորգ հյութեղ կանաչից և բազմաթիվ նուրբ վառ վարդագույն ծաղիկներից:" } },
+            { id: 225, images: ["images/plant (329).png"], name: { ru: "Папоротник Нефролепис садовый", en: "Nephrolepis fern garden", hy: "Պտեր Նեֆրոլեպիս պարտիզային" }, desc: { ru: "Пышная раскидистая розетка из длинных перисто-рассеченных листьев (вайя) ярко-зеленого окраса.", en: "Lush spreading rosette of long, pinnately dissected leaves (fronds) of a bright green color.", hy: "Շքեղ տարածվող վարդակ վառ կանաչ գույնի երկար փետրաձև կտրատված տերևներից (վայյա):" } },
+            { id: 226, images: ["images/plant (330).png"], name: { ru: "Пальма Панданус вариегатный", en: "Pandanus variegated", hy: "Պանդանուս վարիեգատային" }, desc: { ru: "Мощные линейные листья со стильными продольными желто-зелеными полосами и винтовым расположением.", en: "Powerful linear leaves with stylish longitudinal yellow-green stripes and a spiral arrangement.", hy: "Հզոր գծային տերևներ ոճային երկայնական դեղնականաչ շերտերով և պտուտակաձև դասավորությամբ:" } },
+            { id: 227, images: ["images/plant (331).png"], name: { ru: "Питомник хвойных топиариев", en: "Coniferous topiary nursery", hy: "Փշատերև տոպիարիների տնկարան" }, desc: { ru: "Сформированные садовые можжевельники и хвойники спиралевидной, шарообразной и ярусной художественной стрижки.", en: "Shaped garden junipers and conifers of spiral, spherical, and tiered artistic trimming.", hy: "Ձևավորված պարտիզային գիհիներ և փշատերևներ պարուրաձև, գնդաձև և հարկավոր գեղարվեստական խուզմամբ:" } },
+            { id: 228, images: ["images/plant (332).png"], name: { ru: "Живая изгородь из Туи Смарагд", en: "Thuja Smaragd hedge", hy: "Կենդանի ցանկապատ Տույա Սմարագդից" }, desc: { ru: "Плотная зеленая стена из подрощенных вечнозеленых хвойных деревьев идеальной конической формы.", en: "Dense green wall of grown evergreen conifers of perfect conical shape for privacy landscape.", hy: "Խիտ կանաչ պատ աճեցված մշտադալար փշատերև ծառերից՝ կատարյալ կոնաձև տեսքով լանդշաֆտի համար:" } },
+            { id: 229, images: ["images/plant (333).png"], name: { ru: "Лимон кустовой (саженец)", en: "Bush Lemon (sapling)", hy: "Թփային Լիմոն (տնկի)" }, desc: { ru: "Здоровый молодой саженец в технологическом горшке с яркой, глянцевой салатово-зеленой листвой.", en: "Healthy young sapling in a plastic nursery pot with bright, glossy lime-green foliage.", hy: "Առողջ երիտասարդ տնկի տեխնոլոգիական թաղարում՝ վառ, փայլուն բաց կանաչավուն տերևներով:" } },
+            { id: 230, images: ["images/plant (334).png"], name: { ru: "Сирень садовая в кадке", en: "Garden Lilac in a tub", hy: "Պարտիզային Յասաման տակառում" }, desc: { ru: "Небольшое укорененное деревце с округлыми здоровыми листьями, готовое к высадке в открытый грунт.", en: "Small rooted tree with rounded healthy leaves, ready for planting in the open ground.", hy: "Փոքր արմատակալած ծառ կլորավուն առողջ տերևներով, պատրաստ բաց գրունտում տնկելու համար:" } }
+        ];
+
+        function resolveImagePath(imagePath) {
+            const safePath = String(imagePath || '').trim();
+            if (!safePath) return 'images/logo.png.jpg';
+            return safePath.replace(/\.png$/i, '.jpg');
+        }
+
+        function renderPlants(lang) {
+            const container = document.getElementById('plants-grid');
+            if (!container) return;
+
+            const normalizedLang = String(lang || 'ru').trim().toLowerCase();
+            const currentLang = normalizedLang === 'hy' || normalizedLang === 'am' ? 'hy' : normalizedLang;
+
+            container.innerHTML = plantsData.map(item => {
+                const name = item.name[currentLang] || item.name.ru;
+                const description = item.desc[currentLang] || item.desc.ru;
+                const firstImage = Array.isArray(item.images) && item.images.length
+                    ? resolveImagePath(item.images[0])
+                    : 'images/logo.png.jpg';
+
+                return `
+                    <article class="card">
+                        <img src="${firstImage}" alt="${name}" class="plant-slider-image" style="margin-bottom: 15px;">
+                        <h3>${name}</h3>
+                        <p>${description}</p>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY';
+
+        function changeLang(lang) {
+            const normalizedLang = String(lang).trim().toLowerCase();
+            const langKey = normalizedLang === 'hy' || normalizedLang === 'am' ? 'am' : normalizedLang;
+            if (!translations[langKey]) {
+                console.warn(`Unsupported language: ${normalizedLang}`);
+                return;
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(button => {
+                const buttonLang = (button.dataset.lang || button.textContent.trim().toLowerCase()).toLowerCase();
+                const isActive = (buttonLang === 'am' || buttonLang === 'hy')
+                    ? langKey === 'am'
+                    : buttonLang === langKey;
+                button.classList.toggle('active', isActive);
+            });
+
+            const translationMap = translations[langKey];
+            Object.keys(translationMap).forEach(id => {
+                const node = document.getElementById(id);
+                if (!node) return;
+                if (node.tagName === 'INPUT' || node.tagName === 'TEXTAREA') {
+                    node.placeholder = translationMap[id];
+                } else {
+                    node.textContent = translationMap[id];
+                }
+            });
+            renderMaterials(lang);
+
+
+            document.querySelectorAll('[data-placeholder-key]').forEach(node => {
+                const key = node.getAttribute('data-placeholder-key');
+                if (translationMap[key]) {
+                    node.placeholder = translationMap[key];
+                }
+            });
+
+            const statusNode = document.getElementById('feedback-status');
+            if (statusNode && statusNode.dataset.translationKey) {
+                statusNode.textContent = translationMap[statusNode.dataset.translationKey] || '';
+            }
+
+            renderPlants(langKey);
+            renderMaterials(langKey);
+
+        }
+
+        const feedbackToggle = document.getElementById('feedback-toggle');
+        const feedbackPanel = document.getElementById('feedback-panel');
+        const feedbackClose = document.getElementById('feedback-close');
+        const feedbackForm = document.getElementById('feedback-form');
+        const feedbackStatus = document.getElementById('feedback-status');
+
+        function openFeedbackPanel() {
+            feedbackPanel.classList.add('open');
+            feedbackPanel.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeFeedbackPanel() {
+            feedbackPanel.classList.remove('open');
+            feedbackPanel.setAttribute('aria-hidden', 'true');
+        }
+
+        feedbackToggle.addEventListener('click', () => {
+            const isOpen = feedbackPanel.classList.contains('open');
+            if (isOpen) {
+                closeFeedbackPanel();
+            } else {
+                openFeedbackPanel();
+            }
+        });
+
+        feedbackClose.addEventListener('click', closeFeedbackPanel);
+
+        document.addEventListener('click', (event) => {
+            if (!feedbackPanel.contains(event.target) && !feedbackToggle.contains(event.target)) {
+                closeFeedbackPanel();
+            }
+        });
+
+        feedbackForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const currentLang = document.querySelector('.lang-btn.active')?.dataset.lang || 'ru';
+            const langKey = currentLang === 'am' ? 'am' : currentLang;
+            const translationMap = translations[langKey] || translations.ru;
+
+            feedbackStatus.classList.remove('success', 'error');
+            feedbackStatus.textContent = '';
+
+            const formData = new FormData(feedbackForm);
+            formData.set('access_key', WEB3FORMS_ACCESS_KEY);
+            formData.set('subject', 'New request from Green Import website');
+            formData.set('from_name', formData.get('name') || 'Guest');
+            formData.set('replyto', formData.get('contacts') || '');
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    feedbackStatus.classList.add('success');
+                    feedbackStatus.textContent = translationMap['feedback-thanks'] || 'Thank you for your question!';
+                    feedbackForm.reset();
+                } else {
+                    feedbackStatus.classList.add('error');
+                    feedbackStatus.textContent = translationMap['feedback-error'] || 'The message could not be sent. Please try again later.';
+                }
+            } catch (error) {
+                feedbackStatus.classList.add('error');
+                feedbackStatus.textContent = translationMap['feedback-error'] || 'The message could not be sent. Please try again later.';
+            }
+        });
+// ==========================================
+// КАТАЛОГ СТРОЙМАТЕРИАЛОВ (82 ПОЗИЦИИ)
+// ==========================================
+const buildingMaterialsData = [];
+
+for (let i = 1; i <= 102; i++) {
+    let skuNum = String(i).padStart(3, '0');
+    let item = {
+        id: `mat_${i}`,
+        sku: `GI-MAT-${skuNum}`,
+        images: [`images/stroymat (${i}).png`],
+        name: { ru: "", en: "", am: "" },
+        desc: { ru: "", en: "", am: "" }
+    };
+
+    if (i >= 1 && i <= 7) {
+        item.name = { ru: `Детский игровой комплекс №${i}`, en: `Kids Playground Complex №${i}`, am: `Մանկական խաղահրապարակ №${i}` };
+        item.desc = { ru: "Многофункциональный развивающий городок с горками и безопасными переходами.", en: "Multifunctional playground with slides and safe crossings.", am: "Բազմաֆունկցիոնալ զարգացնող խաղահրապարակ սահիկներով և անվտանգ անցումներով:" };
+    } else if (i >= 8 && i <= 9) {
+        item.name = { ru: `Комплект уличной мебели из камня Модель ${i==8?'А':'Б'}`, en: `Stone Outdoor Furniture Set Model ${i==8?'A':'B'}`, am: `Բնական քարից արտաքին կահույքի հավաքածու Մոդել ${i==8?'Ա':'Բ'}` };
+        item.desc = { ru: "Массивный долговечный стол в комплекте со скамьями из высокопрочного материала.", en: "Massive durable table complete with benches made of high-strength material.", am: "Մասիվ երկարակյաց սեղան նստարանների համալրմամբ՝ բարձր ամրության նյութից:" };
+    } else if (i >= 10 && i <= 13) {
+        item.name = { ru: `Стол шахматный уличный парковый №${i-9}`, en: `Outdoor Chess Park Table №${i-9}`, am: `Արտաքին շախմատի սեղան №${i-9}` };
+        item.desc = { ru: "Антивандальный парковый стол со встроенной разметкой игрового поля и сиденьями.", en: "Anti-vandal park table with built-in game board markings and seats.", am: "Հակավանդալային պարկային սեղան ներկառուցված խաղադաշտի նշագծմամբ և նստատեղերով:" };
+    } else if (i >= 14 && i <= 17) {
+        item.name = { ru: `Стол для настольного футбола уличный №${i-13}`, en: `Outdoor Foosball Table №${i-13}`, am: `Սեղանի ֆուտբոլ արտաքին №${i-13}` };
+        item.desc = { ru: "Антивандальный прочный кикер со стальным каркасом для игровых и парковых зон.", en: "Heavy-duty anti-vandal foosball table with steel frame for play and park areas.", am: "Ամուր սեղանի ֆուտբոլ մետաղական կմախքով խաղային և պարկային գոտիների համար:" };
+    } else if (i >= 18 && i <= 21) {
+        item.name = { ru: `Стол теннисный всепогодный №${i-17}`, en: `All-weather Ping-Pong Table №${i-17}`, am: `Թենիսի սեղան ամենาեղանակային №${i-17}` };
+        item.desc = { ru: "Профессиональный стол для настольного тенниса с антибликовым защитным покрытием.", en: "Professional table tennis table with anti-glare protective coating.", am: "Պրոֆեսիոնալ թենիսի սեղան հակացոլացնող պաշտպանիչ ծածկույթով:" };
+    } else if (i >= 22 && i <= 26) {
+        item.name = { ru: `Мангал-барбекю садовый из камня №${i-21}`, en: `Stone Garden BBQ Grill №${i-21}`, am: `Քարե պարտիզային մանղալ-բարբեքյու №${i-21}` };
+        item.desc = { ru: "Декоративная уличная печь-камин из огнеупорного фактурного архитектурного бетона.", en: "Decorative outdoor fireplace oven made of fire-resistant textured architectural concrete.", am: "Դեկորատիվ արտաքին բուխարի-վառարան հրակայուն ֆակտուրային ճարտարապետական բետոնից:" };
+    } else if (i >= 27 && i <= 31) {
+        item.name = { ru: i==27 ? "Парковая беседка-кормушка" : `Уличный питьевой фонтанчик / рукомойник №${i-27}`, en: i==27 ? "Decorative Park Feeder" : `Outdoor Water Fountain / Sink №${i-27}`, am: i==27 ? "Դեկորատիվ պարկային կերաման" : `Արտաքին խմելու շատրվան / լվացարան №${i-27}` };
+        item.desc = { ru: "Малая архитектурная форма из высокопрочного бетона с фактурной стилизацией.", en: "Small architectural form made of high-strength concrete with textured styling.", am: "Փոքր ճարտարապետական ձև բարձր ամրության բետոնից՝ ֆակտուրային ոճավորմամբ:" };
+    } else if (i >= 32 && i <= 33) {
+        item.name = { ru: `Фонтанчик питьевой парковый Модель ${i==32?'А':'Б'}`, en: `Park Drinking Fountain Model ${i==32?'A':'B'}`, am: `Խմելու շատրվան պարկի համար Մոդել ${i==32?'Ա':'Բ'}` };
+        item.desc = { ru: "Антивандальный питьевой фонтан из монолитного камня для общественных скверов.", en: "Anti-vandal drinking fountain made of monolithic stone for public squares.", am: "Հակավանդալային խմելու շատրվան մոնոլիտ քարից հասարակական պուրակների համար:" };
+    } else if (i >= 34 && i <= 40) {
+        item.name = { ru: i==40 ? "Защитный навес для стадионов" : `Автобусная остановка / павильон №${i-33}`, en: i==40 ? "Stadium Dugout Shelter" : `Bus Stop Shelter Station №${i-33}`, am: i==40 ? "Մարզադաշտի ծածկած նստարաններ" : `Ավտոբուսի կանգառ / տաղավար №${i-33}` };
+        item.desc = { ru: "Металлический прочный навес с защитными панелями от ветра и встроенной скамьей.", en: "Durable metal shelter with wind protection panels and an integrated bench.", am: "Մետաղական ամուր ծածկ քամուց պաշտպանող վահանակներով և ներկառուցված նստարանով:" };
+    } else if (i >= 41 && i <= 44) {
+        item.name = { ru: i<=42 ? `Парковый навес-скамья №${i-40}` : `Торговый павильон / киоск №${i-42}`, en: i<=42 ? `Park Bench with Canopy №${i-40}` : `Street Retail Kiosk Pavilion №${i-42}`, am: i<=42 ? `Պարկային նստարան ծածկով №${i-40}` : `Առևտրային կրպակ / տաղավար №${i-42}` };
+        item.desc = { ru: "Конструкция из профильного металла со стеклянным или витражным оформлением фасада.", en: "Profile metal construction with glass or stained glass facade design.", am: "Կառուցվածք պրոֆիլային մետաղից՝ ապակե կամ վիտրաժային ֆասադային ձևավորմամբ:" };
+    } else if (i >= 45 && i <= 55) {
+        item.name = { ru: `Беседка садово-парковая Модель №${i-44}`, en: `Garden Park Gazebo Model №${i-44}`, am: `Պարտիզային տաղավար Մոդελ №${i-44}` };
+        item.desc = { ru: "Уютная зона отдыха из натурального дерева или кованого металла для дач и скверов.", en: "Cozy relaxation zone made of natural wood or forged metal for gardens and parks.", am: "Հարմարավետ հանգստի գոտի բնական փайտից կամ կռած մետաղից այգիների համար:" };
+    } else if (i >= 56 && i <= 59) {
+        item.name = { ru: i==56 ? "Колеса поворотные для контейнеров" : `Контейнер для ТБО оцинкованный №${i-56}`, en: i==56 ? "Swivel Caster Wheels Set" : `Galvanized Waste Container №${i-56}`, am: i==56 ? "Պտտվող անիվների հավաքածու" : `Ցինկապատ աղբաման №${i-56}` };
+        item.desc = { ru: "Промышленное оборудование повышенной прочности из горячеоцинкованной стали.", en: "Heavy-duty industrial equipment made of hot-dip galvanized steel.", am: "Արդյունաբերական բարձր ամրության սարքավորում տաք ցինկապատ պողպատից:" };
+    } else if (i >= 60 && i <= 73) {
+        item.name = { ru: i<=67 ? `Урна уличная парковая №${i-59}` : `Бак для мусора пластиковый №${i-67}`, en: i<=67 ? `Outdoor Park Litter Bin №${i-59}` : `Plastic Waste Bin Container №${i-67}`, am: i<=67 ? `Փողոցային աղբաման պարկի համար №${i-59}` : `Պլաստիկե աղբաման կոնտեյներ №${i-67}` };
+        item.desc = { ru: "Антивандальный мусоросборник из архитектурного бетона, стали или ударопрочного пластика.", en: "Anti-vandal waste bin made of architectural concrete, steel, or high-impact plastic.", am: "Հակավանդալային աղբաման ճարտարապետական բետոնից, պողպատից կամ պլաստիկից:" };
+       } else if (i >= 74 && i <= 82) {
+        item.name = { ru: `Детский игровой комплекс Серия Б-№${i-73}`, en: `Kids Playground Station Series B-№${i-73}`, am: `Մանկական խաղային համալիր Սերիա Բ-№${i-73}` };
+        item.desc = { ru: "Яркая уличная игровая площадка со смотровыми башнями и пластиковыми горками.", en: "Bright outdoor playground with observation towers and plastic slides.", am: "Վառ արտաքին խաղահրապարակ դիտակետ-աշտարակներով և պլաստիկե սահիկներով:" };
+    } else if (i >= 83 && i <= 90) {
+        item.name = { ru: `Уличный спортивный тренажер №${i-82}`, en: `Outdoor Fitness Station №${i-82}`, am: `Բացօթյա մարզասարք №${i-82}` };
+        item.desc = { ru: "Антивандальный силовой тренажер на прочном металлокаркасе для уличных воркаут-зон.", en: "Heavy-duty outdoor gym machine for public workout areas.", am: "Հակավանդալային ուժային մարզասարք մետաղական կմախքով բակերի համար:" };
+    } else if (i >= 91 && i <= 95) {
+        item.name = { ru: `Искусственный газон и трава Модель №${i-90}`, en: `Artificial Grass Carpet Model №${i-90}`, am: `Արհեստական խոտածածկ Մոդել №${i-90}` };
+        item.desc = { ru: "Премиальное износостойкое покрытие высокой плотности для ландшафтного дизайна и полей.", en: "Premium high-density wear-resistant turf for landscaping and sport fields.", am: "Բարձր խտության մաշվածակայուն արհեստական խոտածածկ լանդշաֆտի համար:" };
+    } else if (i >= 96 && i <= 98) {
+        item.name = { ru: i==96 ? "Модульное защитное покрытие (Пазл)" : i==97 ? "Пластиковые сиденья для стадионов" : "Эко-парковочная решетка", en: i==96 ? "Modular Puzzle Flooring" : i==97 ? "Plastic Stadium Seats" : "Eco Lawn Parking Grid", am: i==96 ? "Մոդուլային փազլ ծածկույթ" : i==97 ? "Պլաստիկե նստատեղեր մարզադաշտի" : "Էկո-կայանատեղիի ցանց" };
+        item.desc = { ru: "Специализированные защитные и укрепительные материалы для благоустройства спортивных объектов.", en: "Specialized protective and reinforcing materials for infrastructure improvement.", am: "Մասնագիտացված պաշտպանիչ և ամրացնող նյութեր մարզական օբյեկտների համար:" };
+    } else {
+        item.name = { ru: i==99 ? "Баскетбольный щит профессиональный" : `Спортивное покрытие площадок №${i-99}`, en: i==99 ? "Professional Basketball Backboard" : `Sports Court Flooring Surface №${i-99}`, am: i==99 ? "Պրոֆեսիонаլ բասկետբոլի վահանակ" : `Սպորտային ծածկույթ հրապարակների №${i-99}` };
+        item.desc = { ru: "Профессиональный износостойкий инвентарь и наливное бесшовное покрытие для закрытых и открытых залов.", en: "Professional wear-resistant equipment and seamless surface for indoor and outdoor courts.", am: "Պրոֆեսիոնալ մաշվածակայուն սպորտային գույք և անկար լցնովի ծածկույթ դահլիճների համար:" };
+    }
+
+    buildingMaterialsData.push(item);
+}
+
+function renderMaterials(lang) {
+    const grid = document.getElementById('building-materials-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    buildingMaterialsData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const nameText = item.name[lang] || item.name['ru'];
+        const descText = item.desc[lang] || item.desc['ru'];
+
+        card.innerHTML = `
+            <div class="card-img-container" style="overflow: hidden;">
+                <img src="${item.images[0]}" alt="${nameText}" style="transition: transform 0.4s ease; width: 100%; display: block;">
+            </div>
+            <div class="card-content" style="padding: 15px;">
+                <span class="card-sku" style="font-size: 12px; color: #888; font-weight: bold;">${item.sku}</span>
+                <h3 class="card-title" style="margin: 5px 0; font-size: 18px;">${nameText}</h3>
+                <p class="card-desc" style="font-size: 14px; color: #555;">${descText}</p>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+renderMaterials('ru');
+
+        renderPlants('ru');
+        changeLang('ru');
+    </script>
