@@ -437,11 +437,78 @@
             font-weight: 700;
         }
 
-        @media (max-width: 768px) {
-            .header-container { flex-direction: column; gap: 15px; }
-            .hero h1 { font-size: 28px; }
-            .feedback-widget { right: 16px; bottom: 16px; }
-        }
+@media (max-width: 768px) {
+    /* Шапка сайта и логотип центрируются вертикально */
+    .header-container { 
+        flex-direction: column !important; 
+        gap: 15px !important; 
+        padding: 10px !important;
+        text-align: center !important;
+    }
+
+    /* Логотип и текст под ним */
+    .logo-area {
+        flex-direction: column !important;
+        gap: 5px !important;
+    }
+
+    /* Навигация перестраивается в гибкие ряды, кнопки больше не вылетают за экран */
+    nav {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    nav a {
+        font-size: 13px !important;
+        padding: 6px 10px !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+    }
+
+    /* Блок переключения языков центрируется под меню */
+    .lang-switcher {
+        justify-content: center !important;
+        margin-top: 5px !important;
+        width: 100% !important;
+    }
+
+    /* Уменьшаем размер главного заголовка */
+    .hero h1, h1, .main-title { 
+        font-size: 22px !important; 
+        line-height: 1.3 !important;
+        padding: 0 10px !important;
+    }
+
+    /* Сетки каталогов (растения и стройматериалы) перестраиваются строго в 1 колонку */
+    .grid, #materials-grid, #building-materials-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+        padding: 10px !important;
+    }
+
+    /* Все карточки товаров растягиваются по ширине экрана смартфона */
+    .card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Все контейнеры секций адаптируются под экраны телефонов */
+    .container {
+        width: 100% !important;
+        padding: 0 15px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Смещаем кнопку-виджет обратной связи, чтобы она не перекрывала контент */
+    .feedback-widget { 
+        right: 16px !important; 
+        bottom: 16px !important; 
+    }
+}
+
     </style>
 </head>
 <body>
