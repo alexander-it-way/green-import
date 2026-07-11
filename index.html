@@ -508,6 +508,13 @@
         bottom: 16px !important; 
     }
 }
+/* Фикс для мгновенного и надежного клика на смартфонах (iPhone и Android) */
+button, [onclick] {
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent; /* Убирает синюю рамку при клике */
+}
+
 
     </style>
 </head>
@@ -1758,28 +1765,92 @@ function renderMaterials(lang) {
         grid.parentNode.insertBefore(filterContainer, grid);
     }
 
-    if (!window.currentMaterialsCategory) {
+      if (!window.currentMaterialsCategory) {
         window.currentMaterialsCategory = 'all';
     }
+    if (!window.currentSubCategory) {
+        window.currentSubCategory = 'all';
+    }
 
-    // Рендерим кнопки
-    filterContainer.innerHTML = ['all', 'grass', 'playgrounds', 'workout', 'landscaping'].map(cat => {
+    // Словари для перевода подкатегорий на трёх языках
+    const subTitles = {
+        'all': { ru: 'Все подкатегории', am: 'Բոլոր ենթակատեգորիաները', en: 'All Subcategories' },
+        'landshaft': { ru: 'Ландшафтная трава', am: 'Լանդշաֆտային խոտ', en: 'Landscaping Grass' },
+        'sport': { ru: 'Спортивная трава', am: 'Սպորտային խոտ', en: 'Sports Grass' },
+        'accessories': { ru: 'Аксессуары для монтажа', am: 'Մոնտաժային պարագաներ', en: 'Installation Accessories' },
+        'kompleksi': { ru: 'Игровые комплексы', am: 'Խաղային համալիրներ', en: 'Playground Systems' },
+        'gorki': { ru: 'Горки', am: 'Սահնակներ', en: 'Slides' },
+        'kacheli': { ru: 'Качели', am: 'Ճոճանակներ', en: 'Swings' },
+        'karuseli': { ru: 'Карусели', am: 'Կարուսելներ', en: 'Merry-go-rounds' },
+        'pesochnici': { ru: 'Песочницы', am: 'Ավազամաններ', en: 'Sandboxes' },
+        'det-elements': { ru: 'Детские элементы', am: 'Մանկական տարրեր', en: 'Kids Elements' },
+        'kardio': { ru: 'Кардиотренажёры', am: 'Կարդիո մարզասարքեր', en: 'Cardio Equipment' },
+        'silovie': { ru: 'Силовые тренажёры', am: 'Ուժային մարզասարքեր', en: 'Strength Equipment' },
+        'workout': { ru: 'Воркаут', am: 'Վորքաութ', en: 'Workout' },
+        'park-kompleksi': { ru: 'Парковые комплексы', am: 'Այգու համալիրներ', en: 'Park Systems' },
+        'skameyki': { ru: 'Скамейки', am: 'Նստարաններ', en: 'Benches' },
+        'urni': { ru: 'Урны', am: 'Աղբամաններ', en: 'Bins' },
+        'pergoli': { ru: 'Перголы', am: 'Պերգոլաներ', en: 'Pergolas' },
+        'ograzhdeniya': { ru: 'Ограждения', am: 'Ցանկապատեր', en: 'Fences' },
+        'maf': { ru: 'Малые архит. формы', am: 'ՄԱՖ', en: 'Small Arch. Forms' }
+    };
+
+    // Сопоставление подкатегорий с главными вкладками
+    const subCategoriesMap = {
+        'grass': ['landshaft', 'sport', 'accessories'],
+        'playgrounds': ['kompleksi', 'gorki', 'kacheli', 'karuseli', 'pesochnici', 'det-elements'],
+        'workout': ['kardio', 'silovie', 'workout', 'park-kompleksi'],
+        'landscaping': ['skameyki', 'urni', 'pergoli', 'ograzhdeniya', 'maf']
+    };
+
+    // Генерация главных кнопок
+    let mainButtonsHtml = ['all', 'grass', 'playgrounds', 'workout', 'landscaping'].map(cat => {
         const isActive = window.currentMaterialsCategory === cat;
         const bg = isActive ? '#2e7d32' : '#f5f5f5';
         const color = isActive ? '#ffffff' : '#333333';
         const border = isActive ? '1px solid #2e7d32' : '1px solid #cccccc';
         const title = categoryTitles[cat][currentLang] || categoryTitles[cat].ru;
-        
-        return `<button onclick="window.currentMaterialsCategory='${cat}'; renderMaterials('${currentLang}')" 
-                style="padding: 10px 20px; font-weight: bold; border-radius: 20px; border: ${border}; background: ${bg}; color: ${color}; cursor: pointer; transition: 0.2s;">
-                ${title}
-               </button>`;
+
+        return `<button onclick="window.currentMaterialsCategory='${cat}'; window.currentSubCategory='all'; renderMaterials('${currentLang}')" 
+            style="padding: 10px 20px; font-weight: bold; border-radius: 20px; border: ${border}; background: ${bg}; color: ${color}; cursor: pointer; transition: 0.2s; margin: 5px;">
+            ${title}
+        </button>`;
     }).join('');
 
-    // Сортировка по категориям
-    const filteredData = window.currentMaterialsCategory === 'all' 
-        ? buildingMaterialsData 
-        : buildingMaterialsData.filter(item => item.category === window.currentMaterialsCategory);
+    // Генерация подкатегорий
+    let subButtonsHtml = '';
+    const activeMainCat = window.currentMaterialsCategory;
+    
+    if (activeMainCat !== 'all' && subCategoriesMap[activeMainCat]) {
+        const subs = ['all', ...subCategoriesMap[activeMainCat]];
+        subButtonsHtml = '<div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:15px; margin-bottom:10px; width:100%;">' + 
+        subs.map(sub => {
+            const isActive = window.currentSubCategory === sub;
+            const bg = isActive ? '#2e7d32' : '#e0e0e0';
+            const color = isActive ? '#ffffff' : '#333333';
+            const border = isActive ? '1px solid #2e7d32' : '1px solid #cccccc';
+            const title = subTitles[sub][currentLang] || subTitles[sub].ru;
+
+            return `<button onclick="window.currentSubCategory='${sub}'; renderMaterials('${currentLang}')" 
+                style="padding: 6px 14px; font-size: 14px; font-weight: 500; border-radius: 15px; border: ${border}; background: ${bg}; color: ${color}; cursor: pointer; transition: 0.2s; margin: 3px;">
+                ${title}
+            </button>`;
+        }).join('') + '</div>';
+    }
+
+    // Вывод кнопок в контейнер
+    filterContainer.innerHTML = `<div style="display:flex; justify-content:center; flex-wrap:wrap; width:100%;">${mainButtonsHtml}</div>` + subButtonsHtml;
+
+      // Умная сортировка по категориям и подкатегориям
+    let filteredData = buildingMaterialsData;
+    
+    if (window.currentMaterialsCategory !== 'all') {
+        filteredData = filteredData.filter(item => item.category === window.currentMaterialsCategory);
+    }
+    
+    if (window.currentSubCategory !== 'all') {
+        filteredData = filteredData.filter(item => item.sub_category === window.currentSubCategory);
+    }
 
     // Вывод карточек
     filteredData.forEach(item => {

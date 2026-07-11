@@ -1,0 +1,49 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "materials"
+    label: "Каталог: Стройматериалы"
+    folder: "data"
+    create: true
+    slug: "item-{{fields.id}}"
+    format: "json"
+    fields:
+      - { label: "Уникальный ID (Просто цифра, например: 15)", name: "id", widget: "number", value_type: "int" }
+      - label: "Главная категория"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "🌱 Искусственная трава", value: "grass" }
+          - { label: "🛝 Детские площадки", value: "playgrounds" }
+          - { label: "💪 Уличные тренажёры", value: "workout" }
+          - { label: "🏞️ Благоустройство", value: "landscaping" }
+      - label: "Подкатегория"
+        name: "sub_category"
+        widget: "select"
+        options:
+          - { label: "Ландшафтная искусственная трава", value: "landshaft" }
+          - { label: "Спортивная искусственная трава", value: "sport" }
+          - { label: "Аксессуары для монтажа", value: "accessories" }
+          - { label: "Игровые комплексы", value: "kompleksi" }
+          - { label: "Горки", value: "gorki" }
+          - { label: "Качели", value: "kacheli" }
+          - { label: "Карусели", value: "karuseli" }
+          - { label: "Песочницы", value: "pesochnici" }
+          - { label: "Детские игровые элементы", value: "det-elements" }
+          - { label: "Кардиотренажёры", value: "kardio" }
+          - { label: "Силовые тренажёры", value: "silovie" }
+          - { label: "Тренажёры для воркаута", value: "workout" }
+          - { label: "Комплексы для парков", value: "park-kompleksi" }
+          - { label: "Скамейки", value: "skameyki" }
+          - { label: "Урны", value: "urni" }
+          - { label: "Перголы", value: "pergoli" }
+          - { label: "Парковые ограждения", value: "ograzhdeniya" }
+          - { label: "Малые архит. формы", value: "maf" }
+      - { label: "Название (На русском)", name: "name_ru", widget: "string" }
+      - { label: "Описание (На русском)", name: "desc_ru", widget: "text", required: false }
+      - label: "Фотография товара", name: "images", widget: "list", field: {label: "Картинка", widget: "image"}
