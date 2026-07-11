@@ -1,10 +1,21 @@
-[
-  {
-    "id": 1,
-    "category": "landscaping",
-    "sub_category": "urni",
-    "name_ru": "Стартовая Урна Модерн",
-    "desc_ru": "Тестовое описание",
-    "images": []
-  }
-]
+{
+  "items": [
+    {
+      "id": "mat_1",
+      "sku": "GI-MAT-001",
+      "images": [
+        "images/stroymat (1).png"
+      ],
+      "name": {
+        "ru": "Детский игровой комплекс «Мини»",
+        "en": "Kids playground mini",
+        "am": "Մանկական խաղահրապարակ մինի"
+      },
+      "desc": {
+        "ru": "Компактный комплекс с одной горкой и безопасной лестницей для дворовых зон.",
+        "en": "Compact complex with one slide and safe ladder for yards.",
+        "am": "Կոմպակտ համալիր մեկ սահիկով և անվտանգ սանդուղքով բակերի համար:"
+      }
+    }
+  ]
+}

@@ -2,51 +2,43 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "images"
-public_folder: "/images"
+local_backend: true
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "ru"
 
 collections:
   - name: "materials"
     label: "Каталог: Стройматериалы"
-    folder: "data"
-    create: true
-    slug: "item-{{fields.id}}"
-    format: "json"
-    fields:
-      - { label: "Уникальный ID (Просто цифра)", name: "id", widget: "number", value_type: "int" }
-      - label: "Главная категория"
-        name: "category"
-        widget: "select"
-        options:
-          - { label: "🌱 Искусственная трава", value: "grass" }
-          - { label: "🛝 Детские площадки", value: "playgrounds" }
-          - { label: "💪 Уличные тренажёры", value: "workout" }
-          - { label: "🏞️ Благоустройство", value: "landscaping" }
-      - label: "Подкатегория"
-        name: "sub_category"
-        widget: "select"
-        options:
-          - { label: "Ландшафтная искусственная трава", value: "landshaft" }
-          - { label: "Спортивная искусственная трава", value: "sport" }
-          - { label: "Аксессуары для монтажа", value: "accessories" }
-          - { label: "Игровые комплексы", value: "kompleksi" }
-          - { label: "Горки", value: "gorki" }
-          - { label: "Качели", value: "kacheli" }
-          - { label: "Карусели", value: "karuseli" }
-          - { label: "Песочницы", value: "pesochnici" }
-          - { label: "Детские игровые элементы", value: "det-elements" }
-          - { label: "Кардиотренажёры", value: "kardio" }
-          - { label: "Силовые тренажёры", value: "silovie" }
-          - { label: "Тренажёры для воркаута", value: "workout" }
-          - { label: "Комплексы для парков", value: "park-kompleksi" }
-          - { label: "Скамейки", value: "skameyki" }
-          - { label: "Урны", value: "urni" }
-          - { label: "Перголы", value: "pergoli" }
-          - { label: "Парковые ограждения", value: "ograzhdeniya" }
-          - { label: "Малые архит. формы", value: "maf" }
-      - { label: "Название (На русском)", name: "name_ru", widget: "string" }
-      - { label: "Описание (На русском)", name: "desc_ru", widget: "text", required: false }
-      - { label: "Фотография товара"
-        name: "images"
-        widget: "list"
-        field: { label: "Картинка", name: "image", widget: "image" }
+    files:
+      - label: "Материалы"
+        name: "materials"
+        file: "data/materials.json"
+        fields:
+          - label: "Позиции"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.sku}} — {{fields.name.ru}}"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "SKU", name: "sku", widget: "string" }
+              - label: "Изображения"
+                name: "images"
+                widget: "list"
+                field: { label: "URL изображения", name: "image", widget: "string" }
+              - label: "Название"
+                name: "name"
+                widget: "object"
+                fields:
+                  - { label: "Русский", name: "ru", widget: "string" }
+                  - { label: "English", name: "en", widget: "string" }
+                  - { label: "Հայերեն", name: "am", widget: "string" }
+              - label: "Описание"
+                name: "desc"
+                widget: "object"
+                fields:
+                  - { label: "Русский", name: "ru", widget: "text" }
+                  - { label: "English", name: "en", widget: "text" }
+                  - { label: "Հայերեն", name: "am", widget: "text" }
