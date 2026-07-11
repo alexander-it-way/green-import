@@ -3,43 +3,114 @@ backend:
   repo: alexvorobyov/green-import
   branch: main
 
-local_backend: true
-
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+# Папка куда CMS загружает фото через интерфейс (добавить/удалить/заменить)
+media_folder: "images"
+public_folder: "/images"
 
 locale: "ru"
 
 collections:
-  - name: "materials"
-    label: "Каталог: Стройматериалы"
-    files:
-      - label: "Материалы"
-        name: "materials"
-        file: "data/materials.json"
-        fields:
-          - label: "Позиции"
-            name: "items"
-            widget: "list"
-            summary: "{{fields.sku}} — {{fields.name.ru}}"
-            fields:
-              - { label: "ID", name: "id", widget: "string" }
-              - { label: "SKU", name: "sku", widget: "string" }
-              - label: "Изображения"
-                name: "images"
-                widget: "list"
-                field: { label: "URL изображения", name: "image", widget: "string" }
-              - label: "Название"
-                name: "name"
-                widget: "object"
-                fields:
-                  - { label: "Русский", name: "ru", widget: "string" }
-                  - { label: "English", name: "en", widget: "string" }
-                  - { label: "Հայերեն", name: "am", widget: "string" }
-              - label: "Описание"
-                name: "desc"
-                widget: "object"
-                fields:
-                  - { label: "Русский", name: "ru", widget: "text" }
-                  - { label: "English", name: "en", widget: "text" }
-                  - { label: "Հայերեն", name: "am", widget: "text" }
+  - name: "grass"
+    label: "🌱 Искусственная трава"
+    folder: "data/grass"
+    format: "json"
+    create: true
+    slug: "item-{{fields.id}}"
+    fields:
+      - { label: "Уникальный ID", name: "id", widget: "string" }
+      - label: "Подкатегория"
+        name: "sub_category"
+        widget: "select"
+        options:
+          - { label: "Рулонная трава", value: "roll" }
+          - { label: "Трава для спорта", value: "sport" }
+          - { label: "Трава для сада", value: "garden" }
+          - { label: "Трава для интерьера", value: "interior" }
+      - { label: "Название", name: "name_ru", widget: "string" }
+      - { label: "Описание", name: "desc_ru", widget: "text", required: false }
+      - label: "Фотографии товара"
+        name: "images"
+        widget: "list"
+        allow_add: true
+        minimize_collapsed: true
+        field: { label: "Фото", name: "image", widget: "image" }
+
+  - name: "playgrounds"
+    label: "🛝 Детские площадки"
+    folder: "data/playgrounds"
+    format: "json"
+    create: true
+    slug: "item-{{fields.id}}"
+    fields:
+      - { label: "Уникальный ID", name: "id", widget: "string" }
+      - label: "Подкатегория"
+        name: "sub_category"
+        widget: "select"
+        options:
+          - { label: "Игровые комплексы", value: "complex" }
+          - { label: "Горки", value: "slides" }
+          - { label: "Качели", value: "swings" }
+          - { label: "Песочницы", value: "sandboxes" }
+          - { label: "Балансиры и карусели", value: "balance" }
+      - { label: "Название", name: "name_ru", widget: "string" }
+      - { label: "Описание", name: "desc_ru", widget: "text", required: false }
+      - label: "Фотографии товара"
+        name: "images"
+        widget: "list"
+        allow_add: true
+        minimize_collapsed: true
+        field: { label: "Фото", name: "image", widget: "image" }
+
+  - name: "workout"
+    label: "💪 Уличные тренажёры"
+    folder: "data/workout"
+    format: "json"
+    create: true
+    slug: "item-{{fields.id}}"
+    fields:
+      - { label: "Уникальный ID", name: "id", widget: "string" }
+      - label: "Подкатегория"
+        name: "sub_category"
+        widget: "select"
+        options:
+          - { label: "Силовые тренажёры", value: "strength" }
+          - { label: "Кардио тренажёры", value: "cardio" }
+          - { label: "Турники и брусья", value: "bars" }
+          - { label: "Воркаут-комплексы", value: "workout_complex" }
+          - { label: "Столы для настольного тенниса", value: "tennis" }
+      - { label: "Название", name: "name_ru", widget: "string" }
+      - { label: "Описание", name: "desc_ru", widget: "text", required: false }
+      - label: "Фотографии товара"
+        name: "images"
+        widget: "list"
+        allow_add: true
+        minimize_collapsed: true
+        field: { label: "Фото", name: "image", widget: "image" }
+
+  - name: "landscaping"
+    label: "🏞️ Благоустройство"
+    folder: "data/landscaping"
+    format: "json"
+    create: true
+    slug: "item-{{fields.id}}"
+    fields:
+      - { label: "Уникальный ID", name: "id", widget: "string" }
+      - label: "Подкатегория"
+        name: "sub_category"
+        widget: "select"
+        options:
+          - { label: "Беседки и навесы", value: "gazebos" }
+          - { label: "Скамейки и столы", value: "benches" }
+          - { label: "Урны и контейнеры", value: "bins" }
+          - { label: "Фонтанчики и умывальники", value: "fountains" }
+          - { label: "Автобусные остановки", value: "bus_stops" }
+          - { label: "Мангалы и барбекю", value: "bbq" }
+          - { label: "Ротонды и павильоны", value: "pavilions" }
+      - { label: "Название", name: "name_ru", widget: "string" }
+      - { label: "Описание", name: "desc_ru", widget: "text", required: false }
+      - label: "Фотографии товара"
+        name: "images"
+        widget: "list"
+        allow_add: true
+        minimize_collapsed: true
+        field: { label: "Фото", name: "image", widget: "image" }
