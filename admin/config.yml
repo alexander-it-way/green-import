@@ -46,7 +46,7 @@ collections:
           - { label: "Малые архит. формы", value: "maf" }
       - { label: "Название (На русском)", name: "name_ru", widget: "string" }
       - { label: "Описание (На русском)", name: "desc_ru", widget: "text", required: false }
-      - label: "Фотография товара"
+      - { label: "Фотография товара"
         name: "images"
         widget: "list"
         field: { label: "Картинка", name: "image", widget: "image" }
