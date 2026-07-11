@@ -13,7 +13,7 @@ collections:
     slug: "item-{{fields.id}}"
     format: "json"
     fields:
-      - { label: "Уникальный ID (Просто цифра, например: 15)", name: "id", widget: "number", value_type: "int" }
+      - { label: "Уникальный ID (Просто цифра)", name: "id", widget: "number", value_type: "int" }
       - label: "Главная категория"
         name: "category"
         widget: "select"
