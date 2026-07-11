@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: alexvorobyov/green-import
+  name: git-gateway
   branch: main
 
 # Папка куда CMS загружает фото через интерфейс (добавить/удалить/заменить)
