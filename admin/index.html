@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Панель управления Green Import</title>
-  <!-- Подключаем сам интерфейс админки -->
-  <script src="https://unpkg.com@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Подключаем супер-стабильный интерфейс Sveltia CMS вместо капризного Decap -->
+  <script src="https://unpkg.com" type="module"></script>
   
   </script>
 </head>
 <body>
   <script>
-    // Перенаправляем пользователя в админку сразу после успешного входа
+    // Код автоперенаправления после логина
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
