@@ -517,8 +517,21 @@ button, [onclick] {
 
 
     </style>
+  <!-- Netlify Identity Widget: нужен чтобы ссылки сброса пароля/подтверждения email работали -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 
     <header>
         <div class="container header-container">
