@@ -1390,6 +1390,8 @@ const plantsData = [
         function createProductCard({ name, description, imagePath, sku = '' }) {
             const card = document.createElement('article');
             card.className = 'card';
+            card.dataset.zoomImage = imagePath;
+            card.dataset.zoomAlt = name;
 
             const link = document.createElement('a');
             link.className = 'js-mobile-zoom-trigger';
@@ -1433,6 +1435,21 @@ const plantsData = [
             }
             text.textContent = description;
             card.appendChild(text);
+
+            card.addEventListener('click', (event) => {
+                // Если нажали на кнопку в карточке, не перехватываем.
+                if (event.target.closest('button')) return;
+
+                const now = Date.now();
+                if (now - lastZoomOpenAt < 350) {
+                    if (event.cancelable) event.preventDefault();
+                    return;
+                }
+
+                if (event.cancelable) event.preventDefault();
+                lastZoomOpenAt = now;
+                openMobileImagePreview(imagePath, name, link);
+            }, true);
 
             return card;
         }
@@ -1623,7 +1640,7 @@ const plantsData = [
 
         function tryOpenZoomFromEvent(event) {
             const zoomTrigger = findZoomTrigger(event.target);
-            if (!zoomTrigger || !shouldUseMobileImageZoom()) return;
+            if (!zoomTrigger) return;
 
             const now = Date.now();
             if (now - lastZoomOpenAt < 350) {
@@ -1644,7 +1661,6 @@ const plantsData = [
             if (!link || link.dataset.zoomBound === '1') return;
 
             const openFromEvent = (event) => {
-                if (!shouldUseMobileImageZoom()) return;
                 if (event.cancelable) {
                     event.preventDefault();
                 }
