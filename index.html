@@ -3,7 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Import — Информационный сайт</title>
+    <title>Green Import — Импорт растений, стройматериалов и логистика</title>
+    <meta name="description" content="Green Import поставляет растения, стройматериалы и решения для благоустройства, а также организует международную логистику в Армению и из Армении.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#2d5a27">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Green Import — Импорт растений, стройматериалов и логистика">
+    <meta property="og:description" content="Поставки растений, стройматериалов и товаров для благоустройства, международная логистика и сопровождение сделок.">
+    <meta property="og:image" content="/images/logo.png.webp">
+    <meta property="og:locale" content="ru_RU">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Green Import — Импорт растений, стройматериалов и логистика">
+    <meta name="twitter:description" content="Поставки растений, стройматериалов и товаров для благоустройства, международная логистика и сопровождение сделок.">
+    <meta name="twitter:image" content="/images/logo.png.webp">
+    <link rel="preconnect" href="https://identity.netlify.com" crossorigin>
+    <link rel="preconnect" href="https://api.web3forms.com" crossorigin>
+    <link rel="dns-prefetch" href="https://identity.netlify.com">
+    <link rel="dns-prefetch" href="https://api.web3forms.com">
+    <link rel="preload" as="image" href="images/logo.png.webp" fetchpriority="high">
     <style>
         :root {
             --primary-green: #2d5a27; 
@@ -28,7 +45,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--light-bg);
-            background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('images/logo.png.jpg');
+            background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('images/logo.png.webp');
             background-repeat: no-repeat;
             background-position: center 300px;
             background-attachment: fixed;
@@ -119,7 +136,7 @@
         }
 
         .hero {
-            background-image: linear-gradient(rgba(253, 251, 247, 0.85), rgba(253, 251, 247, 0.85)), url('images/logo.png.jpg');
+            background-image: linear-gradient(rgba(253, 251, 247, 0.85), rgba(253, 251, 247, 0.85)), url('images/logo.png.webp');
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
@@ -191,10 +208,6 @@
             margin-bottom: 15px;
         }
 
-        .plant-media {
-            margin-bottom: 15px;
-        }
-
         .plant-slider-image {
             width: 100%;
             height: 220px;
@@ -206,32 +219,6 @@
 
         .card:hover img {
             transform: scale(1.1);
-        }
-
-        .plant-slider-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            color: var(--gray-text);
-            font-size: 14px;
-        }
-
-        .plant-slider-controls button {
-            border: 1px solid #d9e7d4;
-            background: #f7fbf3;
-            color: var(--primary-green);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            line-height: 1;
-        }
-
-        .plant-slider-controls button:hover {
-            background: var(--primary-green);
-            color: white;
         }
 
         .custom-list {
@@ -437,6 +424,31 @@
             font-weight: 700;
         }
 
+        .skip-link {
+            position: absolute;
+            left: 20px;
+            top: -48px;
+            z-index: 2000;
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 10px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 20px;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid var(--accent-gold);
+            outline-offset: 3px;
+        }
+
 @media (max-width: 768px) {
     /* Шапка сайта и логотип центрируются вертикально */
     .header-container { 
@@ -509,7 +521,7 @@
     }
 }
 /* Фикс для мгновенного и надежного клика на смартфонах (iPhone и Android) */
-button, [onclick] {
+button, [data-action], [data-lang] {
     cursor: pointer !important;
     touch-action: manipulation !important;
     -webkit-tap-highlight-color: transparent; /* Убирает синюю рамку при клике */
@@ -521,6 +533,7 @@ button, [onclick] {
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Перейти к содержимому</a>
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", function(user) {
@@ -536,10 +549,10 @@ button, [onclick] {
     <header>
         <div class="container header-container">
             <div class="logo-area">
-                <img src="images/logo.png.jpg" alt="Green Import" class="logo-img">
+                <img src="images/logo.png.webp" alt="Green Import" class="logo-img" decoding="async" fetchpriority="high">
                 <div class="logo-text">GREEN IMPORT</div>
             </div>
-            <nav>
+            <nav aria-label="Основная навигация">
                 <a href="#about" id="nav-about">О нас</a>
                 <a href="#plants" id="nav-plants">Растения</a>
                 <a href="#building-materials" id="nav-materials">Стройматериалы</a>
@@ -547,14 +560,15 @@ button, [onclick] {
                 <a href="#docs" id="nav-docs">Документы</a>
                 <a href="#contacts" id="nav-contacts">Контакты</a>
             </nav>
-            <div class="lang-switcher">
-                <button class="lang-btn active" data-lang="ru" onclick="changeLang('ru')">RU</button>
-                <button class="lang-btn" data-lang="am" onclick="changeLang('am')">AM</button>
-                <button class="lang-btn" data-lang="en" onclick="changeLang('en')">EN</button>
+            <div class="lang-switcher" aria-label="Переключение языка">
+                <button class="lang-btn active" data-lang="ru" type="button">RU</button>
+                <button class="lang-btn" data-lang="am" type="button">AM</button>
+                <button class="lang-btn" data-lang="en" type="button">EN</button>
             </div>
         </div>
     </header>
 
+    <main id="main-content">
     <section class="hero" id="about">
         <div class="container">
             <h1 id="hero-title">Поставки и перевозки в Армению и из Армении в другие страны</h1>
@@ -673,11 +687,11 @@ button, [onclick] {
         <div class="container footer-grid">
             <div class="footer-col">
                 <h4 id="f-contacts-title">Контакты</h4>
-                <p id="f-phone">Телефон: +374 91 211722</p>
-                <p id="f-whatsapp">WhatsApp: <a href="https://wa.me" target="_blank" style="display:inline; color:#fff; text-decoration:underline;">+374 91 211722</a></p>
-                <p id="f-viber">Viber: <a href="viber://chat?number=%2B37491211722" style="display:inline; color:#fff; text-decoration:underline;">+374 91 211722</a></p>
-                <p id="f-email">Email: <a href="mailto:naft.co@mail.ru" style="display:inline; color:#fff; text-decoration:underline;">naft.co@mail.ru</a></p>
-                <p id="f-address">Адрес: Армения, Ереван, ул. Вардананц 5/1</p>
+                <p><span id="f-phone">Телефон:</span> <a href="tel:+37491211722" style="display:inline; color:#fff; text-decoration:underline;">+374 91 211722</a></p>
+                <p><span id="f-whatsapp">WhatsApp:</span> <a href="https://wa.me/37491211722" target="_blank" rel="noopener noreferrer" style="display:inline; color:#fff; text-decoration:underline;">+374 91 211722</a></p>
+                <p><span id="f-viber">Viber:</span> <a href="viber://chat?number=%2B37491211722" style="display:inline; color:#fff; text-decoration:underline;">+374 91 211722</a></p>
+                <p><span id="f-email">Email:</span> <a href="mailto:naft.co@mail.ru" style="display:inline; color:#fff; text-decoration:underline;">naft.co@mail.ru</a></p>
+                <p><span id="f-address">Адрес:</span> Армения, Ереван, ул. Вардананц 5/1</p>
             </div>
             <div class="footer-col">
                 <h4 id="f-soc-title">Социальные сети</h4>
@@ -692,23 +706,26 @@ button, [onclick] {
             </div>
         </div>
     </footer>
+    </main>
 
     <div class="feedback-widget">
-        <button class="feedback-toggle" id="feedback-toggle" type="button" aria-label="Open contact form">✉</button>
-        <div class="feedback-panel" id="feedback-panel" aria-hidden="true">
+        <button class="feedback-toggle" id="feedback-toggle" type="button" aria-label="Открыть форму обратной связи" aria-controls="feedback-panel" aria-expanded="false" data-aria-label-key="feedback-open-label">✉</button>
+        <div class="feedback-panel" id="feedback-panel" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="feedback-title" tabindex="-1">
             <div class="feedback-panel-header">
                 <h3 id="feedback-title">Связаться с нами</h3>
-                <button class="feedback-close" id="feedback-close" type="button" aria-label="Close">×</button>
+                <button class="feedback-close" id="feedback-close" type="button" aria-label="Закрыть форму" data-aria-label-key="feedback-close-label">×</button>
             </div>
-            <form class="feedback-form" id="feedback-form">
+            <form class="feedback-form" id="feedback-form" aria-describedby="feedback-status">
                 <label for="feedback-name" id="feedback-name-label">Имя</label>
-                <input id="feedback-name" name="name" type="text" required data-placeholder-key="feedback-name-placeholder" placeholder="Ваше имя">
+                <input id="feedback-name" name="name" type="text" required autocomplete="name" data-placeholder-key="feedback-name-placeholder" placeholder="Ваше имя">
 
                 <label for="feedback-contacts" id="feedback-contacts-label">Контакты</label>
-                <input id="feedback-contacts" name="contacts" type="text" required data-placeholder-key="feedback-contacts-placeholder" placeholder="Телефон или e-mail">
+                <input id="feedback-contacts" name="contacts" type="text" required inputmode="text" data-placeholder-key="feedback-contacts-placeholder" placeholder="Телефон или e-mail">
 
                 <label for="feedback-message" id="feedback-message-label">Ваш вопрос</label>
                 <textarea id="feedback-message" name="message" required data-placeholder-key="feedback-message-placeholder" placeholder="Напишите ваш вопрос"></textarea>
+
+                <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" hidden>
 
                 <button class="feedback-submit" id="feedback-submit" type="submit">Отправить</button>
                 <p class="feedback-status" id="feedback-status" role="status"></p>
@@ -770,10 +787,11 @@ button, [onclick] {
                 "gar-li3": "Полное документальное сопровождение",
                 "gar-li4": "Индивидуальный подход к каждому клиенту",
                 "f-contacts-title": "Контакты",
-                "f-phone": "Телефон: +374 91 211722",
-                "f-whatsapp": "WhatsApp: +374 91 211722",
-                "f-viber": "Viber: +374 91 211722",
-                "f-address": "Адрес: Армения, Ереван, ул. Вардананц 5/1",
+                "f-phone": "Телефон:",
+                "f-whatsapp": "WhatsApp:",
+                "f-viber": "Viber:",
+                "f-email": "Email:",
+                "f-address": "Адрес:",
                 "f-soc-title": "Социальные сети",
                 "f-about-title": "О компании",
                 "f-about-desc": "GREEN IMPORT — ваш надежный партнер в сфере импорта, международной логистики и комплексного снабжения бизнеса.",
@@ -785,6 +803,8 @@ button, [onclick] {
                 "feedback-contacts-placeholder": "Телефон или e-mail",
                 "feedback-message-placeholder": "Напишите ваш вопрос",
                 "feedback-submit": "Отправить",
+                "feedback-open-label": "Открыть форму обратной связи",
+                "feedback-close-label": "Закрыть форму",
                 "feedback-status": "",
                 "feedback-thanks": "Спасибо за вопрос!",
                 "feedback-error": "Не удалось отправить сообщение. Попробуйте позже."
@@ -792,61 +812,62 @@ button, [onclick] {
             am: {
                 "nav-about": "Մեր մասին",
                 "nav-plants": "Բույսեր",
-                "nav-materials": "Նյութեր",
+                "nav-materials": "Շինանյութեր",
                 "nav-logistics": "Տրանսպորտ",
                 "nav-docs": "Փաստաթղթեր",
                 "nav-contacts": "Կոնտակտներ",
                 "hero-title": "Մատակարարումներ և փոխադրումներ դեպի Հայաստան և Հայաստանից այլ երկրներ",
-                "hero-slogan": "Հարելիք • Արագ • Որակի երաշխիքով",
+                "hero-slogan": "Հուսալի • Արագ • Որակի երաշխիքով",
                 "about-title-block": "Ընկերության մասին",
-                "about-text-p1": "Մենք՝ «Green Import» ընկերությունը, արդեն ավելի քան 10 տարի հաջողությամբ աշխատում ենք արտաքին տնտեսական գործունեության ոլորտում՝ ապահովելով օպերատիվ միջազգային լոգիստիկա և ապրանքների համալիր մատակարարումներ «բանալիով»։ Անթերի աշխատանքի տարիների ընթացքում մենք վաստակել ենք հարյուրավոր մշտական հաճախորդների վստահությունը՝ դառնալով նրանց համար հուսալի և կայուն գործընկեր.",
-                "about-text-p2": "Մեր գլխավոր նպատակն է կառուցել անվտանգ և թափանցիկ մատակարարման երթուղիներ դեպի Հայաստան և Հայաստանից այլ երկրներ՝ հաճախորդներին առաջարկելով բացառապես բարձրորակ շինարարական նյութեր, դեկորատիվ բույսեր և լանդշաֆտային դիզայնի առաջատար լուծումներ.",
+                "about-text-p1": "Մենք՝ «Green Import» ընկերությունը, ավելի քան 10 տարի հաջողությամբ գործում ենք արտաքին տնտեսական գործունեության ոլորտում՝ ապահովելով հուսալի միջազգային լոգիստիկա և ապրանքների համալիր մատակարարումներ՝ «բանալի» սկզբունքով։ Աշխատանքի տարիների ընթացքում ընկերությունը վաստակել է հարյուրավոր հաճախորդների և գործընկերների վստահությունը՝ դառնալով նրանց համար կայուն և պատասխանատու գործընկեր միջազգային շուկայում։",
+                "about-text-p2": "Մեր գլխավոր նպատակն է ստեղծել անվտանգ, արդյունավետ և թափանցիկ մատակարարման շղթաներ Հայաստանի և արտասահմանյան շուկաների միջև։ Մենք հաճախորդներին առաջարկում ենք բարձրորակ շինարարական նյութեր, դեկորատիվ բույսեր, տարածքների բարեկարգման ապրանքներ և ժամանակակից լուծումներ լանդշաֆտային դիզայնի ոլորտում։ Բազմամյա փորձի, միջազգային գործընկերների լայն ցանցի և յուրաքանչյուր նախագծի նկատմամբ անհատական մոտեցման շնորհիվ Green Import-ը հաջողությամբ իրականացնում է ցանկացած բարդության մատակարարումներ՝ ապահովելով բարձր սպասարկում, որակի վերահսկում և ժամկետների պահպանում։ Մենք ձգտում ենք երկարաժամկետ համագործակցության, որը հիմնված է վստահության, պրոֆեսիոնալիզմի և փոխշահավետության վրա՝ օգնելով մեր հաճախորդներին զարգացնել իրենց բիզնեսը և կյանքի կոչել ամենահամարձակ նախագծերը։ Green Import-ը հուսալի կամուրջ է համաշխարհային մատակարարների և Հայաստանի շուկայի միջև։ «Միջազգային առևտուր։ Հուսալի լոգիստիկա։ Որակյալ լուծումներ»։",
                 "mat-title": "Շինանյութեր Իրանից",
                 "mat-subtitle": "Առաջարկում ենք շինանյութերի մատակարարում անմիջապես Իրանի արտադրողներից:",
-                "mat-c1-title": "Ծածկոց և քար",
+                "mat-c1-title": "Երեսպատում և քար",
                 "mat-li1": "Կերամոգրանիտ և սալիկ",
                 "mat-li2": "Բնական քար",
-                "mat-c2-title": "Պայմանավորում և վերանորոգում",
+                "mat-c2-title": "Բարեկարգում և վերանորոգում",
                 "mat-li3": "Սանտեխնիկա",
                 "mat-li4": "Վերանորոգման նյութեր",
                 "mat-c3-title": "Կառուցվածքներ և պատվերներ",
                 "mat-li5": "Մետաղական կառուցվածքներ",
                 "mat-li6": "Դռներ և պատուհաններ",
                 "mat-li7": "Մյուս շինանյութեր պատվերով",
-                "land-title": "Լանդշաֆտ և զարդարանքային բույսեր",
+                "land-title": "Լանդշաֆտ և դեկորատիվ բույսեր",
                 "land-subtitle": "Բույսերի և բարեկարգման նյութերի մատակարարում:",
                 "land-c1-title": "Կանաչապատում",
-                "land-li1": "Զարդարիչ ծառեր",
+                "land-li1": "Դեկորատիվ ծառեր",
                 "land-li2": "Թփեր",
                 "land-li3": "Կոնիֆերներ",
                 "land-c2-title": "Բացառիկ և դիզայն",
                 "land-li4": "Եվրոպայից բացառիկ բույսեր",
-                "land-li5": "Մոմենալ տերևապատ",
-                "land-li6": "Լանդշափտային դիզայնի նյութեր",
-                "land-footer": "Մենք երաշխավորում ենք որակը և բոլոր պահանջներին համապատասխանությունը.",
+                "land-li5": "Գլանային խոտածածկ",
+                "land-li6": "Լանդշաֆտային դիզայնի նյութեր",
+                "land-footer": "Մենք երաշխավորում ենք որակը և բոլոր պահանջներին համապատասխանությունը։",
                 "log-title": "Միջազգային փոխադրումներ",
-                "log-subtitle": "Իրան → ցանկացած երկրների ձեր խնդրանքով 🌍",
+                "log-subtitle": "Իրանից → տարբեր երկրներ՝ ձեր հարցման համաձայն 🌍",
                 "log-c1-title": "Մեր լոգիստիկական ծառայությունները",
-                "log-li1": "Ավտոմոբիլային փոխադրում",
+                "log-li1": "Ավտոմոբիլային փոխադրումներ",
                 "log-li2": "Բեռների կոնսոլիդացում",
-                "log-li3": "Turnkey լոգիստիկա",
+                "log-li3": "«Բանալի» լոգիստիկա",
                 "log-li4": "Աջակցություն առաքման բոլոր փուլերում",
                 "doc-title": "Փաստաթղթերի ձևակերպում",
-                "doc-subtitle": "Արտաքին տնտեսական գործունեության ամբողջական աջակցում:",
+                "doc-subtitle": "Արտաքին տնտեսական գործունեության լիարժեք աջակցություն:",
                 "gar-title": "Որակի երաշխիք",
-                "gar-subtitle": "Մենք աշխատում ենք միայն վստահելի մատակարարների հետ և երաշխավորում ենք՝",
+                "gar-subtitle": "Մենք աշխատում ենք միայն վստահելի մատակարարների հետ և երաշխավորում ենք.",
                 "gar-li1": "Որակյալ արտադրանք",
                 "gar-li2": "Առաքման ժամկետների պահպանություն",
                 "gar-li3": "Փաստաթղթային ամբողջական աջակցություն",
                 "gar-li4": "Անհատական մոտեցում յուրաքանչյուր հաճախորդին",
                 "f-contacts-title": "Կոնտակտներ",
-                "f-phone": "Հեռախոս՝ +374 91 211722",
-                "f-whatsapp": "WhatsApp՝ +374 91 211722",
-                "f-viber": "Viber՝ +374 91 211722",
-                "f-address": "Հասցե՝ Հայաստան, մի. Երևան, Վարդանանց 5/1",
+                "f-phone": "Հեռախոս.",
+                "f-whatsapp": "WhatsApp.",
+                "f-viber": "Viber.",
+                "f-email": "Էլ. փոստ.",
+                "f-address": "Հասցե.",
                 "f-soc-title": "Սոցիալական ցանցեր",
                 "f-about-title": "Ընկերության մասին",
-                "f-about-desc": "GREEN IMPORT-ը ձեր վստահելի գործընկերն է ներմուծման, միջազգային լոգիստիկայի և բիզնեսի համապարփակ ապահովման ոլորտում.",
+                "f-about-desc": "GREEN IMPORT-ը ձեր վստահելի գործընկերն է ներմուծման, միջազգային լոգիստիկայի և բիզնեսի համալիր մատակարարման ոլորտում։",
                 "feedback-title": "Կապվել մեզ հետ",
                 "feedback-name-label": "Անուն",
                 "feedback-contacts-label": "Կոնտակտներ",
@@ -855,6 +876,8 @@ button, [onclick] {
                 "feedback-contacts-placeholder": "Հեռախոս կամ e-mail",
                 "feedback-message-placeholder": "Գրեք ձեր հարցը",
                 "feedback-submit": "Ուղարկել",
+                "feedback-open-label": "Բացել հետադարձ կապի ձևը",
+                "feedback-close-label": "Փակել ձևը",
                 "feedback-status": "",
                 "feedback-thanks": "Շնորհակալություն հարցի համար!",
                 "feedback-error": "Չհաջողվեց ուղարկել հաղորդագրությունը։ Փորձեք ավելի ուշ."
@@ -910,10 +933,11 @@ button, [onclick] {
                 "gar-li3": "Full document support",
                 "gar-li4": "An individual approach to each client",
                 "f-contacts-title": "Contacts",
-                "f-phone": "Phone: +374 91 211722",
-                "f-whatsapp": "WhatsApp: +374 91 211722",
-                "f-viber": "Viber: +374 91 211722",
-                "f-address": "Address: Armenia, Yerevan, Vardanants St 5/1",
+                "f-phone": "Phone:",
+                "f-whatsapp": "WhatsApp:",
+                "f-viber": "Viber:",
+                "f-email": "Email:",
+                "f-address": "Address:",
                 "f-soc-title": "Social networks",
                 "f-about-title": "About the company",
                 "f-about-desc": "GREEN IMPORT is your reliable partner in import, international logistics, and comprehensive business supply.",
@@ -925,6 +949,8 @@ button, [onclick] {
                 "feedback-contacts-placeholder": "Phone or e-mail",
                 "feedback-message-placeholder": "Write your question",
                 "feedback-submit": "Send",
+                "feedback-open-label": "Open contact form",
+                "feedback-close-label": "Close form",
                 "feedback-status": "",
                 "feedback-thanks": "Thank you for your question!",
                 "feedback-error": "The message could not be sent. Please try again later."
@@ -935,302 +961,302 @@ const plantsData = [
     {
         name: { ru: "Криптантус («земная звезда»)", en: "Earth Star", am: "Կրիպտանտուս" },
         desc: { ru: "Cryptanthus zonatus", en: "Cryptanthus zonatus", am: "Cryptanthus zonatus" },
-        images: "images/plant-1 (1).png"
+        images: "images/plant-1 (1).webp"
     },
     {
         name: { ru: "Фикус микрокарпа (штамб)", en: "Ficus microcarpa", am: "Ֆիկուս միկրոկարպա" },
         desc: { ru: "Ficus microcarpa", en: "Ficus microcarpa", am: "Ficus microcarpa" },
-        images: "images/plant-1 (2).png"
+        images: "images/plant-1 (2).webp"
     },
     {
         name: { ru: "Декоративный перец", en: "Ornamental pepper", am: "Դեկորատիվ պղպեղ" },
         desc: { ru: "Capsicum annuum", en: "Capsicum annuum", am: "Capsicum annuum" },
-        images: "images/plant-1 (3).png"
+        images: "images/plant-1 (3).webp"
     },
     {
         name: { ru: "Декоративный перец (экземпляр 2)", en: "Ornamental pepper (item 2)", am: "Դեկորատիվ պղպեղ (նմուշ 2)" },
         desc: { ru: "Capsicum annuum", en: "Capsicum annuum", am: "Capsicum annuum" },
-        images: "images/plant-1 (4).png"
+        images: "images/plant-1 (4).webp"
     },
     {
         name: { ru: "Ирезине", en: "Bloodleaf", am: "Իրեզինե" },
         desc: { ru: "Iresine herbstii", en: "Iresine herbstii", am: "Iresine herbstii" },
-        images: "images/plant-1 (5).png"
+        images: "images/plant-1 (5).webp"
     },
     {
         name: { ru: "Белая орхидея", en: "White orchid", am: "Սպիտակ օրխիդեա" },
         desc: { ru: "Phalaenopsis", en: "Phalaenopsis", am: "Phalaenopsis" },
-        images: "images/plant-1 (6).png"
+        images: "images/plant-1 (6).webp"
     },
     {
         name: { ru: "Фиолетовая орхидея", en: "Purple orchid", am: "Մանուշակագույն օրխիդեա" },
         desc: { ru: "Phalaenopsis", en: "Phalaenopsis", am: "Phalaenopsis" },
-        images: "images/plant-1 (7).png"
+        images: "images/plant-1 (7).webp"
     },
     {
         name: { ru: "Белая орхидея (экземпляр 2)", en: "White orchid (item 2)", am: "Սպիտակ օրխիդեա (նմուշ 2)" },
         desc: { ru: "Phalaenopsis", en: "Phalaenopsis", am: "Phalaenopsis" },
-        images: "images/plant-1 (8).png"
+        images: "images/plant-1 (8).webp"
     },
     {
         name: { ru: "Юкка", en: "Spineless yucca", am: "Յուկա" },
         desc: { ru: "Yucca elephantipes", en: "Yucca elephantipes", am: "Yucca elephantipes" },
-        images: "images/plant-1 (9).png"
+        images: "images/plant-1 (9).webp"
     },
     {
         name: { ru: "Бегония вечноцветущая", en: "Wax begonia", am: "Բեգոնիա մշտածաղիկ" },
         desc: { ru: "Begonia semperflorens", en: "Begonia semperflorens", am: "Begonia semperflorens" },
-        images: "images/plant-1 (10).png"
+        images: "images/plant-1 (10).webp"
     },
     {
         name: { ru: "Гибискус (Китайская роза)", en: "China rose", am: "Չինական վարդ" },
         desc: { ru: "Hibiscus rosa-sinensis", en: "Hibiscus rosa-sinensis", am: "Hibiscus rosa-sinensis" },
-        images: "images/plant-1 (11).png"
+        images: "images/plant-1 (11).webp"
     },
     {
         name: { ru: "Антуриум красный", en: "Flamingo flower", am: "Անթուրիում կարմիր" },
         desc: { ru: "Anthurium andraeanum", en: "Anthurium andraeanum", am: "Anthurium andraeanum" },
-        images: "images/plant-1 (12).png"
+        images: "images/plant-1 (12).webp"
     },
     {
         name: { ru: "Бархатцы (Тагетес)", en: "Marigold", am: "Թավշածաղիկ" },
         desc: { ru: "Tagetes patula", en: "Tagetes patula", am: "Tagetes patula" },
-        images: "images/plant-1 (13).png"
+        images: "images/plant-1 (13).webp"
     },
     {
         name: { ru: "Бегония Элатиор", en: "Elatior begonia", am: "Բեգոնիа Էլատիոր" },
         desc: { ru: "Begonia elatior", en: "Begonia elatior", am: "Begonia elatior" },
-        images: "images/plant-1 (14).png"
+        images: "images/plant-1 (14).webp"
     },
     {
         name: { ru: "Спатифиллум («Женское счастье»)", en: "Peace lily", am: "Սպատիֆիլում" },
         desc: { ru: "Spathiphyllum", en: "Spathiphyllum", am: "Spathiphyllum" },
-        images: "images/plant-1 (15).png"
+        images: "images/plant-1 (15).webp"
     },
     {
         name: { ru: "Бархатцы жёлтые", en: "Yellow marigold", am: "Թավշածաղիկ դեղին" },
         desc: { ru: "Tagetes erecta", en: "Tagetes erecta", am: "Tagetes erecta" },
-        images: "images/plant-1 (16).png"
+        images: "images/plant-1 (16).webp"
     },
     {
         name: { ru: "Крестовник Роули («Жемчужная нить»)", en: "String of pearls", am: "Սենեցիո Ռոուլի" },
         desc: { ru: "Senecio rowleyanus", en: "Senecio rowleyanus", am: "Senecio rowleyanus" },
-        images: "images/plant-1 (17).png"
+        images: "images/plant-1 (17).webp"
     },
     {
         name: { ru: "Крассула перфората (Суккулент)", en: "String of buttons", am: "Կրասուլա պերֆորատա" },
         desc: { ru: "Crassula perforata", en: "Crassula perforata", am: "Crassula perforata" },
-        images: "images/plant-1 (18).png"
+        images: "images/plant-1 (18).webp"
     },
     {
         name: { ru: "Молочай трёхгранный", en: "African milk tree", am: "Իշակաթնուկ եռանիստ" },
         desc: { ru: "Euphorbia trigona", en: "Euphorbia trigona", am: "Euphorbia trigona" },
-        images: "images/plant-1 (19).png"
+        images: "images/plant-1 (19).webp"
     },
     {
         name: { ru: "Аспарагус декоративный", en: "Asparagus fern", am: "Ծնեբեկ դեկորատիվ" },
         desc: { ru: "Asparagus densiflorus", en: "Asparagus densiflorus", am: "Asparagus densiflorus" },
-        images: "images/plant-1 (20).png"
+        images: "images/plant-1 (20).webp"
     },
     {
         name: { ru: "Сантолина кипарисовидная", en: "Lavender cotton", am: "Սանտոլինա" },
         desc: { ru: "Santolina chamaecyparissus", en: "Santolina chamaecyparissus", am: "Santolina chamaecyparissus" },
-        images: "images/plant-1 (21).png"
+        images: "images/plant-1 (21).webp"
     },
     {
         name: { ru: "Роза красная", en: "Red rose", am: "Կարմիր վարդ" },
         desc: { ru: "Rosa spp.", en: "Rosa spp.", am: "Rosa spp." },
-        images: "images/plant-1 (22).png"
+        images: "images/plant-1 (22).webp"
     },
     {
         name: { ru: "Петуния белая", en: "White petunia", am: "Պետունիա սպիտակ" },
         desc: { ru: "Petunia hybrida", en: "Petunia hybrida", am: "Petunia hybrida" },
-        images: "images/plant-1 (23).png"
+        images: "images/plant-1 (23).webp"
     },
     {
         name: { ru: "Эониум древовидный (чёрная роза)", en: "Tree aeonium", am: "Էոնիում ծառանման" },
         desc: { ru: "Aeonium arboreum 'Zwartkop'", en: "Aeonium arboreum 'Zwartkop'", am: "Aeonium arboreum 'Zwartkop'" },
-        images: "images/plant-1 (24).png"
+        images: "images/plant-1 (24).webp"
     },
     {
         name: { ru: "Цитрус декоративный (лимон/лайм/каламондин)", en: "Ornamental citrus", am: "Դեկորատիվ ցիտրուս" },
         desc: { ru: "Citrus sp.", en: "Citrus sp.", am: "Citrus sp." },
-        images: "images/plant-1 (25).png"
+        images: "images/plant-1 (25).webp"
     },
     {
         name: { ru: "Бархатцы (рассада)", en: "Marigold seedlings", am: "Թավշածաղիկ (սածիլ)" },
         desc: { ru: "Tagetes erecta", en: "Tagetes erecta", am: "Tagetes erecta" },
-        images: "images/plant-1 (26).png"
+        images: "images/plant-1 (26).webp"
     },
     {
         name: { ru: "Пальма Вашингтония", en: "Washington palm", am: "Վաշինգտոնիա արմավենի" },
         desc: { ru: "Washingtonia robusta", en: "Washingtonia robusta", am: "Washingtonia robusta" },
-        images: "images/plant-1 (27).png"
+        images: "images/plant-1 (27).webp"
     },
     {
         name: { ru: "Вашингтония (крупный экземпляр)", en: "Washington palm (large)", am: "Վաշինգտոնիա (մեծ նմուշ)" },
         desc: { ru: "Washingtonia robusta", en: "Washingtonia robusta", am: "Washingtonia robusta" },
-        images: "images/plant-1 (28).png"
+        images: "images/plant-1 (28).webp"
     },
     {
         name: { ru: "Туя западная", en: "Northern white cedar", am: "Տույա արևմտյան" },
         desc: { ru: "Thuja occidentalis", en: "Thuja occidentalis", am: "Thuja occidentalis" },
-        images: "images/plant-1 (29).png"
+        images: "images/plant-1 (29).webp"
     },
     {
         name: { ru: "Крассула Голлум («уши Шрека»)", en: "Gollum jade", am: "Կրասուլա Գոլում" },
         desc: { ru: "Crassula ovata 'Gollum'", en: "Crassula ovata 'Gollum'", am: "Crassula ovata 'Gollum'" },
-        images: "images/plant-1 (30).png"
+        images: "images/plant-1 (30).webp"
     },
     {
         name: { ru: "Эхеверия изящная", en: "Elegant echeveria", am: "Էխևերիա նրբագեղ" },
         desc: { ru: "Echeveria elegans", en: "Echeveria elegans", am: "Echeveria elegans" },
-        images: "images/plant-1 (31).png"
+        images: "images/plant-1 (31).webp"
     },
     {
         name: { ru: "Фикус Бенджамина", en: "Weeping fig", am: "Ֆիկուս Բենջամինա" },
         desc: { ru: "Ficus benjamina", en: "Ficus benjamina", am: "Ficus benjamina" },
-        images: "images/plant-1 (32).png"
+        images: "images/plant-1 (32).webp"
     },
     {
         name: { ru: "Гортензия крупнолистная", en: "Bigleaf hydrangea", am: "Հորտենզիա խոշորատերև" },
         desc: { ru: "Hydrangea macrophylla", en: "Hydrangea macrophylla", am: "Hydrangea macrophylla" },
-        images: "images/plant-1 (33).png"
+        images: "images/plant-1 (33).webp"
     },
     {
         name: { ru: "Бегония королевская тёмная", en: "Painted-leaf begonia", am: "Բեգոնիա արքայական մուգ" },
         desc: { ru: "Begonia rex-cultorum", en: "Begonia rex-cultorum", am: "Begonia rex-cultorum" },
-        images: "images/plant-1 (34).png"
+        images: "images/plant-1 (34).webp"
     },
     {
         name: { ru: "Бегония тигровая (декоративная)", en: "Tiger begonia", am: "Բեգոնիա վագրային" },
         desc: { ru: "Begonia bowerae", en: "Begonia bowerae", am: "Begonia bowerae" },
-        images: "images/plant-1 (35).png"
+        images: "images/plant-1 (35).webp"
     },
     {
         name: { ru: "Ирезине Хербста", en: "Herbst's bloodleaf", am: "Իրեզինե Հերբստի" },
         desc: { ru: "Iresine herbstii", en: "Iresine herbstii", am: "Iresine herbstii" },
-        images: "images/plant-1 (36).png"
+        images: "images/plant-1 (36).webp"
     },
     {
         name: { ru: "Фикус Гинсенг (бонсаи)", en: "Ginseng ficus", am: "Ֆիկուս Գինսենգ (բոնսայ)" },
         desc: { ru: "Ficus microcarpa 'Ginseng'", en: "Ficus microcarpa 'Ginseng'", am: "Ficus microcarpa 'Ginseng'" },
-        images: "images/plant-1 (37).png"
+        images: "images/plant-1 (37).webp"
     },
     {
         name: { ru: "Пеперомия Россо", en: "Peperomia 'Rosso'", am: "Պեպերոմիա Ռոսսո" },
         desc: { ru: "Peperomia caperata 'Rosso'", en: "Peperomia caperata 'Rosso'", am: "Peperomia caperata 'Rosso'" },
-        images: "images/plant-1 (38).png"
+        images: "images/plant-1 (38).webp"
     },
     {
         name: { ru: "Фуксия", en: "Fuchsia", am: "Ֆուկսիա" },
         desc: { ru: "Fuchsia hybrida", en: "Fuchsia hybrida", am: "Fuchsia hybrida" },
-        images: "images/plant-1 (39).png"
+        images: "images/plant-1 (39).webp"
     },
     {
         name: { ru: "Фикус каучуконосный бордовый", en: "Rubber plant burgundy", am: "Ֆիկուս կաուչուկաբեր" },
         desc: { ru: "Ficus elastica 'Burgundy'", en: "Ficus elastica 'Burgundy'", am: "Ficus elastica 'Burgundy'" },
-        images: "images/plant-1 (40).png"
+        images: "images/plant-1 (40).webp"
     },
     {
         name: { ru: "Фикус Бенджамина (крупномер)", en: "Weeping fig (large)", am: "Ֆիկուս Բենջամինա (մեծ)" },
         desc: { ru: "Ficus benjamina", en: "Ficus benjamina", am: "Ficus benjamina" },
-        images: "images/plant-1 (41).png"
+        images: "images/plant-1 (41).webp"
     },
     {
         name: { ru: "Кордилина Красная", en: "Ti plant red", am: "Կորդիլինա կարմիր" },
         desc: { ru: "Cordyline fruticosa 'Red Sister'", en: "Cordyline fruticosa 'Red Sister'", am: "Cordyline fruticosa 'Red Sister'" },
-        images: "images/plant-1 (42).png"
+        images: "images/plant-1 (42).webp"
     },
     {
         name: { ru: "Фикус  Бенджамина плетёный", en: "Weeping fig braided", am: "Ֆիկուս Բենջամինա հյուսված" },
         desc: { ru: "Ficus benjamina", en: "Ficus benjamina", am: "Ficus benjamina" },
-        images: "images/plant-1 (43).png"
+        images: "images/plant-1 (43).webp"
     },
     {
         name: { ru: "Юкка слоновая", en: "Spineless yucca", am: "Յուկա փղի" },
         desc: { ru: "Yucca elephantipes", en: "Yucca elephantipes", am: "Yucca elephantipes" },
-        images: "images/plant-1 (44).png"
+        images: "images/plant-1 (44).webp"
     },
     {
         name: { ru: "Фикус Микрокарпа плетёный", en: "Ficus microcarpa braided", am: "Ֆիկուս միկրոկարպա հյուսված" },
         desc: { ru: "Ficus microcarpa", en: "Ficus microcarpa", am: "Ficus microcarpa" },
-        images: "images/plant-1 (45).png"
+        images: "images/plant-1 (45).webp"
     },
     {
         name: { ru: "Сансевиерия Ханни", en: "Bird's nest sansevieria", am: "Սանսևիերիա Հանի" },
         desc: { ru: "Sansevieria trifasciata 'Hahnii'", en: "Sansevieria trifasciata 'Hahnii'", am: "Sansevieria trifasciata 'Hahnii'" },
-        images: "images/plant-1 (46).png"
+        images: "images/plant-1 (46).webp"
     },
     {
         name: { ru: "Банан декоративный", en: "Ornamental banana", am: "Դեկորատիվ բանան" },
         desc: { ru: "Musa acuminata", en: "Musa acuminata", am: "Musa acuminata" },
-        images: "images/plant-1 (47).png"
+        images: "images/plant-1 (47).webp"
     },
     {
         name: { ru: "Драцена Маргината Триколор", en: "Madagascar dragon tree tricolor", am: "Դրացենա Մարգինատա Տրիկոլոր" },
         desc: { ru: "Dracaena marginata 'Tricolor'", en: "Dracaena marginata 'Tricolor'", am: "Dracaena marginata 'Tricolor'" },
-        images: "images/plant-1 (48).png"
+        images: "images/plant-1 (48).webp"
     },
     {
         name: { ru: "Шеффлера древовидная", en: "Dwarf umbrella tree", am: "Շեֆլերա ծառանման" },
         desc: { ru: "Schefflera arboricola", en: "Schefflera arboricola", am: "Schefflera arboricola" },
-        images: "images/plant-1 (49).png"
+        images: "images/plant-1 (49).webp"
     },
     {
         name: { ru: "Бальзамин Уоллера (Импатиенс)", en: "Busy Lizzie", am: "Բալզամին Ուոլերի" },
         desc: { ru: "Impatiens walleriana", en: "Impatiens walleriana", am: "Impatiens walleriana" },
-        images: "images/plant-1 (50).png"
+        images: "images/plant-1 (50).webp"
     },
     {
         name: { ru: "Нефролепис (Бостонский папоротник)", en: "Boston fern", am: "Նեֆրոլեպիս" },
         desc: { ru: "Nephrolepis exaltata", en: "Nephrolepis exaltata", am: "Nephrolepis exaltata" },
-        images: "images/plant-1 (51).png"
+        images: "images/plant-1 (51).webp"
     },
     {
         name: { ru: "Бересклет японский золотистый", en: "Japanese spindle aureus", am: "Էվոնիմուս ճապոնական" },
         desc: { ru: "Euonymus japonicus 'Aureus'", en: "Euonymus japonicus 'Aureus'", am: "Euonymus japonicus 'Aureus'" },
-        images: "images/plant-1 (52).png"
+        images: "images/plant-1 (52).webp"
     },
     {
         name: { ru: "Трахикарпус Форчуна (веерная пальма)", en: "Windmill palm", am: "Տրախիկարպուս" },
         desc: { ru: "Trachycarpus fortunei", en: "Trachycarpus fortunei", am: "Trachycarpus fortunei" },
-        images: "images/plant-1 (53).png"
+        images: "images/plant-1 (53).webp"
     },
     {
         name: { ru: "Барбарис Тунберга пурпурный", en: "Japanese barberry atropurpurea", am: "Բարբարիս Թունբերգի" },
         desc: { ru: "Berberis thunbergii 'Atropurpurea'", en: "Berberis thunbergii 'Atropurpurea'", am: "Berberis thunbergii 'Atropurpurea'" },
-        images: "images/plant-1 (54).png"
+        images: "images/plant-1 (54).webp"
     },
     {
         name: { ru: "Ель канадская Коника", en: "Dwarf Alberta spruce", am: "Եղևնի կանադական Կոնիկա" },
         desc: { ru: "Picea glauca 'Conica'", en: "Picea glauca 'Conica'", am: "Picea glauca 'Conica'" },
-        images: "images/plant-1 (55).png"
+        images: "images/plant-1 (55).webp"
     },
     {
         name: { ru: "Саговник поникающий (Цикас)", en: "Sago palm", am: "Ցիկաս" },
         desc: { ru: "Cycas revoluta", en: "Cycas revoluta", am: "Cycas revoluta" },
-        images: "images/plant-1 (56).png"
+        images: "images/plant-1 (56).webp"
     },
     {
         name: { ru: "Вашингтония нитеносная", en: "California fan palm", am: "Վաշինգտոնիա թելակիր" },
         desc: { ru: "Washingtonia filifera", en: "Washingtonia filifera", am: "Washingtonia filifera" },
-        images: "images/plant-1 (57).png"
+        images: "images/plant-1 (57).webp"
     },
     {
         name: { ru: "Бирючина японская (штамбовая форма)", en: "Wax leaf privet", am: "Լիգուստրում ճապոնական" },
         desc: { ru: "Ligustrum jаpоnicum", en: "Ligustrum jаpоnicum", am: "Ligustrum jаpоnicum" },
-        images: "images/plant-1 (58).png"
+        images: "images/plant-1 (58).webp"
     },
     {
         name: { ru: "Вашингтония робуста", en: "Mexican fan palm", am: "Վաշինգտոնիա ռոբուստա" },
         desc: { ru: "Washingtonia robusta", en: "Washingtonia robusta", am: "Washingtonia robusta" },
-        images: "images/plant-1 (59).png"
+        images: "images/plant-1 (59).webp"
     },
     {
         name: { ru: "Роза садовая", en: "Garden rose", am: "Պարտեզի վարդ" },
         desc: { ru: "Rosa hybrida", en: "Rosa hybrida", am: "Rosa hybrida" },
-        images: "images/plant-1 (60).png"
+        images: "images/plant-1 (60).webp"
     }
 ];
 
@@ -1239,36 +1265,77 @@ const plantsData = [
 
 
         function resolveImagePath(imagePath) {
-            const safePath = String(imagePath || '').trim();
-            if (!safePath) return 'images/logo.png.jpg';
-            return safePath.replace(/\.png$/i, '.jpg');
+            const sourcePath = Array.isArray(imagePath) ? imagePath[0] : imagePath;
+            const safePath = String(sourcePath || '').trim();
+            if (!safePath) return 'images/logo.png.webp';
+            return safePath.replace(/\.(png|jpe?g)$/i, '.webp');
         }
-function renderPlants(lang) {
-    const container = document.getElementById('plants-grid');
-    if (!container) return;
+        function createProductCard({ name, description, imagePath, sku = '' }) {
+            const card = document.createElement('article');
+            card.className = 'card';
 
-    const normalizedLang = String(lang || 'ru').trim().toLowerCase();
-    const currentLang = normalizedLang === 'hy' || normalizedLang === 'am' ? 'am' : normalizedLang;
+            const link = document.createElement('a');
+            link.href = imagePath;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.title = 'Открыть фото целиком';
+            link.style.cssText = 'display: block; width: 100%; height: 200px; margin-bottom: 15px; background: #fcfcfc;';
 
-    container.innerHTML = plantsData.map(item => {
-        const name = item.name[currentLang] || item.name.ru || '';
-        const description = item.desc[currentLang] || item.desc.ru || '';
-        const firstImage = item.images.replace('.jpg', '.png');
+            const image = document.createElement('img');
+            image.src = imagePath;
+            image.alt = name;
+            image.loading = 'lazy';
+            image.decoding = 'async';
+            image.className = 'plant-slider-image';
+            image.style.cssText = 'width: 100%; height: 100%; object-fit: contain; display: block;';
+            link.appendChild(image);
+            card.appendChild(link);
 
-        return `
-            <article class="card">
-                <a href="${firstImage}" target="_blank" title="Открыть фото целиком" style="display: block; width: 100%; height: 200px; margin-bottom: 15px; background: #fcfcfc;">
-                    <img src="${firstImage}" alt="${name}" class="plant-slider-image" style="width: 100%; height: 100%; object-fit: contain; display: block;">
-                </a>
-                <h3>${name}</h3>
-                <p>${description}</p>
-            </article>
-        `;
-    }).join('');
-}
+            if (sku) {
+                const skuNode = document.createElement('span');
+                skuNode.className = 'card-sku';
+                skuNode.style.cssText = 'font-size: 12px; color: #888; font-weight: bold;';
+                skuNode.textContent = sku;
+                card.appendChild(skuNode);
+            }
+
+            const title = document.createElement('h3');
+            if (sku) {
+                title.style.cssText = 'margin: 5px 0; font-size: 18px;';
+            }
+            title.textContent = name;
+            card.appendChild(title);
+
+            const text = document.createElement('p');
+            if (sku) {
+                text.style.cssText = 'font-size: 14px; color: #555;';
+            }
+            text.textContent = description;
+            card.appendChild(text);
+
+            return card;
+        }
+
+        function renderPlants(lang) {
+            const container = document.getElementById('plants-grid');
+            if (!container) return;
+
+            const normalizedLang = String(lang || 'ru').trim().toLowerCase();
+            const currentLang = normalizedLang === 'hy' || normalizedLang === 'am' ? 'am' : normalizedLang;
+            const fragment = document.createDocumentFragment();
+
+            plantsData.forEach(item => {
+                const name = item.name[currentLang] || item.name.ru || '';
+                const description = item.desc[currentLang] || item.desc.ru || '';
+                const firstImage = resolveImagePath(item.images);
+                fragment.appendChild(createProductCard({ name, description, imagePath: firstImage }));
+            });
+
+            container.replaceChildren(fragment);
+        }
 
 
-        const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY';
+        const WEB3FORMS_ACCESS_KEY = '3b4f7044-701a-430f-87d2-373c5c095e72';
 
         function changeLang(lang) {
             const normalizedLang = String(lang).trim().toLowerCase();
@@ -1277,6 +1344,7 @@ function renderPlants(lang) {
                 console.warn(`Unsupported language: ${normalizedLang}`);
                 return;
             }
+            document.documentElement.lang = langKey === 'am' ? 'hy' : langKey;
 
             document.querySelectorAll('.lang-btn').forEach(button => {
                 const buttonLang = (button.dataset.lang || button.textContent.trim().toLowerCase()).toLowerCase();
@@ -1306,6 +1374,13 @@ function renderPlants(lang) {
                 }
             });
 
+            document.querySelectorAll('[data-aria-label-key]').forEach(node => {
+                const key = node.getAttribute('data-aria-label-key');
+                if (translationMap[key]) {
+                    node.setAttribute('aria-label', translationMap[key]);
+                }
+            });
+
             const statusNode = document.getElementById('feedback-status');
             if (statusNode && statusNode.dataset.translationKey) {
                 statusNode.textContent = translationMap[statusNode.dataset.translationKey] || '';
@@ -1321,15 +1396,34 @@ function renderPlants(lang) {
         const feedbackClose = document.getElementById('feedback-close');
         const feedbackForm = document.getElementById('feedback-form');
         const feedbackStatus = document.getElementById('feedback-status');
+        const feedbackNameInput = document.getElementById('feedback-name');
+        let currentMaterialsCategory = 'all';
+        let currentSubCategory = 'all';
+
+        function setFeedbackStatus(type, translationKey, fallbackText) {
+            feedbackStatus.classList.remove('success', 'error');
+            feedbackStatus.dataset.translationKey = translationKey;
+            if (type) {
+                feedbackStatus.classList.add(type);
+            }
+            const currentLang = document.querySelector('.lang-btn.active')?.dataset.lang || 'ru';
+            const langKey = currentLang === 'am' ? 'am' : currentLang;
+            const translationMap = translations[langKey] || translations.ru;
+            feedbackStatus.textContent = translationMap[translationKey] || fallbackText;
+        }
 
         function openFeedbackPanel() {
             feedbackPanel.classList.add('open');
             feedbackPanel.setAttribute('aria-hidden', 'false');
+            feedbackToggle.setAttribute('aria-expanded', 'true');
+            feedbackPanel.focus();
+            feedbackNameInput.focus();
         }
 
         function closeFeedbackPanel() {
             feedbackPanel.classList.remove('open');
             feedbackPanel.setAttribute('aria-hidden', 'true');
+            feedbackToggle.setAttribute('aria-expanded', 'false');
         }
 
         feedbackToggle.addEventListener('click', () => {
@@ -1343,27 +1437,42 @@ function renderPlants(lang) {
 
         feedbackClose.addEventListener('click', closeFeedbackPanel);
 
+        document.querySelectorAll('.lang-btn').forEach(button => {
+            button.addEventListener('click', () => changeLang(button.dataset.lang || 'ru'));
+        });
+
         document.addEventListener('click', (event) => {
             if (!feedbackPanel.contains(event.target) && !feedbackToggle.contains(event.target)) {
                 closeFeedbackPanel();
             }
         });
 
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && feedbackPanel.classList.contains('open')) {
+                closeFeedbackPanel();
+                feedbackToggle.focus();
+            }
+        });
+
         feedbackForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            const currentLang = document.querySelector('.lang-btn.active')?.dataset.lang || 'ru';
-            const langKey = currentLang === 'am' ? 'am' : currentLang;
-            const translationMap = translations[langKey] || translations.ru;
-
-            feedbackStatus.classList.remove('success', 'error');
-            feedbackStatus.textContent = '';
-
             const formData = new FormData(feedbackForm);
+            const name = String(formData.get('name') || '').trim();
+            const contacts = String(formData.get('contacts') || '').trim();
+            const message = String(formData.get('message') || '').trim();
+
+            formData.set('name', name);
+            formData.set('contacts', contacts);
+            formData.set('message', message);
             formData.set('access_key', WEB3FORMS_ACCESS_KEY);
             formData.set('subject', 'New request from Green Import website');
-            formData.set('from_name', formData.get('name') || 'Guest');
-            formData.set('replyto', formData.get('contacts') || '');
+            formData.set('from_name', name || 'Guest');
+            formData.set('replyto', contacts);
+
+            feedbackStatus.classList.remove('success', 'error');
+            feedbackStatus.dataset.translationKey = '';
+            feedbackStatus.textContent = '';
 
             try {
                 const response = await fetch('https://api.web3forms.com/submit', {
@@ -1373,16 +1482,13 @@ function renderPlants(lang) {
                 const result = await response.json();
 
                 if (result.success) {
-                    feedbackStatus.classList.add('success');
-                    feedbackStatus.textContent = translationMap['feedback-thanks'] || 'Thank you for your question!';
+                    setFeedbackStatus('success', 'feedback-thanks', 'Thank you for your question!');
                     feedbackForm.reset();
                 } else {
-                    feedbackStatus.classList.add('error');
-                    feedbackStatus.textContent = translationMap['feedback-error'] || 'The message could not be sent. Please try again later.';
+                    setFeedbackStatus('error', 'feedback-error', 'The message could not be sent. Please try again later.');
                 }
             } catch (error) {
-                feedbackStatus.classList.add('error');
-                feedbackStatus.textContent = translationMap['feedback-error'] || 'The message could not be sent. Please try again later.';
+                setFeedbackStatus('error', 'feedback-error', 'The message could not be sent. Please try again later.');
             }
         });
 // ==========================================
@@ -1392,352 +1498,352 @@ const buildingMaterialsData = [
     {
         name: { ru: "Искусственная трава (Модель 1)", en: "Artificial grass (Model 1)", am: "Արհեստական խոտ (Մոդել 1)" },
         desc: { ru: "Высококачественное ландшафтное покрытие", en: "High quality landscaping turf", am: "Բարձրորակ լանդշաֆտային ծածկույթ" },
-        images: "images/grass (1).png",
+        images: "images/grass (1).webp",
         category: "grass"
     },
     {
         name: { ru: "Искусственная трава (Модель 2)", en: "Artificial grass (Model 2)", am: "Արհեստական խոտ (Մոդել 2)" },
         desc: { ru: "Высококачественное ландшафтное покрытие", en: "High quality landscaping turf", am: "Բարձրորակ լանդշաֆտային ծածկույթ" },
-        images: "images/grass (2).png",
+        images: "images/grass (2).webp",
         category: "grass"
     },
     {
         name: { ru: "Искусственная трава (Модель 3)", en: "Artificial grass (Model 3)", am: "Արհեստական խոտ (Մոդել 3)" },
         desc: { ru: "High quality landscaping turf", en: "High quality landscaping turf", am: "Բարձրորակ լանդշաֆտային ծածկույթ" },
-        images: "images/grass (3).png",
+        images: "images/grass (3).webp",
         category: "grass"
     },
     {
         name: { ru: "Искусственная трава (Модель 4)", en: "Artificial grass (Model 4)", am: "Արհեստական խոտ (Մոդել 4)" },
         desc: { ru: "Высококачественное ландшафтное покрытие", en: "High quality landscaping turf", am: "Բարձրորակ լանդշաֆտային ծածկույթ" },
-        images: "images/grass (4).png",
+        images: "images/grass (4).webp",
         category: "grass"
     },
     {
         name: { ru: "Искусственная трава (Модель 5)", en: "Artificial grass (Model 5)", am: "Արհեստական խոտ (Մոդել 5)" },
         desc: { ru: "Высококачественное ландшафтное покрытие", en: "High quality landscaping turf", am: "Բարձրորակ լանդշաֆտային ծածկույթ" },
-        images: "images/grass (5).png",
+        images: "images/grass (5).webp",
         category: "grass"
     },
     {
         name: { ru: "Искусственная трава (Модель 6)", en: "Artificial grass (Model 6)", am: "Արհեստական խոտ (Մոդել 6)" },
         desc: { ru: "Высококачественное ландшафтное покрытие", en: "High quality landscaping turf", am: "Բարձրորակ լանդշաֆտային ծածկույթ" },
-        images: "images/grass (6).png",
+        images: "images/grass (6).webp",
         category: "grass"
     },
     {
         name: { ru: "Материалы для монтажа (Модель 7)", en: "Installation materials (Model 7)", am: "Մոնտաժային նյութեր (Մոդել 7)" },
         desc: { ru: "Аксессуары и комплектующие для укладки травы", en: "Accessories and components for turf installation", am: "Աքսեսուարներ և բաղադրիչներ խոտի տեղադրման համար" },
-        images: "images/grass (7).png",
+        images: "images/grass (7).webp",
         category: "grass"
     },
     {
         name: { ru: "Материалы для монтажа (Модель 8)", en: "Installation materials (Model 8)", am: "Մոնտաժային նյութեր (Մոդել 8)" },
         desc: { ru: "Аксессуары и комплектующие для укладки травы", en: "Accessories and components for turf installation", am: "Աքսեսուարներ և բաղադրիչներ խոտի տեղադրման համար" },
-        images: "images/grass (8).png",
+        images: "images/grass (8).webp",
         category: "grass"
     }
     ,
     {
         name: { ru: "Детская площадка (Модель 1)", en: "Playground (Model 1)", am: "Մանկական խաղահրապարակ (Մոդել 1)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (1).png",
+        images: "images/playground (1).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 2)", en: "Playground (Model 2)", am: "Մանկական խաղահրապարակ (Մոդել 2)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (2).png",
+        images: "images/playground (2).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 3)", en: "Playground (Model 3)", am: "Մանկական խաղահրապարակ (Մոդել 3)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (3).png",
+        images: "images/playground (3).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 4)", en: "Playground (Model 4)", am: "Մանկական խաղահրապարակ (Մոդել 4)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (4).png",
+        images: "images/playground (4).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 5)", en: "Playground (Model 5)", am: "Մանկական խաղահրապարակ (Մոդել 5)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (5).png",
+        images: "images/playground (5).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 6)", en: "Playground (Model 6)", am: "Մանկական խաղահրապարակ (Մոդել 6)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (6).png",
+        images: "images/playground (6).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 7)", en: "Playground (Model 7)", am: "Մանկական խաղահրապարակ (Մոդել 7)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (7).png",
+        images: "images/playground (7).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 8)", en: "Playground (Model 8)", am: "Մանկական խաղահրապարակ (Մոդել 8)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (8).png",
+        images: "images/playground (8).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 9)", en: "Playground (Model 9)", am: "Մանկական խաղահրապարակ (Մոդել 9)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (9).png",
+        images: "images/playground (9).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 10)", en: "Playground (Model 10)", am: "Մանկական խաղահրապարակ (Մոդել 10)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (10).png",
+        images: "images/playground (10).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 11)", en: "Playground (Model 11)", am: "Մանկական խաղահրապարակ (Մոդել 11)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (11).png",
+        images: "images/playground (11).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 12)", en: "Playground (Model 12)", am: "Մանկական խաղահրապարակ (Մոդել 12)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (12).png",
+        images: "images/playground (12).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 13)", en: "Playground (Model 13)", am: "Մանկական խաղահրապարակ (Մոդել 13)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (13).png",
+        images: "images/playground (13).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 14)", en: "Playground (Model 14)", am: "Մանկական խաղահրապարակ (Մոդել 14)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (14).png",
+        images: "images/playground (14).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 15)", en: "Playground (Model 15)", am: "Մանկական խաղահրապարակ (Մոդել 15)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (15).png",
+        images: "images/playground (15).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 16)", en: "Playground (Model 16)", am: "Մանկական խաղահրապարակ (Մոդել 16)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (16).png",
+        images: "images/playground (16).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 17)", en: "Playground (Model 17)", am: "Մանկական խաղահրապարակ (Մոդել 17)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (17).png",
+        images: "images/playground (17).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 18)", en: "Playground (Model 18)", am: "Մանկական խաղահրապարակ (Մոդել 18)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (18).png",
+        images: "images/playground (18).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 19)", en: "Playground (Model 19)", am: "Մանկական խաղահրապարակ (Մոդել 19)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (19).png",
+        images: "images/playground (19).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 20)", en: "Playground (Model 20)", am: "Մանկական խաղահրապարակ (Մոդել 20)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (20).png",
+        images: "images/playground (20).webp",
         category: "playgrounds"
     }
     ,
     {
         name: { ru: "Детская площадка (Модель 21)", en: "Playground (Model 21)", am: "Մանկական խաղահրապարակ (Մոդել 21)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (21).png",
+        images: "images/playground (21).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 22)", en: "Playground (Model 22)", am: "Մանկական խաղահրապարակ (Մոդել 22)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (22).png",
+        images: "images/playground (22).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 23)", en: "Playground (Model 23)", am: "Մանկական խաղահրապարակ (Մոդել 23)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (23).png",
+        images: "images/playground (23).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 24)", en: "Playground (Model 24)", am: "Մանկական խաղահրապարակ (Մոդել 24)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (24).png",
+        images: "images/playground (24).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 25)", en: "Playground (Model 25)", am: "Մանկական խաղահրապարակ (Մոդել 25)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (25).png",
+        images: "images/playground (25).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 26)", en: "Playground (Model 26)", am: "Մանկական խաղահրապարակ (Մոդել 26)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (26).png",
+        images: "images/playground (26).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 27)", en: "Playground (Model 27)", am: "Մանկական խաղահրապարակ (Մոդել 27)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (27).png",
+        images: "images/playground (27).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 28)", en: "Playground (Model 28)", am: "Մանկական խաղահրապարակ (Մոդել 28)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (28).png",
+        images: "images/playground (28).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 29)", en: "Playground (Model 29)", am: "Մանկական խաղահրապարակ (Մոդել 29)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (29).png",
+        images: "images/playground (29).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 30)", en: "Playground (Model 30)", am: "Մանկական խաղահրապարակ (Մոդել 30)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (30).png",
+        images: "images/playground (30).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 31)", en: "Playground (Model 31)", am: "Մանկական խաղահրապարակ (Մոդել 31)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (31).png",
+        images: "images/playground (31).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 32)", en: "Playground (Model 32)", am: "Մանկական խաղահրապարակ (Մոդել 32)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (32).png",
+        images: "images/playground (32).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 33)", en: "Playground (Model 33)", am: "Մանկական խաղահրապարակ (Մոդել 33)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (33).png",
+        images: "images/playground (33).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 34)", en: "Playground (Model 34)", am: "Մանկական խաղահրապարակ (Մոդել 34)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (34).png",
+        images: "images/playground (34).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 35)", en: "Playground (Model 35)", am: "Մանկական խաղահրապարակ (Մոդել 35)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (35).png",
+        images: "images/playground (35).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 36)", en: "Playground (Model 36)", am: "Մանկական խաղահրապարակ (Մոդել 36)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (36).png",
+        images: "images/playground (36).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 37)", en: "Playground (Model 37)", am: "Մանկական խաղահրապարակ (Մոդել 37)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (37).png",
+        images: "images/playground (37).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 38)", en: "Playground (Model 38)", am: "Մանկական խաղահրապարակ (Մոդել 38)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (38).png",
+        images: "images/playground (38).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 39)", en: "Playground (Model 39)", am: "Մանկական խաղահրապարակ (Մոդել 39)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (39).png",
+        images: "images/playground (39).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 40)", en: "Playground (Model 40)", am: "Մանկական խաղահրապարակ (Մոդել 40)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (40).png",
+        images: "images/playground (40).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 41)", en: "Playground (Model 41)", am: "Մանկական խաղահրապարակ (Մոդել 41)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (41).png",
+        images: "images/playground (41).webp",
         category: "playgrounds"
     },
     {
         name: { ru: "Детская площадка (Модель 42)", en: "Playground (Model 42)", am: "Մանկական խաղահրապարակ (Մոդել 42)" },
         desc: { ru: "Игровое оборудование для благоустройства", en: "Playground equipment for landscaping", am: "Խաղային սարքավորումներ բարեկարգման համար" },
-        images: "images/playground (42).png",
+        images: "images/playground (42).webp",
         category: "playgrounds"
     }
     ,
     {
         name: { ru: "Уличный тренажёр (Модель 1)", en: "Outdoor fitness (Model 1)", am: "Մարզասարք (Մոդել 1)" },
         desc: { ru: "Профессиональное оборудование для воркаута", en: "Professional outdoor fitness equipment", am: "Պրոֆեսիոնալ մարզասարքեր դրսի համար" },
-        images: "images/workout (1).png",
+        images: "images/workout (1).webp",
         category: "workout"
     },
     {
         name: { ru: "Уличный тренажёр (Модель 2)", en: "Outdoor fitness (Model 2)", am: "Մարզասարք (Մոդել 2)" },
         desc: { ru: "Профессиональное оборудование для воркаута", en: "Professional outdoor fitness equipment", am: "Պրոֆեսիոնալ մարզասարքեր դրսի համար" },
-        images: "images/workout (2).png",
+        images: "images/workout (2).webp",
         category: "workout"
     },
     {
         name: { ru: "Уличный тренажёр (Модель 3)", en: "Outdoor fitness (Model 3)", am: "Մարզասարք (Մոդել 3)" },
         desc: { ru: "Профессиональное оборудование для воркаута", en: "Professional outdoor fitness equipment", am: "Պրոֆեսիոնալ մարզասարքեր դրսի համար" },
-        images: "images/workout (3).png",
+        images: "images/workout (3).webp",
         category: "workout"
     },
     {
         name: { ru: "Уличный тренажёр (Модель 4)", en: "Outdoor fitness (Model 4)", am: "Մարզասարք (Մոդել 4)" },
         desc: { ru: "Профессиональное оборудование для воркаута", en: "Professional outdoor fitness equipment", am: "Պրոֆեսիոնալ մարզասարքեր դրսի համար" },
-        images: "images/workout (4).png",
+        images: "images/workout (4).webp",
         category: "workout"
     },
     {
         name: { ru: "Уличный тренажёр (Модель 5)", en: "Outdoor fitness (Model 5)", am: "Մարզասարք (Մոդել 5)" },
         desc: { ru: "Профессиональное оборудование для воркаута", en: "Professional outdoor fitness equipment", am: "Պրոֆեսիոնալ մարզասարքեր դրսի համար" },
-        images: "images/workout (5).png",
+        images: "images/workout (5).webp",
         category: "workout"
     },
     {
         name: { ru: "Уличный тренажёр (Модель 6)", en: "Outdoor fitness (Model 6)", am: "Մարզասարք (Մոդել 6)" },
         desc: { ru: "Профессиональное оборудование для воркаута", en: "Professional outdoor fitness equipment", am: "Պրոֆեսիոնալ մարզասարքեր դրսի համար" },
-        images: "images/workout (6).png",
+        images: "images/workout (6).webp",
         category: "workout"
     },
      {
         name: { ru: "Уличный тренажер (Модель 7)", en: "Outdoor fitness (Model 7)", am: "Մարզասարքեր (Մոդել 7)" },
         desc: { ru: "Профессиональное оборудование для воркаута", en: "Professional outdoor fitness equipment", am: "Պրոֆեսիոնալ մարզասարքեր դրսի համար" },
-        images: ["images/workout (7).png"],
+        images: ["images/workout (7).webp"],
         category: "workout"
     },
     {
         name: { ru: "Уличный тренажер (Модель 8)", en: "Outdoor fitness (Model 8)", am: "Մարզասարքեր (Մոդել 8)" },
         desc: { ru: "Профессиональное оборудование для воркаута", en: "Professional outdoor fitness equipment", am: "Պրոֆեսիոնալ մարզասարքեր դրսի համար" },
-        images: ["images/workout (8).png"],
+        images: ["images/workout (8).webp"],
         category: "workout"
     }
 ];
@@ -1745,7 +1851,7 @@ for (let i = 1; i <= 48; i++) {
     buildingMaterialsData.push({
         name: { ru: "", en: "", am: "" },
         desc: { ru: "", en: "", am: "" },
-        images: [`images/landscaping (${i}).png`],
+        images: [`images/landscaping (${i}).webp`],
         category: "landscaping"
     });
 }
@@ -1755,7 +1861,7 @@ for (let i = 1; i <= 48; i++) {
 function renderMaterials(lang) {
     const grid = document.getElementById('building-materials-grid');
     if (!grid) return;
-    grid.innerHTML = '';
+    grid.replaceChildren();
 
     const normalizedLang = String(lang || 'ru').trim().toLowerCase();
     const currentLang = normalizedLang === 'hy' || normalizedLang === 'am' ? 'am' : normalizedLang;
@@ -1774,15 +1880,9 @@ function renderMaterials(lang) {
     if (!filterContainer) {
         filterContainer = document.createElement('div');
         filterContainer.id = 'materials-filter-buttons';
+        filterContainer.setAttribute('aria-label', 'Фильтры каталога');
         filterContainer.style.cssText = 'display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; justify-content: center; width: 100%;';
         grid.parentNode.insertBefore(filterContainer, grid);
-    }
-
-      if (!window.currentMaterialsCategory) {
-        window.currentMaterialsCategory = 'all';
-    }
-    if (!window.currentSubCategory) {
-        window.currentSubCategory = 'all';
     }
 
     // Словари для перевода подкатегорий на трёх языках
@@ -1817,82 +1917,93 @@ function renderMaterials(lang) {
     };
 
     // Генерация главных кнопок
-    let mainButtonsHtml = ['all', 'grass', 'playgrounds', 'workout', 'landscaping'].map(cat => {
-        const isActive = window.currentMaterialsCategory === cat;
-        const bg = isActive ? '#2e7d32' : '#f5f5f5';
+    const createFilterButton = ({ title, isActive, compact, onClick }) => {
+        const button = document.createElement('button');
+        const background = isActive ? '#2e7d32' : compact ? '#e0e0e0' : '#f5f5f5';
         const color = isActive ? '#ffffff' : '#333333';
         const border = isActive ? '1px solid #2e7d32' : '1px solid #cccccc';
-        const title = categoryTitles[cat][currentLang] || categoryTitles[cat].ru;
 
-        return `<button onclick="window.currentMaterialsCategory='${cat}'; window.currentSubCategory='all'; renderMaterials('${currentLang}')" 
-            style="padding: 10px 20px; font-weight: bold; border-radius: 20px; border: ${border}; background: ${bg}; color: ${color}; cursor: pointer; transition: 0.2s; margin: 5px;">
-            ${title}
-        </button>`;
-    }).join('');
+        button.type = 'button';
+        button.dataset.action = compact ? 'sub-category' : 'main-category';
+        button.textContent = title;
+        button.style.cssText = compact
+            ? `padding: 6px 14px; font-size: 14px; font-weight: 500; border-radius: 15px; border: ${border}; background: ${background}; color: ${color}; cursor: pointer; transition: 0.2s; margin: 3px;`
+            : `padding: 10px 20px; font-weight: bold; border-radius: 20px; border: ${border}; background: ${background}; color: ${color}; cursor: pointer; transition: 0.2s; margin: 5px;`;
+        button.addEventListener('click', onClick);
+        return button;
+    };
 
     // Генерация подкатегорий
-    let subButtonsHtml = '';
-    const activeMainCat = window.currentMaterialsCategory;
+    const fragment = document.createDocumentFragment();
+    const mainButtonsWrapper = document.createElement('div');
+    mainButtonsWrapper.style.cssText = 'display:flex; justify-content:center; flex-wrap:wrap; width:100%;';
+
+    ['all', 'grass', 'playgrounds', 'workout', 'landscaping'].forEach(cat => {
+        const isActive = currentMaterialsCategory === cat;
+        const title = categoryTitles[cat][currentLang] || categoryTitles[cat].ru;
+        mainButtonsWrapper.appendChild(createFilterButton({
+            title,
+            isActive,
+            compact: false,
+            onClick: () => {
+                currentMaterialsCategory = cat;
+                currentSubCategory = 'all';
+                renderMaterials(currentLang);
+            }
+        }));
+    });
+    fragment.appendChild(mainButtonsWrapper);
+
+    const activeMainCat = currentMaterialsCategory;
     
     if (activeMainCat !== 'all' && subCategoriesMap[activeMainCat]) {
         const subs = ['all', ...subCategoriesMap[activeMainCat]];
-        subButtonsHtml = '<div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:15px; margin-bottom:10px; width:100%;">' + 
-        subs.map(sub => {
-            const isActive = window.currentSubCategory === sub;
-            const bg = isActive ? '#2e7d32' : '#e0e0e0';
-            const color = isActive ? '#ffffff' : '#333333';
-            const border = isActive ? '1px solid #2e7d32' : '1px solid #cccccc';
-            const title = subTitles[sub][currentLang] || subTitles[sub].ru;
+        const subButtonsWrapper = document.createElement('div');
+        subButtonsWrapper.style.cssText = 'display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:15px; margin-bottom:10px; width:100%;';
 
-            return `<button onclick="window.currentSubCategory='${sub}'; renderMaterials('${currentLang}')" 
-                style="padding: 6px 14px; font-size: 14px; font-weight: 500; border-radius: 15px; border: ${border}; background: ${bg}; color: ${color}; cursor: pointer; transition: 0.2s; margin: 3px;">
-                ${title}
-            </button>`;
-        }).join('') + '</div>';
+        subs.forEach(sub => {
+            const isActive = currentSubCategory === sub;
+            const title = subTitles[sub][currentLang] || subTitles[sub].ru;
+            subButtonsWrapper.appendChild(createFilterButton({
+                title,
+                isActive,
+                compact: true,
+                onClick: () => {
+                    currentSubCategory = sub;
+                    renderMaterials(currentLang);
+                }
+            }));
+        });
+
+        fragment.appendChild(subButtonsWrapper);
     }
 
-    // Вывод кнопок в контейнер
-    filterContainer.innerHTML = `<div style="display:flex; justify-content:center; flex-wrap:wrap; width:100%;">${mainButtonsHtml}</div>` + subButtonsHtml;
+    filterContainer.replaceChildren(fragment);
 
       // Умная сортировка по категориям и подкатегориям
     let filteredData = buildingMaterialsData;
     
-    if (window.currentMaterialsCategory !== 'all') {
-        filteredData = filteredData.filter(item => item.category === window.currentMaterialsCategory);
+    if (currentMaterialsCategory !== 'all') {
+        filteredData = filteredData.filter(item => item.category === currentMaterialsCategory);
     }
     
-    if (window.currentSubCategory !== 'all') {
-        filteredData = filteredData.filter(item => item.sub_category === window.currentSubCategory);
+    if (currentSubCategory !== 'all') {
+        filteredData = filteredData.filter(item => item.sub_category === currentSubCategory);
     }
 
     // Вывод карточек
     filteredData.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        
         const nameText = item.name[currentLang] || item.name.ru || '';
         const descText = item.desc[currentLang] || item.desc.ru || '';
-        
-        const imgUrl = Array.isArray(item.images) ? item.images : item.images;
-        const currentImg = imgUrl || 'images/logo.png';
-
-        card.innerHTML = `
-            <a href="${currentImg}" target="_blank" title="Открыть фото целиком" style="display: block; width: 100%; height: 200px; margin-bottom: 15px; background: #fcfcfc;">
-                <img src="${currentImg}" alt="${nameText}" style="width: 100%; height: 100%; object-fit: contain; display: block;">
-            </a>
-            <div class="card-content" style="padding: 0;">
-                <span class="card-sku" style="font-size: 12px; color: #888; font-weight: bold;">${item.sku || ''}</span>
-                <h3 class="card-title" style="margin: 5px 0; font-size: 18px;">${nameText}</h3>
-                <p class="card-desc" style="font-size: 14px; color: #555;">${descText}</p>
-            </div>
-        `;
-        
-        grid.appendChild(card);
+        const currentImg = resolveImagePath(item.images);
+        grid.appendChild(createProductCard({
+            name: nameText,
+            description: descText,
+            imagePath: currentImg,
+            sku: item.sku || ''
+        }));
     });
 }
 
-renderMaterials('ru');
-
-        renderPlants('ru');
         changeLang('ru');
     </script>
