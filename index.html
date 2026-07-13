@@ -431,8 +431,11 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 16px;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
             background: rgba(0, 0, 0, 0.82);
+            overscroll-behavior: contain;
         }
 
         .mobile-image-preview.open {
@@ -442,6 +445,7 @@
         .mobile-image-preview-image {
             max-width: 100%;
             max-height: 86vh;
+            max-height: 86dvh;
             width: auto;
             height: auto;
             object-fit: contain;
@@ -450,6 +454,9 @@
             transition: transform 0.15s ease-out;
             transform-origin: center center;
             touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
         }
 
         .mobile-image-preview-close {
@@ -512,6 +519,18 @@
             background: rgba(0, 0, 0, 0.35);
             padding: 8px 10px;
             border-radius: 10px;
+        }
+
+        .js-mobile-zoom-trigger {
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+        }
+
+        body.no-scroll {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            overflow: hidden;
         }
 
         .skip-link {
@@ -1381,6 +1400,7 @@ const plantsData = [
             link.dataset.zoomImage = imagePath;
             link.dataset.zoomAlt = name;
             link.style.cssText = 'display: block; width: 100%; height: 200px; margin-bottom: 15px; background: #fcfcfc;';
+            attachZoomHandlers(link);
 
             const image = document.createElement('img');
             image.src = imagePath;
@@ -1513,6 +1533,8 @@ const plantsData = [
         let pinchStartScale = 1;
         let swipeStartX = 0;
         let swipeStartY = 0;
+        let lastZoomOpenAt = 0;
+        let lockedScrollY = 0;
 
         function getDistanceBetweenTouches(touchA, touchB) {
             const dx = touchA.clientX - touchB.clientX;
@@ -1532,6 +1554,18 @@ const plantsData = [
                     alt: link.dataset.zoomAlt || ''
                 }))
                 .filter(item => item.src);
+        }
+
+        function lockBodyScroll() {
+            lockedScrollY = window.scrollY || window.pageYOffset || 0;
+            document.body.classList.add('no-scroll');
+            document.body.style.top = `-${lockedScrollY}px`;
+        }
+
+        function unlockBodyScroll() {
+            document.body.classList.remove('no-scroll');
+            document.body.style.top = '';
+            window.scrollTo(0, lockedScrollY);
         }
 
         function resetPreviewZoom() {
@@ -1573,7 +1607,63 @@ const plantsData = [
         }
 
         function shouldUseMobileImageZoom() {
-            return window.matchMedia('(max-width: 900px)').matches;
+            return window.matchMedia('(hover: none), (pointer: coarse), (max-width: 1024px)').matches;
+        }
+
+        function findZoomTrigger(target) {
+            let node = target;
+            while (node && node !== document.body) {
+                if (node.classList && node.classList.contains('js-mobile-zoom-trigger')) {
+                    return node;
+                }
+                node = node.parentElement;
+            }
+            return null;
+        }
+
+        function tryOpenZoomFromEvent(event) {
+            const zoomTrigger = findZoomTrigger(event.target);
+            if (!zoomTrigger || !shouldUseMobileImageZoom()) return;
+
+            const now = Date.now();
+            if (now - lastZoomOpenAt < 350) {
+                if (event.cancelable) event.preventDefault();
+                return;
+            }
+
+            const imageSrc = zoomTrigger.dataset.zoomImage || zoomTrigger.getAttribute('href') || '';
+            const imageAlt = zoomTrigger.dataset.zoomAlt || '';
+            if (!imageSrc) return;
+
+            if (event.cancelable) event.preventDefault();
+            lastZoomOpenAt = now;
+            openMobileImagePreview(imageSrc, imageAlt, zoomTrigger);
+        }
+
+        function attachZoomHandlers(link) {
+            if (!link || link.dataset.zoomBound === '1') return;
+
+            const openFromEvent = (event) => {
+                if (!shouldUseMobileImageZoom()) return;
+                if (event.cancelable) {
+                    event.preventDefault();
+                }
+                event.stopPropagation();
+
+                const now = Date.now();
+                if (now - lastZoomOpenAt < 350) return;
+                lastZoomOpenAt = now;
+
+                const imageSrc = link.dataset.zoomImage || link.getAttribute('href') || '';
+                const imageAlt = link.dataset.zoomAlt || '';
+                if (!imageSrc) return;
+                openMobileImagePreview(imageSrc, imageAlt, link);
+            };
+
+            link.addEventListener('click', openFromEvent, true);
+            link.addEventListener('pointerup', openFromEvent, true);
+            link.addEventListener('touchend', openFromEvent, { capture: true, passive: false });
+            link.dataset.zoomBound = '1';
         }
 
         function openMobileImagePreview(imageSrc, imageAlt, sourceNode = null) {
@@ -1597,7 +1687,7 @@ const plantsData = [
             showPreviewAtIndex(currentPreviewIndex);
             mobileImagePreview.classList.add('open');
             mobileImagePreview.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
+            lockBodyScroll();
         }
 
         function closeMobileImagePreview() {
@@ -1612,7 +1702,7 @@ const plantsData = [
             previewItems = [];
             currentPreviewIndex = -1;
             resetPreviewZoom();
-            document.body.style.overflow = '';
+            unlockBodyScroll();
         }
 
         function setFeedbackStatus(type, translationKey, fallbackText) {
@@ -1662,15 +1752,7 @@ const plantsData = [
             }
         });
 
-        document.addEventListener('click', (event) => {
-            const zoomTrigger = event.target.closest('.js-mobile-zoom-trigger');
-            if (!zoomTrigger || !shouldUseMobileImageZoom()) return;
-            event.preventDefault();
-            const imageSrc = zoomTrigger.dataset.zoomImage || zoomTrigger.getAttribute('href') || '';
-            const imageAlt = zoomTrigger.dataset.zoomAlt || '';
-            if (!imageSrc) return;
-            openMobileImagePreview(imageSrc, imageAlt, zoomTrigger);
-        });
+        document.addEventListener('click', tryOpenZoomFromEvent, true);
 
         mobileImagePreviewClose?.addEventListener('click', closeMobileImagePreview);
         mobileImagePreviewPrev?.addEventListener('click', (event) => {
@@ -1735,6 +1817,14 @@ const plantsData = [
                 pinchStartScale = previewScale;
             }
         }, { passive: true });
+
+        mobileImagePreviewImage?.addEventListener('gesturestart', (event) => {
+            event.preventDefault();
+        });
+
+        mobileImagePreviewImage?.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
+        });
 
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && feedbackPanel.classList.contains('open')) {
